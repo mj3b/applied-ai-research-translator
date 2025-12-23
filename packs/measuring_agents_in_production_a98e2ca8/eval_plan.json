@@ -1,0 +1,15 @@
+{
+  "eval_version": "0.1.0",
+  "eval_id": "eval_7530f109-712a-4ac2-944d-fd1c89b1f4fc",
+  "spec_id": "spec_b4df0307-a431-441c-9987-2eefc92e86df",
+  "created_at": "2025-12-23T20:56:52+00:00",
+  "datasets": [],
+  "metrics": [],
+  "graders": [],
+  "reporting": {
+    "report_formats": [
+      "json"
+    ],
+    "decision_summary_template": "Spec validation + evidence coverage summary."
+  }
+}
