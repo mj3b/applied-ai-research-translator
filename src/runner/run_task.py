@@ -13,8 +13,32 @@ from typing import Optional, List, Dict, Any
 
 def build_decision_summary(task_id: str, run_id: str, status: str, result: dict, evidence: List[str]) -> Optional[dict]:
     # v1: only for t_c04 and only when status is ok
-    if task_id != "t_c04" or status != "ok":
+    if task_id not in ("t_c04", "t_c02") or status != "ok":
         return None
+
+    if task_id == "t_c02":
+        methods = result.get("evaluation_methods_used", []) or []
+        primary = result.get("primary_method", "unknown")
+        confidence = result.get("confidence", "low")
+
+        rationale = [
+            f"primary_method: {primary}",
+            f"methods_used: {', '.join(methods)}" if methods else "methods_used: none"
+        ]
+        rationale.extend([f"evidence: {e}" for e in evidence][:3])
+
+        if len(rationale) < 2:
+            rationale = ["Insufficient rationale generated.", "Review raw output + evidence."]
+
+        return {
+            "run_id": run_id,
+            "task_id": task_id,
+            "decision": f"primary_method={primary}",
+            "confidence": confidence if confidence in ("low","medium","high") else "low",
+            "rationale": rationale,
+            "notes": "v1 decision summary for t_c02 (artifact-based evaluation classification)."
+        }
+
 
     drift = bool(result.get("drift_detected", False))
     signals = result.get("drift_signals", []) or []
