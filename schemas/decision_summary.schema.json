@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DecisionSummary",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "task_id", "decision", "confidence", "rationale"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "decision": { "type": "string" },
+    "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+    "rationale": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 2
+    },
+    "notes": { "type": "string" }
+  }
+}
