@@ -1,0 +1,27 @@
+{
+  "run_id": "example_t_c02_snippets",
+  "pack_id": "measuring_agents_in_production_a98e2ca8",
+  "task_id": "t_c02",
+  "created_at": "2025-12-23T23:05:00Z",
+  "inputs": {
+    "eval_artifacts": {
+      "benchmarks": [],
+      "ab_tests": ["ab_report_q4.json"],
+      "user_feedback": ["feedback_summary.md"],
+      "monitoring": ["dashboard_link_or_export.csv"]
+    },
+    "eval_artifacts_content": {
+      "ab_tests": {
+        "ab_report_q4.json": "Variant B improved task success from 0.74→0.79; override rate unchanged."
+      },
+      "user_feedback": {
+        "feedback_summary.md": "Users report better speed but occasional missing context in recommendations."
+      },
+      "monitoring": {
+        "dashboard_link_or_export.csv": "Last 30d: success 0.78; overrides 0.21; spike in failures on weekends."
+      }
+    },
+    "agent_description": "Incident triage assistant used by SREs; suggests remediation steps; humans approve execution.",
+    "time_window": { "start": "2025-10-01", "end": "2025-12-01" }
+  }
+}
