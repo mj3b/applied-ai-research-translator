@@ -8,6 +8,42 @@ from jsonschema import validate
 def iso_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
+
+from typing import Optional, List, Dict, Any
+
+def build_decision_summary(task_id: str, run_id: str, status: str, result: dict, evidence: List[str]) -> Optional[dict]:
+    # v1: only for t_c04 and only when status is ok
+    if task_id != "t_c04" or status != "ok":
+        return None
+
+    drift = bool(result.get("drift_detected", False))
+    signals = result.get("drift_signals", []) or []
+
+    # Confidence heuristic (v1)
+    if len(signals) >= 2:
+        confidence = "high"
+    elif len(signals) == 1:
+        confidence = "medium"
+    else:
+        confidence = "low"
+
+    rationale = []
+    rationale.extend([f"signal: {x}" for x in signals][:3])
+    rationale.extend([f"evidence: {x}" for x in evidence][:3])
+
+    if len(rationale) < 2:
+        rationale = ["Insufficient rationale generated.", "Review raw output + evidence."]
+
+    return {
+        "run_id": run_id,
+        "task_id": task_id,
+        "decision": f"drift_detected={drift}",
+        "confidence": confidence,
+        "rationale": rationale,
+        "notes": "v1 decision summary (heuristic confidence)."
+    }
+
+
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -195,6 +231,18 @@ def main():
         "output_path": str(run_dir / "output.json")
     }
     write_json(run_dir / "decision_log.json", decision_log)
+
+    # Optional: decision summary (v1)
+    decision_summary = build_decision_summary(
+        run_input.get('task_id'),
+        run_input.get('run_id'),
+        status,
+        result,
+        evidence,
+    )
+    if decision_summary is not None:
+        summary_path = run_dir / "decision_summary.json"
+        write_json(summary_path, decision_summary)
 
     print(f"✅ Wrote runs/{run_id}/output.json and decision_log.json")
 
