@@ -2,8 +2,12 @@ import argparse
 import json
 import os
 import re
+import shutil
+import subprocess
 import uuid
 from datetime import datetime, timezone
+from pathlib import Path
+from typing import Optional
 
 def iso_now() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
@@ -22,13 +26,42 @@ def write_json(path: str, obj: dict) -> None:
         json.dump(obj, f, indent=2, ensure_ascii=False)
         f.write("\n")
 
-def make_pack(title: str, out_dir: str = "packs") -> str:
+def require_cmd(cmd: str) -> None:
+    if shutil.which(cmd) is None:
+        raise SystemExit(f"Missing '{cmd}'. Install with: brew install poppler")
+
+def copy_pdf_into_pack(pdf_path: str, sources_dir: str) -> str:
+    src = Path(pdf_path).expanduser().resolve()
+    if not src.exists() or src.suffix.lower() != ".pdf":
+        raise SystemExit(f"--pdf must be an existing .pdf file. Got: {src}")
+    ensure_dir(sources_dir)
+    dst = Path(sources_dir) / "paper.pdf"
+    shutil.copyfile(src, dst)
+    return str(dst)
+
+def extract_text_pdftotext(pdf_in_pack: str, out_txt: str) -> None:
+    require_cmd("pdftotext")
+    cmd = ["pdftotext", "-layout", "-nopgbrk", pdf_in_pack, out_txt]
+    p = subprocess.run(cmd, capture_output=True, text=True)
+    if p.returncode != 0:
+        raise SystemExit(f"pdftotext failed:\n{p.stderr.strip()}")
+
+def make_pack(title: str, out_dir: str, pdf: Optional[str]) -> str:
     pack_id = f"{slugify(title)}_{uuid.uuid4().hex[:8]}"
     pack_path = os.path.join(out_dir, pack_id)
-    ensure_dir(pack_path)
+    sources_dir = os.path.join(pack_path, "sources")
+    ensure_dir(sources_dir)
 
     now = iso_now()
     spec_id = f"spec_{uuid.uuid4()}"
+
+    pdf_in_pack = None
+    paper_text_path = None
+    if pdf:
+        pdf_in_pack = copy_pdf_into_pack(pdf, sources_dir)
+        paper_text_path = os.path.join(sources_dir, "paper_text.txt")
+        extract_text_pdftotext(pdf_in_pack, paper_text_path)
+
     agent_spec = {
         "spec_version": "0.1.0",
         "spec_id": spec_id,
@@ -42,7 +75,8 @@ def make_pack(title: str, out_dir: str = "packs") -> str:
                 "venue": None,
                 "year": None,
                 "url": None,
-                "pdf_path": None,
+                "pdf_path": pdf_in_pack,
+                "paper_text_path": paper_text_path,
                 "claim_extraction_notes": None
             }
         },
@@ -68,10 +102,10 @@ def make_pack(title: str, out_dir: str = "packs") -> str:
                 {
                     "name": "paper_text",
                     "type": "string",
-                    "description": "Extracted full text or structured summary of the paper.",
+                    "description": "Extracted paper text stored in the pack.",
                     "constraints": {"allowed_values": None, "regex": None, "min": None, "max": None},
                     "required": True,
-                    "example": "Full paper text..."
+                    "example": "packs/<id>/sources/paper_text.txt"
                 }
             ],
             "optional_fields": [],
@@ -115,12 +149,12 @@ def main():
     mk = sub.add_parser("make-pack", help="Create a new pack folder with stubbed artifacts")
     mk.add_argument("--title", required=True, help="Paper title (or working title)")
     mk.add_argument("--out", default="packs", help="Output directory (default: packs)")
+    mk.add_argument("--pdf", default=None, help="Path to a PDF to store + extract into the pack")
 
     args = parser.parse_args()
-
     if args.cmd == "make-pack":
-        path = make_pack(args.title, args.out)
-        print(f"✅ Created pack: {path}")
+        pack_path = make_pack(args.title, args.out, args.pdf)
+        print(f"✅ Created pack: {pack_path}")
 
 if __name__ == "__main__":
     main()

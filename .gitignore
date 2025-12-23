@@ -2,3 +2,11 @@
 __pycache__/
 .DS_Store
 .env
+
+# Packs: don't commit PDFs
+packs/**/sources/paper.pdf
+
+# Optional: ignore any other binary-ish artifacts in sources
+# packs/**/sources/*.png
+# packs/**/sources/*.jpg
+# packs/**/sources/*.jpeg
