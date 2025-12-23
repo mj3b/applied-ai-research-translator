@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent_spec.schema.json",
+  "title": "AgentSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["spec_version", "spec_id", "created_at", "status", "decision", "inputs", "outputs", "evaluation", "governance"],
+  "properties": {
+    "spec_version": { "type": "string" },
+    "spec_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "updated_at": { "type": "string" },
+    "status": { "type": "string", "enum": ["draft", "review", "approved", "deprecated"] },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "user", "decision_statement", "failure_cost", "success_criteria", "scope"],
+      "properties": {
+        "name": { "type": "string" },
+        "user": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["persona", "primary_goal", "environment"],
+          "properties": {
+            "persona": { "type": "string" },
+            "primary_goal": { "type": "string" },
+            "environment": { "type": "string" }
+          }
+        },
+        "decision_statement": { "type": "string" },
+        "scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["included", "excluded"],
+          "properties": {
+            "included": { "type": "array", "items": { "type": "string" } },
+            "excluded": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "failure_cost": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["severity", "harms", "reversibility"],
+          "properties": {
+            "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+            "harms": { "type": "array", "items": { "type": "string" } },
+            "reversibility": { "type": "string", "enum": ["reversible", "partially_reversible", "irreversible"] }
+          }
+        },
+        "success_criteria": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["modalities", "required_fields", "optional_fields", "data_quality_assumptions", "redaction_rules"],
+      "properties": {
+        "modalities": { "type": "array", "items": { "type": "string" } },
+        "required_fields": { "type": "array", "items": { "$ref": "#/$defs/fieldSpec" } },
+        "optional_fields": { "type": "array", "items": { "$ref": "#/$defs/fieldSpec" } },
+        "data_quality_assumptions": { "type": "array", "items": { "type": "string" } },
+        "redaction_rules": { "type": "array", "items": { "type": "object" } }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_output_schema", "evidence_requirements", "confidence_labeling", "abstention"],
+      "properties": {
+        "primary_output_schema": { "type": "object" },
+        "evidence_requirements": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["citations_required", "citation_format", "min_evidence_items"],
+          "properties": {
+            "citations_required": { "type": "boolean" },
+            "citation_format": { "type": "string" },
+            "min_evidence_items": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "confidence_labeling": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["required", "scale"],
+          "properties": {
+            "required": { "type": "boolean" },
+            "scale": { "type": "string" },
+            "calibration_notes": { "type": "string" }
+          }
+        },
+        "abstention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["required", "triggers", "fallback_action", "message_template"],
+          "properties": {
+            "required": { "type": "boolean" },
+            "triggers": { "type": "array", "items": { "type": "object" } },
+            "fallback_action": { "type": "string" },
+            "message_template": { "type": "string" }
+          }
+        }
+      }
+    },
+    "evaluation": { "type": "object" },
+    "governance": { "type": "object" }
+  },
+  "$defs": {
+    "fieldSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type", "description", "constraints", "required", "example"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "description": { "type": "string" },
+        "constraints": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["allowed_values", "regex", "min", "max"],
+          "properties": {
+            "allowed_values": { "type": ["array", "null"], "items": { "type": "string" } },
+            "regex": { "type": ["string", "null"] },
+            "min": { "type": ["number", "null"] },
+            "max": { "type": ["number", "null"] }
+          }
+        },
+        "required": { "type": "boolean" },
+        "example": {}
+      }
+    }
+  }
+}
