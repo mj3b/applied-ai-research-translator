@@ -1,0 +1,132 @@
+{
+  "claims_version": "0.1.0",
+  "pack_id": "measuring_agents_in_production_a98e2ca8",
+  "created_at": "2025-12-23T20:00:00Z",
+  "source": {
+    "paper_text_path": "packs/measuring_agents_in_production_a98e2ca8/sources/paper_text.txt",
+    "method": "manual_v0",
+    "notes": "First-pass claims extracted for schema + workflow testing. Quotes and location hints should be refined."
+  },
+  "claims": [
+    {
+      "claim_id": "c01",
+      "claim_type": "measurement",
+      "claim_text": "Agent performance in production must be evaluated using end-to-end task success measures, not only model-level accuracy or offline benchmarks.",
+      "operationalization": {
+        "task": "Define and compute production task success for an agent workflow.",
+        "inputs": ["production interaction logs", "task definitions", "ground-truth outcomes when available"],
+        "outputs": ["task success rate", "error categories"],
+        "metric": "task_success_rate"
+      },
+      "testability": {
+        "level": "high",
+        "eval_hint": "Replay logged sessions and score success/failure using a rubric + outcome checks.",
+        "failure_modes": ["missing ground truth", "ambiguous success criteria", "selection bias in logs"]
+      },
+      "dependencies": ["clear task definition", "logging instrumentation"],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "Production evaluation requires measuring the agent’s end-to-end behavior and outcomes, not only isolated model performance.",
+          "location_hint": "intro / motivation section (search for 'production' and 'end-to-end')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c02",
+      "claim_type": "reliability",
+      "claim_text": "Agents fail in production due to tool errors, environment drift, and orchestration issues; measurement must separate model errors from tool and system errors.",
+      "operationalization": {
+        "task": "Categorize failures by root cause across model/tool/orchestration layers.",
+        "inputs": ["tool call traces", "agent steps", "exception logs"],
+        "outputs": ["failure taxonomy counts", "root-cause labels"],
+        "metric": "root_cause_precision"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Annotate a stratified sample of failures with a root-cause schema; compute inter-rater agreement.",
+        "failure_modes": ["insufficient traces", "multi-cause failures", "inconsistent labeling"]
+      },
+      "dependencies": ["trace logging", "failure taxonomy"],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "Failures arise from more than hallucinations; tool execution and orchestration often dominate real incident patterns.",
+          "location_hint": "failure analysis section (search for 'tool' 'orchestration' 'failure')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c03",
+      "claim_type": "measurement",
+      "claim_text": "Evaluation should include abstention and escalation behavior, measuring when the agent defers to humans under uncertainty rather than forcing an answer.",
+      "operationalization": {
+        "task": "Measure abstention rate and escalation quality under uncertain inputs.",
+        "inputs": ["test cases with missing/ambiguous data", "agent outputs", "human decisions"],
+        "outputs": ["abstention_rate", "escalation_precision"],
+        "metric": "escalation_precision"
+      },
+      "testability": {
+        "level": "high",
+        "eval_hint": "Create a challenge set with uncertainty triggers; score whether the agent escalates appropriately.",
+        "failure_modes": ["over-abstention", "under-abstention", "unclear uncertainty definition"]
+      },
+      "dependencies": ["abstention policy", "HITL workflow"],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "A reliable agent must know when not to act; escalation and deferral are first-class outcomes.",
+          "location_hint": "evaluation / governance section (search for 'abstain' 'escalate' 'defer')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c04",
+      "claim_type": "measurement",
+      "claim_text": "Offline evaluation must be linked to production outcomes via continuous monitoring and periodic re-evaluation to detect drift.",
+      "operationalization": {
+        "task": "Detect drift in agent performance over time and trigger re-evaluation.",
+        "inputs": ["time-windowed production metrics", "baseline eval metrics"],
+        "outputs": ["drift alerts", "re-eval triggers"],
+        "metric": "drift_detection_rate"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Run time-sliced evaluation; alert when metrics cross thresholds; validate alerts against known incidents.",
+        "failure_modes": ["seasonality noise", "metric gaming", "insufficient sample size"]
+      },
+      "dependencies": ["monitoring", "thresholds", "incident review process"],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "Production systems require monitoring loops that connect evaluation to real outcomes over time.",
+          "location_hint": "monitoring section (search for 'monitor' 'drift' 'continuous')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c05",
+      "claim_type": "safety",
+      "claim_text": "Safety and policy compliance should be evaluated as part of the agent’s workflow outcomes, not only as model-level safety filters.",
+      "operationalization": {
+        "task": "Score compliance with safety/policy constraints across multi-step workflows.",
+        "inputs": ["agent trajectories", "policy rules", "tool-use constraints"],
+        "outputs": ["compliance_rate", "violation_types"],
+        "metric": "compliance_rate"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Define policy checks; run them on recorded trajectories; sample violations for human review.",
+        "failure_modes": ["policy ambiguity", "partial compliance", "hidden tool side effects"]
+      },
+      "dependencies": ["policy rules", "trajectory logging"],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "Safety must be assessed at the workflow level, since multi-step actions can create risk beyond single outputs.",
+          "location_hint": "safety section (search for 'safety' 'policy' 'workflow')"
+        }
+      ]
+    }
+  ]
+}
