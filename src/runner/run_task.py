@@ -102,13 +102,13 @@ def exec_t_c02(inputs: dict) -> tuple[str, dict, list[str], str]:
         evidence.append(f"benchmarks provided: {artifacts.get('benchmarks')}")
     if artifacts.get("ab_tests"):
         methods.append("ab_testing")
-        evidence.append(f"A/B tests provided: {artifacts.get('ab_tests')}")
+        evidence.append("A/B test artifacts: " + ", ".join(artifacts.get("ab_tests") or []))
     if artifacts.get("user_feedback"):
         methods.append("user_feedback")
-        evidence.append(f"user feedback provided: {artifacts.get('user_feedback')}")
+        evidence.append("User feedback artifacts: " + ", ".join(artifacts.get("user_feedback") or []))
     if artifacts.get("monitoring"):
         methods.append("production_monitoring")
-        evidence.append(f"monitoring provided: {artifacts.get('monitoring')}")
+        evidence.append("Production monitoring artifacts: " + ", ".join(artifacts.get("monitoring") or []))
 
     if not methods:
         return ("abstained",
