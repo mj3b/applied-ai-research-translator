@@ -67,6 +67,59 @@ def _pct_drop(baseline: float, current: float) -> float:
         return 0.0
     return (baseline - current) / baseline
 
+
+def exec_t_c02(inputs: dict) -> tuple[str, dict, list[str], str]:
+    artifacts = inputs["eval_artifacts"]
+    methods = []
+
+    evidence = []
+    if artifacts.get("benchmarks"):
+        methods.append("formal_benchmark")
+        evidence.append(f"benchmarks provided: {artifacts.get('benchmarks')}")
+    if artifacts.get("ab_tests"):
+        methods.append("ab_testing")
+        evidence.append(f"A/B tests provided: {artifacts.get('ab_tests')}")
+    if artifacts.get("user_feedback"):
+        methods.append("user_feedback")
+        evidence.append(f"user feedback provided: {artifacts.get('user_feedback')}")
+    if artifacts.get("monitoring"):
+        methods.append("production_monitoring")
+        evidence.append(f"monitoring provided: {artifacts.get('monitoring')}")
+
+    if not methods:
+        return ("abstained",
+                {"reason": "no_eval_artifacts", "message": "No evaluation artifacts provided."},
+                [],
+                "Cannot classify evaluation methods without eval_artifacts.")
+
+    # Primary method heuristic
+    if "formal_benchmark" in methods:
+        primary = "formal_benchmark"
+    elif "ab_testing" in methods:
+        primary = "ab_testing"
+    elif "production_monitoring" in methods:
+        primary = "production_monitoring"
+    else:
+        primary = methods[0]
+
+    # Confidence heuristic
+    if len(methods) >= 3:
+        confidence = "high"
+    elif len(methods) == 2:
+        confidence = "medium"
+    else:
+        confidence = "low"
+
+    result = {
+        "evaluation_methods_used": methods,
+        "primary_method": primary,
+        "evidence": evidence[:4],
+        "confidence": confidence,
+        "notes": "v1: deterministic classification from provided eval_artifacts."
+    }
+    # For runner schema we return evidence separately too
+    return ("ok", result, evidence[:4], "Classified evaluation methods from artifacts.")
+
 def exec_t_c04(inputs: dict) -> tuple[str, dict, list[str], str]:
     ts = inputs["production_metrics_timeseries"]
     baseline = inputs["baseline_metrics"]
@@ -137,6 +190,17 @@ def simple_executor(task: dict, inputs: dict) -> tuple[str, dict, list[str], str
     """
 
     # Task-specific executor (v1)
+    
+    if task.get("task_id") == "t_c02":
+        required = [f["name"] for f in task["inputs"]["required"]]
+        missing = [k for k in required if k not in inputs]
+        if missing:
+            return ("abstained",
+                    {"reason": "missing_required_inputs", "missing": missing},
+                    [],
+                    f"Missing required inputs: {missing}")
+        return exec_t_c02(inputs)
+
     if task.get("task_id") == "t_c04":
         required = [f["name"] for f in task["inputs"]["required"]]
         missing = [k for k in required if k not in inputs]
