@@ -94,17 +94,34 @@
     {
       "task_id": "t_c02",
       "from_claim_id": "c02",
-      "name": "Translate c02 into bounded evaluation task",
-      "objective": "Categorize failures by root cause across model/tool/orchestration layers.",
+      "name": "Measure how agents are evaluated for deployment (benchmarks vs online tests)",
+      "objective": "Determine evaluation method mix (formal benchmarks vs A/B tests, user feedback, production monitoring) for a deployed agent.",
       "inputs": {
         "required": [
           {
-            "name": "context",
+            "name": "eval_artifacts",
             "type": "object",
-            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "description": "Collected evaluation artifacts and metadata for the agent (benchmark specs, A/B test reports, feedback summaries, monitoring dashboards).",
             "example": {
-              "source": "production_logs",
-              "notes": "…"
+              "benchmarks": [],
+              "ab_tests": [],
+              "user_feedback": [],
+              "monitoring": []
+            }
+          },
+          {
+            "name": "agent_description",
+            "type": "string",
+            "description": "Short description of the agent workflow and deployment context.",
+            "example": "Incident triage assistant used by SREs; suggests remediation steps; humans approve execution."
+          },
+          {
+            "name": "time_window",
+            "type": "object",
+            "description": "Evaluation time window to summarize (start/end).",
+            "example": {
+              "start": "2025-10-01",
+              "end": "2025-12-01"
             }
           }
         ],
@@ -114,12 +131,20 @@
         "primary_schema": {
           "type": "object",
           "required": [
-            "result",
+            "evaluation_methods_used",
+            "primary_method",
             "evidence",
+            "confidence",
             "notes"
           ],
           "properties": {
-            "result": {
+            "evaluation_methods_used": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "primary_method": {
               "type": "string"
             },
             "evidence": {
@@ -127,6 +152,14 @@
               "items": {
                 "type": "string"
               }
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
             },
             "notes": {
               "type": "string"
@@ -146,31 +179,38 @@
         ],
         "allowed_tools": [
           "text_search",
-          "json_validation"
+          "json_validation",
+          "log_query"
         ]
       },
       "abstention": {
         "required": true,
         "triggers": [
-          "Missing required inputs for measurement",
-          "Ambiguous success criteria",
-          "Insufficient evidence in logs"
+          "No eval artifacts available for the requested time window",
+          "Cannot determine method because evidence is contradictory or missing",
+          "Agent description lacks deployment context"
         ],
         "fallback_action": "escalate_to_human"
       },
       "evaluation": {
         "metrics": [
-          "root_cause_precision"
+          "coverage_of_methods",
+          "evidence_adequacy"
         ],
-        "acceptance_thresholds": [],
+        "acceptance_thresholds": [
+          "At least 2 evidence items cited from eval_artifacts or logs",
+          "Primary method clearly identified (benchmark vs online test vs monitoring-heavy)",
+          "No unsupported claims beyond provided artifacts"
+        ],
         "test_set_plan": "Annotate a stratified sample of failures with a root-cause schema; compute inter-rater agreement."
       },
       "governance": {
-        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "human_checkpoint": "Human reviewer confirms classification + evidence before reporting.",
         "logging_requirements": [
-          "Store inputs hash",
-          "Store output JSON",
-          "Store evidence references (line ranges or trace ids)"
+          "Store time_window",
+          "Store evaluation_methods_used + primary_method",
+          "Store evidence references (artifact ids / dashboard links / log query ids)",
+          "Store reviewer approval + timestamp"
         ]
       }
     },
@@ -260,17 +300,40 @@
     {
       "task_id": "t_c04",
       "from_claim_id": "c04",
-      "name": "Translate c04 into bounded evaluation task",
-      "objective": "Detect drift in agent performance over time and trigger re-evaluation.",
+      "name": "Detect performance drift and trigger re-evaluation",
+      "objective": "Monitor agent performance over time and flag potential model/concept drift requiring re-evaluation.",
       "inputs": {
         "required": [
           {
-            "name": "context",
+            "name": "production_metrics_timeseries",
+            "type": "array",
+            "description": "Time-series of key production metrics (e.g., task success, override rate, incident rate) by window.",
+            "example": [
+              {
+                "window_start": "2025-10-01",
+                "window_end": "2025-10-07",
+                "task_success_rate": 0.78,
+                "override_rate": 0.22
+              }
+            ]
+          },
+          {
+            "name": "baseline_metrics",
             "type": "object",
-            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "description": "Baseline metrics from initial evaluation / last known-good window.",
             "example": {
-              "source": "production_logs",
-              "notes": "…"
+              "task_success_rate": 0.8,
+              "override_rate": 0.2
+            }
+          },
+          {
+            "name": "drift_policy",
+            "type": "object",
+            "description": "Thresholds and rules that define drift for this agent.",
+            "example": {
+              "task_success_drop_pct": 0.1,
+              "override_increase_pct": 0.1,
+              "min_windows": 3
             }
           }
         ],
@@ -280,12 +343,23 @@
         "primary_schema": {
           "type": "object",
           "required": [
-            "result",
+            "drift_detected",
+            "drift_signals",
+            "recommended_action",
             "evidence",
             "notes"
           ],
           "properties": {
-            "result": {
+            "drift_detected": {
+              "type": "boolean"
+            },
+            "drift_signals": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "recommended_action": {
               "type": "string"
             },
             "evidence": {
@@ -311,32 +385,38 @@
           "Model training"
         ],
         "allowed_tools": [
-          "text_search",
-          "json_validation"
+          "json_validation",
+          "metrics_calc"
         ]
       },
       "abstention": {
         "required": true,
         "triggers": [
-          "Missing required inputs for measurement",
-          "Ambiguous success criteria",
-          "Insufficient evidence in logs"
+          "Less than drift_policy.min_windows provided",
+          "Baseline metrics missing or incompatible with timeseries",
+          "Metrics contain nulls for critical fields"
         ],
         "fallback_action": "escalate_to_human"
       },
       "evaluation": {
         "metrics": [
-          "drift_detection_rate"
+          "drift_detection_rate",
+          "false_alert_rate"
         ],
-        "acceptance_thresholds": [],
+        "acceptance_thresholds": [
+          "Must cite specific metric windows that triggered the rule",
+          "Must specify recommended action (re-evaluate / adjust threshold / investigate data)",
+          "No drift flagged if min_windows not satisfied"
+        ],
         "test_set_plan": "Run time-sliced evaluation; alert when metrics cross thresholds; validate alerts against known incidents."
       },
       "governance": {
-        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "human_checkpoint": "Human reviews drift alert before initiating re-evaluation.",
         "logging_requirements": [
-          "Store inputs hash",
-          "Store output JSON",
-          "Store evidence references (line ranges or trace ids)"
+          "Store baseline_metrics",
+          "Store drift_policy",
+          "Store triggering windows + computed deltas",
+          "Store human decision (approve/deny) + timestamp"
         ]
       }
     },
