@@ -76,7 +76,8 @@ def exec_t_c04(inputs: dict) -> tuple[str, dict, list[str], str]:
     if (cur_override - base_override) / (base_override if base_override else 1.0) >= inc_thresh:
         drift = True
         drift_signals.append(
-            f"override_rate increase {(cur_override-base_override):.2%} >= {inc_thresh:.2%}"
+            f"override_rate increased from {base_override:.2f} to {cur_override:.2f} "
+            f"(Δ {(cur_override-base_override):.2%}) >= {inc_thresh:.2%}"
         )
 
     recommended_action = "no_action"
