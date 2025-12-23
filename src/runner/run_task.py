@@ -92,57 +92,58 @@ def _pct_drop(baseline: float, current: float) -> float:
     return (baseline - current) / baseline
 
 
+
 def exec_t_c02(inputs: dict) -> tuple[str, dict, list[str], str]:
     artifacts = inputs["eval_artifacts"]
+
+    # Optional: snippets keyed by artifact filename -> short text
+    content = inputs.get("eval_artifacts_content", {}) or {}
+    content_ab = content.get("ab_tests", {}) or {}
+    content_uf = content.get("user_feedback", {}) or {}
+    content_mon = content.get("monitoring", {}) or {}
+
+    ab = artifacts.get("ab_tests") or []
+    uf = artifacts.get("user_feedback") or []
+    mon = artifacts.get("monitoring") or []
+
     methods = []
-
-    evidence = []
-    if artifacts.get("benchmarks"):
-        methods.append("formal_benchmark")
-        evidence.append(f"benchmarks provided: {artifacts.get('benchmarks')}")
-    if artifacts.get("ab_tests"):
+    if ab:
         methods.append("ab_testing")
-        evidence.append("A/B test artifacts: " + ", ".join(artifacts.get("ab_tests") or []))
-    if artifacts.get("user_feedback"):
+    if uf:
         methods.append("user_feedback")
-        evidence.append("User feedback artifacts: " + ", ".join(artifacts.get("user_feedback") or []))
-    if artifacts.get("monitoring"):
+    if mon:
         methods.append("production_monitoring")
-        evidence.append("Production monitoring artifacts: " + ", ".join(artifacts.get("monitoring") or []))
 
-    if not methods:
-        return ("abstained",
-                {"reason": "no_eval_artifacts", "message": "No evaluation artifacts provided."},
-                [],
-                "Cannot classify evaluation methods without eval_artifacts.")
-
-    # Primary method heuristic
-    if "formal_benchmark" in methods:
-        primary = "formal_benchmark"
-    elif "ab_testing" in methods:
+    primary = "unknown"
+    if ab:
         primary = "ab_testing"
-    elif "production_monitoring" in methods:
+    elif mon:
         primary = "production_monitoring"
-    else:
-        primary = methods[0]
+    elif uf:
+        primary = "user_feedback"
 
-    # Confidence heuristic
-    if len(methods) >= 3:
-        confidence = "high"
-    elif len(methods) == 2:
-        confidence = "medium"
-    else:
-        confidence = "low"
+    evidence: list[str] = []
+
+    for f in ab:
+        snippet = content_ab.get(f)
+        evidence.append(f"A/B test artifact: {f}" + (f" — {snippet}" if snippet else ""))
+
+    for f in uf:
+        snippet = content_uf.get(f)
+        evidence.append(f"User feedback artifact: {f}" + (f" — {snippet}" if snippet else ""))
+
+    for f in mon:
+        snippet = content_mon.get(f)
+        evidence.append(f"Production monitoring artifact: {f}" + (f" — {snippet}" if snippet else ""))
 
     result = {
         "evaluation_methods_used": methods,
         "primary_method": primary,
-        "evidence": evidence[:4],
-        "confidence": confidence,
-        "notes": "v1: deterministic classification from provided eval_artifacts."
+        "evidence": evidence,
+        "confidence": "high",
+        "notes": "v1: deterministic classification from provided eval_artifacts (+ optional snippets).",
     }
-    # For runner schema we return evidence separately too
-    return ("ok", result, evidence[:4], "Classified evaluation methods from artifacts.")
+    return ("ok", result, evidence, "Classified evaluation methods from artifacts (+ optional snippets).")
 
 def exec_t_c04(inputs: dict) -> tuple[str, dict, list[str], str]:
     ts = inputs["production_metrics_timeseries"]
