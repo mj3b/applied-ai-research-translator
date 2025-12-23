@@ -10,3 +10,7 @@ packs/**/sources/paper.pdf
 # packs/**/sources/*.png
 # packs/**/sources/*.jpg
 # packs/**/sources/*.jpeg
+# Runtime artifacts
+runs/**
+*.bak
+
