@@ -27,8 +27,13 @@
       "evidence": [
         {
           "source": "paper_text",
-          "quote": "Production evaluation requires measuring the agent’s end-to-end behavior and outcomes, not only isolated model performance.",
-          "location_hint": "intro / motivation section (search for 'production' and 'end-to-end')"
+          "quote": "AI agents are already operating in production\nacross many industries, yet there is limited pub-",
+          "location_hint": "paper_text.txt:L19-L21"
+        },
+        {
+          "source": "paper_text",
+          "quote": "We present the\nfirst large-scale systematic study of AI agents in\nproduction, surveying 306 practitioners and con-",
+          "location_hint": "paper_text.txt:L23-L27"
         }
       ]
     },
@@ -48,13 +53,18 @@
         "failure_modes": ["insufficient traces", "multi-cause failures", "inconsistent labeling"]
       },
       "dependencies": ["trace logging", "failure taxonomy"],
-      "evidence": [
-        {
-          "source": "paper_text",
-          "quote": "Failures arise from more than hallucinations; tool execution and orchestration often dominate real incident patterns.",
-          "location_hint": "failure analysis section (search for 'tool' 'orchestration' 'failure')"
-        }
-      ]
+"evidence": [
+  {
+    "source": "paper_text",
+    "quote": "… how they build them, how they\nevaluate them, and what the top development chal-\nlenges are. We find that production agents are typ-",
+    "location_hint": "paper_text.txt:L29-L33"
+  },
+  {
+    "source": "paper_text",
+    "quote": "… bridges the gap between research and deployment\nby providing researchers visibility into production\nchallenges while offering practitioners patterns",
+    "location_hint": "paper_text.txt:L44-L48"
+  }
+]
     },
     {
       "claim_id": "c03",
