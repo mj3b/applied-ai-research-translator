@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run_input.schema.json",
+  "title": "RunInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "pack_id", "task_id", "created_at", "inputs"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "pack_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "inputs": { "type": "object" }
+  }
+}

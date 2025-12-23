@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "run_output.schema.json",
+  "title": "RunOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["run_id", "pack_id", "task_id", "created_at", "status", "result", "evidence"],
+  "properties": {
+    "run_id": { "type": "string" },
+    "pack_id": { "type": "string" },
+    "task_id": { "type": "string" },
+    "created_at": { "type": "string" },
+    "status": { "type": "string", "enum": ["ok", "abstained", "error"] },
+    "result": { "type": "object" },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "notes": { "type": "string" }
+  }
+}
