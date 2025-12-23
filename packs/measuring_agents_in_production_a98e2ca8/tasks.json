@@ -1,0 +1,427 @@
+{
+  "tasks_version": "0.1.0",
+  "pack_id": "measuring_agents_in_production_a98e2ca8",
+  "created_at": "2025-12-23T21:40:31+00:00",
+  "source": {
+    "claims_path": "packs/measuring_agents_in_production_a98e2ca8/claims.json",
+    "method": "auto_from_claims_v0",
+    "notes": "Generated tasks from claims as a starting point. Specialize per-task inputs/tools/thresholds."
+  },
+  "tasks": [
+    {
+      "task_id": "t_c01",
+      "from_claim_id": "c01",
+      "name": "Translate c01 into bounded evaluation task",
+      "objective": "Define and compute production task success for an agent workflow.",
+      "inputs": {
+        "required": [
+          {
+            "name": "context",
+            "type": "object",
+            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "example": {
+              "source": "production_logs",
+              "notes": "…"
+            }
+          }
+        ],
+        "optional": []
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "result",
+            "evidence",
+            "notes"
+          ],
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "First-pass claims extracted for schema + workflow testing",
+          "Quotes and location hints should be refined."
+        ],
+        "non_goals": [
+          "Production deployment",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing required inputs for measurement",
+          "Ambiguous success criteria",
+          "Insufficient evidence in logs"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "task_success_rate"
+        ],
+        "acceptance_thresholds": [],
+        "test_set_plan": "Replay logged sessions and score success/failure using a rubric + outcome checks."
+      },
+      "governance": {
+        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "logging_requirements": [
+          "Store inputs hash",
+          "Store output JSON",
+          "Store evidence references (line ranges or trace ids)"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c02",
+      "from_claim_id": "c02",
+      "name": "Translate c02 into bounded evaluation task",
+      "objective": "Categorize failures by root cause across model/tool/orchestration layers.",
+      "inputs": {
+        "required": [
+          {
+            "name": "context",
+            "type": "object",
+            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "example": {
+              "source": "production_logs",
+              "notes": "…"
+            }
+          }
+        ],
+        "optional": []
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "result",
+            "evidence",
+            "notes"
+          ],
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "First-pass claims extracted for schema + workflow testing",
+          "Quotes and location hints should be refined."
+        ],
+        "non_goals": [
+          "Production deployment",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing required inputs for measurement",
+          "Ambiguous success criteria",
+          "Insufficient evidence in logs"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "root_cause_precision"
+        ],
+        "acceptance_thresholds": [],
+        "test_set_plan": "Annotate a stratified sample of failures with a root-cause schema; compute inter-rater agreement."
+      },
+      "governance": {
+        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "logging_requirements": [
+          "Store inputs hash",
+          "Store output JSON",
+          "Store evidence references (line ranges or trace ids)"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c03",
+      "from_claim_id": "c03",
+      "name": "Translate c03 into bounded evaluation task",
+      "objective": "Measure abstention rate and escalation quality under uncertain inputs.",
+      "inputs": {
+        "required": [
+          {
+            "name": "context",
+            "type": "object",
+            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "example": {
+              "source": "production_logs",
+              "notes": "…"
+            }
+          }
+        ],
+        "optional": []
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "result",
+            "evidence",
+            "notes"
+          ],
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "First-pass claims extracted for schema + workflow testing",
+          "Quotes and location hints should be refined."
+        ],
+        "non_goals": [
+          "Production deployment",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing required inputs for measurement",
+          "Ambiguous success criteria",
+          "Insufficient evidence in logs"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "escalation_precision"
+        ],
+        "acceptance_thresholds": [],
+        "test_set_plan": "Create a challenge set with uncertainty triggers; score whether the agent escalates appropriately."
+      },
+      "governance": {
+        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "logging_requirements": [
+          "Store inputs hash",
+          "Store output JSON",
+          "Store evidence references (line ranges or trace ids)"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c04",
+      "from_claim_id": "c04",
+      "name": "Translate c04 into bounded evaluation task",
+      "objective": "Detect drift in agent performance over time and trigger re-evaluation.",
+      "inputs": {
+        "required": [
+          {
+            "name": "context",
+            "type": "object",
+            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "example": {
+              "source": "production_logs",
+              "notes": "…"
+            }
+          }
+        ],
+        "optional": []
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "result",
+            "evidence",
+            "notes"
+          ],
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "First-pass claims extracted for schema + workflow testing",
+          "Quotes and location hints should be refined."
+        ],
+        "non_goals": [
+          "Production deployment",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing required inputs for measurement",
+          "Ambiguous success criteria",
+          "Insufficient evidence in logs"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "drift_detection_rate"
+        ],
+        "acceptance_thresholds": [],
+        "test_set_plan": "Run time-sliced evaluation; alert when metrics cross thresholds; validate alerts against known incidents."
+      },
+      "governance": {
+        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "logging_requirements": [
+          "Store inputs hash",
+          "Store output JSON",
+          "Store evidence references (line ranges or trace ids)"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c05",
+      "from_claim_id": "c05",
+      "name": "Translate c05 into bounded evaluation task",
+      "objective": "Score compliance with safety/policy constraints across multi-step workflows.",
+      "inputs": {
+        "required": [
+          {
+            "name": "context",
+            "type": "object",
+            "description": "Task context including logs/artifacts needed to evaluate or measure the claim.",
+            "example": {
+              "source": "production_logs",
+              "notes": "…"
+            }
+          }
+        ],
+        "optional": []
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "result",
+            "evidence",
+            "notes"
+          ],
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "notes": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "First-pass claims extracted for schema + workflow testing",
+          "Quotes and location hints should be refined."
+        ],
+        "non_goals": [
+          "Production deployment",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing required inputs for measurement",
+          "Ambiguous success criteria",
+          "Insufficient evidence in logs"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "compliance_rate"
+        ],
+        "acceptance_thresholds": [],
+        "test_set_plan": "Define policy checks; run them on recorded trajectories; sample violations for human review."
+      },
+      "governance": {
+        "human_checkpoint": "Human reviews task definition + acceptance thresholds before execution.",
+        "logging_requirements": [
+          "Store inputs hash",
+          "Store output JSON",
+          "Store evidence references (line ranges or trace ids)"
+        ]
+      }
+    }
+  ]
+}
