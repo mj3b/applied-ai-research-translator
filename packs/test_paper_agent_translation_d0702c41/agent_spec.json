@@ -1,0 +1,112 @@
+{
+  "spec_version": "0.1.0",
+  "spec_id": "spec_bd490bf4-2c8b-4f41-a533-c697887a52dc",
+  "created_at": "2025-12-23T20:33:29+00:00",
+  "updated_at": "2025-12-23T20:33:29+00:00",
+  "status": "draft",
+  "provenance": {
+    "paper": {
+      "title": "Test Paper: Agent Translation",
+      "authors": [],
+      "venue": null,
+      "year": null,
+      "url": null,
+      "pdf_path": null,
+      "claim_extraction_notes": null
+    }
+  },
+  "decision": {
+    "name": "paper_to_agent_spec_translation",
+    "user": {
+      "persona": "Applied AI Builder",
+      "primary_goal": "Translate a research paper into a deployable agent specification with evaluation and governance.",
+      "environment": "non-regulated"
+    },
+    "decision_statement": "Decide whether a paper's approach can be translated into a bounded, testable agent behavior under real operating constraints.",
+    "scope": {
+      "included": [
+        "Task definition"
+      ],
+      "excluded": [
+        "Production deployment"
+      ]
+    },
+    "failure_cost": {
+      "severity": "high",
+      "harms": [
+        "Build a brittle agent that fails under real inputs"
+      ],
+      "reversibility": "partially_reversible"
+    },
+    "success_criteria": [
+      "Schema-valid outputs"
+    ]
+  },
+  "inputs": {
+    "modalities": [
+      "pdf",
+      "text"
+    ],
+    "required_fields": [
+      {
+        "name": "paper_text",
+        "type": "string",
+        "description": "Extracted full text or structured summary of the paper.",
+        "constraints": {
+          "allowed_values": null,
+          "regex": null,
+          "min": null,
+          "max": null
+        },
+        "required": true,
+        "example": "Full paper text..."
+      }
+    ],
+    "optional_fields": [],
+    "data_quality_assumptions": [
+      "Paper content may omit assumptions."
+    ],
+    "redaction_rules": []
+  },
+  "outputs": {
+    "primary_output_schema": {
+      "type": "object"
+    },
+    "evidence_requirements": {
+      "citations_required": true,
+      "citation_format": "source:chunk:span",
+      "min_evidence_items": 3
+    },
+    "confidence_labeling": {
+      "required": true,
+      "scale": "low",
+      "calibration_notes": "Be conservative."
+    },
+    "abstention": {
+      "required": true,
+      "triggers": [],
+      "fallback_action": "escalate_to_human",
+      "message_template": "Abstaining."
+    }
+  },
+  "evaluation": {
+    "eval_plan_ref": "packs/test_paper_agent_translation_d0702c41/eval_plan.json",
+    "target_metrics": [],
+    "acceptance_thresholds": []
+  },
+  "governance": {
+    "human_in_loop": {
+      "required": true,
+      "checkpoints": []
+    },
+    "decision_log": {
+      "schema_ref": "schemas/decision_log.schema.json",
+      "required_fields": []
+    },
+    "change_control": {
+      "versioning": "semver",
+      "retrain_or_update_triggers": [],
+      "rollback_plan": "Revert."
+    }
+  }
+}
