@@ -102,6 +102,7 @@ The Decision Summary:
 
 ## Repository Structure
 
+```text
 applied-ai-research-translator/
 ├── packs/          # Decision packs (claims, tasks, outputs)
 ├── runloop/        # Governed executor (mechanical, auditable)
@@ -109,7 +110,6 @@ applied-ai-research-translator/
 ├── scripts/        # Validation and reproducibility tooling
 ├── examples/       # Example run inputs
 └── src/            # Shared execution and translation logic
-
 
 ---
 
