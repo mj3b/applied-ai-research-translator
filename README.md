@@ -104,12 +104,15 @@ The Decision Summary:
 
 ```text
 applied-ai-research-translator/
-├── packs/          # Decision packs (claims, tasks, outputs)
-├── runloop/        # Governed executor (mechanical, auditable)
-├── schemas/        # JSON schemas enforcing contracts
-├── scripts/        # Validation and reproducibility tooling
-├── examples/       # Example run inputs
-└── src/            # Shared execution and translation logic
+├── packs/              # Decision packs (claims, tasks, outputs)
+├── runloop/            # Governed executor (mechanical, auditable)
+├── schemas/            # JSON schemas enforcing contracts
+├── scripts/            # Validation and reproducibility tooling
+├── examples/
+│   └── runs/           # Example run inputs
+├── src/                # Shared execution and translation logic
+├── requirements.txt    # Executor dependencies
+└── .gitignore          # Runtime and artifact exclusions
 ```
 
 ---
