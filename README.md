@@ -57,7 +57,7 @@ Open the **Decision Summary** first; it explains what was decided, what evidence
 
 The `runloop/` folder shows how those decisions were produced in a controlled, auditable way, with mandatory human approval at every step. 
 
-You do not need to read code to understand the outcome—this structure is designed so hiring managers, auditors, and decision owners can quickly understand how AI work translates into accountable, production-ready decisions.
+You do not need to read code to understand the outcome—this structure is designed so managers, auditors, and decision owners can quickly understand how AI work translates into accountable, production-ready decisions.
 
 ---
 
