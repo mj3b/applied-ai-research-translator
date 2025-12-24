@@ -1,0 +1,15 @@
+You are given two controlled document excerpts (Doc A and Doc B). Identify whether there is a discrepancy and classify it.
+
+Definitions:
+- Material_Discrepancy: could change meaning, compliance, specification, requirement, or decision outcome.
+- Non_Material_Difference: formatting, wording changes with same meaning, minor metadata differences.
+- No_Discrepancy: substantively identical.
+- Abstain: insufficient context or ambiguity.
+
+DOC A:
+Section 3.2 Stability Storage Conditions:
+Store at 2–8°C. Excursions permitted to 25°C for up to 24 hours.
+
+DOC B:
+Section 3.2 Stability Storage Conditions:
+Store at 2–8°C. Excursions permitted to 30°C for up to 24 hours.
