@@ -110,6 +110,7 @@ applied-ai-research-translator/
 ├── scripts/        # Validation and reproducibility tooling
 ├── examples/       # Example run inputs
 └── src/            # Shared execution and translation logic
+'''
 
 ---
 
