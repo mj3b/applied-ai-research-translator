@@ -49,10 +49,14 @@ No component in this repository is allowed to silently make or enact decisions.
 
 ## How to Read This Repository (Non-Technical Overview)
 
-This repository is organized around **decisions**, not code experiments or research papers.  
+This repository is organized around **decisions**, not code experiments or research papers.
+
 Start with the folders under `packs/`—each one represents a single decision, such as whether an AI technique is acceptable for a specific business or regulatory use.  
+
 Open the **Decision Summary** first; it explains what was decided, what evidence was used, what risks were considered, and who approved the outcome, in plain language. 
+
 The `runloop/` folder shows how those decisions were produced in a controlled, auditable way, with mandatory human approval at every step. 
+
 You do not need to read code to understand the outcome—this structure is designed so hiring managers, auditors, and decision owners can quickly understand how AI work translates into accountable, production-ready decisions.
 
 ---
@@ -113,8 +117,11 @@ The Decision Summary:
 ## Where AI Fits in the System
 
 AI is used only to generate **bounded, structured candidate outputs** (such as classifications or comparisons) during a Run. 
+
 These outputs have no authority on their own and are never executed automatically. 
+
 Every AI-generated result must be explicitly reviewed, approved, overridden, or rejected by a human before it can influence a decision. 
+
 The final decision is always documented and owned by a human in the Decision Summary.
 
 ---
