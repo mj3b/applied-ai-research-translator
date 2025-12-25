@@ -191,3 +191,14 @@ This repository contains:
 
 It is intentionally minimal, explicit, and conservative by design.
 
+---
+
+## Visual Overview
+
+![From Lab to Business](docs/images/Applied%20AI%20Research%20Translation_From%20Lab%20To%20Business.png)
+
+![Governance & Accountability Framework](docs/images/Applied%20AI%20Research%20Translation_Governance%20and%20Accountability%20Framework.png)
+
+![Technical Architecture](docs/images/Applied%20AI%20Research%20Translation_Technical%20Architecture.png)
+
+
