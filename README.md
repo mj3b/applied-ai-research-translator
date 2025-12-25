@@ -175,7 +175,6 @@ It is designed for environments where decisions must be **defensible**, not mere
 ## Who This Is For
 
 - Principal Engineers
-- Principal AI Business Analysts
 - AI Governance and Risk Leads
 - Research-to-Production Architects
 - Technical decision owners operating under real delivery constraints
