@@ -191,18 +191,5 @@ This repository contains:
 
 It is intentionally minimal, explicit, and conservative by design.
 
----
-
-## Visual Overview
-
-### From research to decision-ready artifacts
-![From Lab to Business](docs/images/applied-ai-research-translation-lab-to-business.png)
-
-### Governance and accountability controls
-![Governance and Accountability Framework](docs/images/applied-ai-research-translation-governance-accountability.png)
-
-### Technical architecture
-![Technical Architecture](docs/images/applied-ai-research-translation-technical-architecture.png)
-
 
 
