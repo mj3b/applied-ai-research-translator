@@ -195,10 +195,14 @@ It is intentionally minimal, explicit, and conservative by design.
 
 ## Visual Overview
 
-![From Lab to Business](docs/images/Applied%20AI%20Research%20Translation_From%20Lab%20To%20Business.png)
+### From research to decision-ready artifacts
+![From Lab to Business](docs/images/applied-ai-research-translation-lab-to-business.png)
 
-![Governance & Accountability Framework](docs/images/Applied%20AI%20Research%20Translation_Governance%20and%20Accountability%20Framework.png)
+### Governance and accountability controls
+![Governance and Accountability Framework](docs/images/applied-ai-research-translation-governance-accountability.png)
 
-![Technical Architecture](docs/images/Applied%20AI%20Research%20Translation_Technical%20Architecture.png)
+### Technical architecture
+![Technical Architecture](docs/images/applied-ai-research-translation-technical-architecture.png)
+
 
 
