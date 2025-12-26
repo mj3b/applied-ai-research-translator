@@ -1,0 +1,11 @@
+{
+  "run_id": "demo_A",
+  "task_id": "t_c02",
+  "decision": "categorize",
+  "confidence": "low",
+  "rationale": [
+    "Explicit abstention triggered by missing/empty taxonomy (no valid category choices).",
+    "No rationale provided."
+  ],
+  "notes": "this is a test - Mark J Banasihan."
+}
