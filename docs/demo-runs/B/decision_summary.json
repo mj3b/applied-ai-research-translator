@@ -4,7 +4,7 @@
   "decision": "override",
   "confidence": "low",
   "rationale": [
-    "System proposed category 'None'. Human overrode to 'Category_A'.",
+    "System (candidate) proposed category 'None'. Human overrode to 'Category_A'.",
     "No rationale provided."
   ],
   "notes": "Override for demo: boundary condition adjudication; accept accountability for reclassification."
