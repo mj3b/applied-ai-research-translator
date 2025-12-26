@@ -1,0 +1,22 @@
+{
+  "run_id": "demo-C-swarm-disagreement",
+  "timestamp_utc": "2025-12-26T18:27:39.222853Z",
+  "inputs": {
+    "artifact": "runloop/examples/artifact.txt",
+    "taxonomy": "runloop/examples/taxonomy.json",
+    "runner": "runloop/run_t_c02.py",
+    "run_id_arg": "demo_C",
+    "swarm": 3,
+    "reasoning_effort": "low"
+  },
+  "checks": {
+    "schema_validation": "pass",
+    "abstention_rule_triggered": true,
+    "override_applied": false,
+    "swarm_disagreement": true
+  },
+  "outputs": {
+    "log_dir": "runloop/logs/demo_C",
+    "decision_summary": "docs/demo-runs/C/decision_summary.json"
+  }
+}
