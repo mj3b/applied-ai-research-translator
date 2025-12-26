@@ -4,8 +4,8 @@
   "decision": "abstain",
   "confidence": "low",
   "rationale": [
-    "Swarm disagreement across 3 independent candidates: ['None']. Aggregation policy: any disagreement => abstain.",
-    "No rationale provided."
+    "Swarm redundancy (3 independent calls) resulted in unanimous abstention (all candidates None).",
+    "System escalated by abstaining; human accepted abstention as final."
   ],
   "notes": "accept the abstention"
 }

@@ -1,6 +1,6 @@
 {
   "run_id": "demo-C-swarm-disagreement",
-  "timestamp_utc": "2025-12-26T18:27:39.222853Z",
+  "timestamp_utc": "2025-12-26T18:42:22.742857Z",
   "inputs": {
     "artifact": "runloop/examples/artifact.txt",
     "taxonomy": "runloop/examples/taxonomy.json",
@@ -13,7 +13,8 @@
     "schema_validation": "pass",
     "abstention_rule_triggered": true,
     "override_applied": false,
-    "swarm_disagreement": true
+    "swarm_disagreement": false,
+    "swarm_unanimous_abstention": true
   },
   "outputs": {
     "log_dir": "runloop/logs/demo_C",
