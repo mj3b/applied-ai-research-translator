@@ -4,7 +4,7 @@
   "decision": "categorize",
   "confidence": "low",
   "rationale": [
-    "Explicit abstention triggered by missing/empty taxonomy (no valid category choices).",
+    "Explicit abstention: taxonomy was missing/empty, so no valid category selection was possible under the contract.",
     "No rationale provided."
   ],
   "notes": "this is a test - Mark J Banasihan."
