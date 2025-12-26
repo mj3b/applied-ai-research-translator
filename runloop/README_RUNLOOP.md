@@ -80,6 +80,8 @@ This is the minimal Run loop implementation mapped to the locked **Task** and **
 
 ```bash
 export OPENAI_API_KEY="..."
+
+Never commit API keys. Use environment variables or a local `.env` file (ignored).
 ```
 
 2) Install deps:

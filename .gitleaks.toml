@@ -1,0 +1,19 @@
+title = "applied-ai-research-translator local secret rules"
+
+[[rules]]
+id = "openai-api-key"
+description = "Block committed OpenAI API keys (sk-... / sk-proj-...)"
+regex = '''(?i)\bOPENAI_API_KEY\s*[:=]\s*["']\s*(sk-(?:proj-)?[A-Za-z0-9_\-]{10,})\s*["']'''
+tags = ["key", "openai"]
+
+[[rules]]
+id = "github-token"
+description = "Block committed GitHub tokens"
+regex = '''(?i)\bGITHUB_TOKEN\s*[:=]\s*["']\s*(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})\s*["']'''
+tags = ["key", "github"]
+
+[[rules]]
+id = "generic-sk"
+description = "Block sk- style secrets"
+regex = '''\bsk-(?:proj-)?[A-Za-z0-9_\-]{10,}\b'''
+tags = ["key", "generic"]
