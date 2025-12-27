@@ -1,0 +1,108 @@
+{
+  "tasks_version": "0.1.0",
+  "pack_id": "multi_agent_failure_modes_e0228882",
+  "created_at": "2025-12-27T21:31:36Z",
+  "source": {
+    "claims_path": "packs/multi_agent_failure_modes_e0228882/claims.json",
+    "method": "manual_v0",
+    "notes": "Tasks derived from claims; intended as translator examples."
+  },
+  "tasks": [
+    {
+      "task_id": "t01",
+      "from_claim_id": "c01",
+      "name": "Translation gate: bounded decision-support viability",
+      "objective": "Determine whether the paper yields a bounded, controllable decision-support task suitable for audited environments; reject translation if the only plausible tasks require multi-agent autonomy.",
+      "inputs": {
+        "required": [
+          {
+            "name": "paper_claims",
+            "type": "array",
+            "description": "Extracted claims and failure modes.",
+            "example": "packs/multi_agent_failure_modes_e0228882/claims.json"
+          },
+          {
+            "name": "target_environment",
+            "type": "string",
+            "description": "Operating constraints and governance requirements.",
+            "example": "regulated / phase-gated"
+          }
+        ],
+        "optional": [
+          {
+            "name": "candidate_task_ideas",
+            "type": "array",
+            "description": "Possible bounded tasks derived from claims.",
+            "example": [
+              "failure-mode checklist for architecture review",
+              "logging/audit requirements mapping"
+            ]
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "properties": {
+            "decision": {
+              "type": "string"
+            },
+            "rationale": {
+              "type": "array"
+            },
+            "next_steps": {
+              "type": "array"
+            }
+          },
+          "required": [
+            "decision",
+            "rationale"
+          ]
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "Decision authority remains human.",
+          "Multi-agent autonomy is disallowed for this translation scope."
+        ],
+        "non_goals": [
+          "Building or benchmarking multi-agent swarms",
+          "Demonstrating emergent coordination"
+        ],
+        "allowed_tools": [
+          "document_analysis",
+          "schema_validation",
+          "human_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "unbounded_task",
+          "no_controllable_task_identified"
+        ],
+        "fallback_action": "reject_translation"
+      },
+      "evaluation": {
+        "metrics": [
+          "bounded_task_identified",
+          "audit_traceability_score"
+        ],
+        "acceptance_thresholds": [
+          "bounded_task_identified == true",
+          "audit_traceability_score >= medium"
+        ],
+        "test_set_plan": "Review claims against a task-bounding checklist; require explicit owner + rollback + logging."
+      },
+      "governance": {
+        "human_checkpoint": "Principal reviewer must sign decision to accept/reject translation.",
+        "logging_requirements": [
+          "record why tasks were rejected",
+          "record disallowed autonomy assumptions",
+          "retain claim-to-task mapping"
+        ]
+      }
+    }
+  ]
+}

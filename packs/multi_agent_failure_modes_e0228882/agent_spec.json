@@ -1,0 +1,129 @@
+{
+  "spec_version": "0.1.0",
+  "spec_id": "spec_bf920dbf-1df1-4972-a639-a129803fb9cc",
+  "created_at": "2025-12-27T21:30:40Z",
+  "updated_at": "2025-12-27T21:30:40Z",
+  "status": "draft",
+  "provenance": {
+    "paper": {
+      "title": "Why Do Multi-Agent LLM Systems Fail?",
+      "authors": [],
+      "venue": null,
+      "year": null,
+      "url": null,
+      "pdf_path": "packs/multi_agent_failure_modes_e0228882/sources/paper.pdf",
+      "paper_text_path": "packs/multi_agent_failure_modes_e0228882/sources/paper_text.txt",
+      "claim_extraction_notes": "Manual v0 claim extraction for translator examples."
+    }
+  },
+  "decision": {
+    "name": "paper_to_decision_discipline_translation",
+    "user": {
+      "persona": "Applied AI Builder",
+      "primary_goal": "Translate applied research into decision-ready artifacts with explicit reliance, accountability, and governance.",
+      "environment": "regulated_or_high_stakes"
+    },
+    "decision_statement": "Decide whether the paper supports bounded, auditable decision-support tasks (non-agentic) that preserve human authority.",
+    "scope": {
+      "included": [
+        "Claim extraction",
+        "Task definition",
+        "Evaluation framing"
+      ],
+      "excluded": [
+        "Autonomous execution",
+        "Production deployment"
+      ]
+    },
+    "failure_cost": {
+      "severity": "high",
+      "harms": [
+        "Mis-calibrated reliance leading to incorrect human decisions",
+        "Erosion of accountability in governance forums"
+      ],
+      "reversibility": "partially_reversible"
+    },
+    "success_criteria": [
+      "Claims are falsifiable and bounded",
+      "Tasks include abstention + human checkpoints",
+      "Evaluation includes reliance/override signals where applicable"
+    ]
+  },
+  "inputs": {
+    "modalities": [
+      "pdf",
+      "text"
+    ],
+    "required_fields": [
+      {
+        "name": "paper_text",
+        "type": "string",
+        "description": "Extracted paper text stored in the pack.",
+        "constraints": {
+          "allowed_values": null,
+          "regex": null,
+          "min": null,
+          "max": null
+        },
+        "required": true,
+        "example": "packs/multi_agent_failure_modes_e0228882/sources/paper_text.txt"
+      }
+    ],
+    "optional_fields": [],
+    "data_quality_assumptions": [
+      "PDF text extraction may lose figure captions or formatting.",
+      "Reviewers should verify critical claims against the PDF."
+    ],
+    "redaction_rules": []
+  },
+  "outputs": {
+    "primary_output_schema": {
+      "type": "object"
+    },
+    "evidence_requirements": {
+      "citations_required": true,
+      "citation_format": "source:chunk:span",
+      "min_evidence_items": 3
+    },
+    "confidence_labeling": {
+      "required": true,
+      "scale": "low/medium/high",
+      "calibration_notes": "Be conservative; prefer abstention when evidence is ambiguous."
+    },
+    "abstention": {
+      "required": true,
+      "triggers": [
+        {
+          "trigger": "insufficient_evidence",
+          "action": "abstain"
+        }
+      ],
+      "fallback_action": "escalate_to_human",
+      "message_template": "Abstaining due to insufficient evidence or unbounded task definition."
+    }
+  },
+  "evaluation": {
+    "eval_plan_ref": "packs/multi_agent_failure_modes_e0228882/eval_plan.json",
+    "target_metrics": [],
+    "acceptance_thresholds": []
+  },
+  "governance": {
+    "human_in_loop": {
+      "required": true,
+      "checkpoints": [
+        "claim_review",
+        "task_lock",
+        "decision_summary_approval"
+      ]
+    },
+    "change_control": {
+      "versioning": "semver",
+      "retrain_or_update_triggers": [
+        "material_task_change",
+        "distribution_shift",
+        "policy_change"
+      ],
+      "rollback_plan": "Revert pack version; re-run evaluation with prior task lock."
+    }
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "tasks_version": "0.1.0",
+  "pack_id": "haic_reliance_review_59e257ff",
+  "created_at": "2025-12-27T21:31:36Z",
+  "source": {
+    "claims_path": "packs/haic_reliance_review_59e257ff/claims.json",
+    "method": "manual_v0",
+    "notes": "Tasks derived from claims; intended as translator examples."
+  },
+  "tasks": [
+    {
+      "task_id": "t01",
+      "from_claim_id": "c02",
+      "name": "Reliance calibration instrumentation plan",
+      "objective": "Define a minimal instrumentation + rubric to measure over-reliance, under-reliance, and override quality for a bounded decision-support workflow.",
+      "inputs": {
+        "required": [
+          {
+            "name": "case_set",
+            "type": "array",
+            "description": "Representative decision cases with rubric or ground truth.",
+            "example": "examples/cases/haic_case_set.json"
+          },
+          {
+            "name": "ai_output_schema",
+            "type": "object",
+            "description": "Schema for AI structured outputs (recommendation + evidence + confidence).",
+            "example": {
+              "recommendation": "string",
+              "evidence": [
+                "string"
+              ],
+              "confidence": "low/medium/high"
+            }
+          }
+        ],
+        "optional": [
+          {
+            "name": "human_role_definition",
+            "type": "string",
+            "description": "Explicit role boundaries and approval authority.",
+            "example": "Human approves/rejects; AI only proposes structured candidates."
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "properties": {
+            "metrics": {
+              "type": "array"
+            },
+            "logging_fields": {
+              "type": "array"
+            },
+            "rubric": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "metrics",
+            "logging_fields",
+            "rubric"
+          ]
+        },
+        "evidence_items_min": 2
+      },
+      "constraints": {
+        "assumptions": [
+          "Human review is available at decision time.",
+          "Decision cases can be rubric-scored by SMEs when ground truth is unavailable."
+        ],
+        "non_goals": [
+          "Automating decisions",
+          "Optimizing model accuracy in isolation"
+        ],
+        "allowed_tools": [
+          "schema_validation",
+          "human_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "no_rubric_or_ground_truth",
+          "unclear_decision_owner"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "over_reliance_rate",
+          "under_reliance_rate",
+          "override_quality",
+          "audit_completeness_rate"
+        ],
+        "acceptance_thresholds": [
+          "override_quality >= medium (rubric)",
+          "audit_completeness_rate >= 0.95"
+        ],
+        "test_set_plan": "Start with a 25–50 case challenge set; stratify by difficulty and AI confidence."
+      },
+      "governance": {
+        "human_checkpoint": "SME approves rubric + logging fields before any run.",
+        "logging_requirements": [
+          "record accept/override",
+          "record AI confidence label",
+          "store evidence links",
+          "store final human rationale"
+        ]
+      }
+    }
+  ]
+}

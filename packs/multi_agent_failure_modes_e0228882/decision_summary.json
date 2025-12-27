@@ -1,0 +1,11 @@
+{
+  "run_id": "manual_v0",
+  "task_id": "t01",
+  "decision": "reject_translation",
+  "confidence": "high",
+  "rationale": [
+    "Primary contributions are diagnostic failure modes of multi-agent autonomy rather than a bounded, controllable decision-support task.",
+    "In regulated/phase-gated settings, the accountability and audit surface of multi-agent coordination exceeds acceptable governance risk for this repo’s scope."
+  ],
+  "notes": "This pack is an explicit negative example: the translator can produce a defensible 'no-go' for translation."
+}
