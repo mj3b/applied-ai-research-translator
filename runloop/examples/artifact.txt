@@ -1,0 +1,4 @@
+[example artifact]
+Timestamp: 2025-12-23T18:00:00-05:00
+Error: connection timeout to dependency X during health check.
+Observed symptoms: repeated retries, degraded throughput.

@@ -145,16 +145,30 @@ applied-ai-research-translator/
 
 ## Example Decision Packs
 
-### measuring_agents_in_production_a98e2ca8
-Production measurement and monitoring patterns (translation-positive).
+This repository includes two kinds of packs:
 
-### haic_reliance_review_59e257ff
-Human–AI collaboration and reliance calibration (translation-positive).
+### Research Translation Packs (paper → decision-ready artifacts)
 
-### multi_agent_failure_modes_e0228882
-Multi-agent LLM failure modes (translation-negative / explicit rejection).
+These packs show how applied research is translated into explicit claims, bounded tasks, evaluation plans, and a decision outcome.
+
+- `measuring_agents_in_production_a98e2ca8` — Production measurement and monitoring patterns (**translation-positive**).
+- `haic_reliance_review_59e257ff` — Human–AI collaboration and reliance calibration (**translation-positive**).
+- `multi_agent_failure_modes_e0228882` — Multi-agent LLM failure modes (**translation-negative / explicit rejection**).
 
 See `docs/research-context.md` for how these papers are used (and why some are rejected for translation).
+
+### Operational Run Packs (task → run → decision summary)
+
+These packs show the governed runloop applied to bounded operational tasks with mandatory human approval.
+
+- `t_c02` — LLM-assisted classification to support operational triage, with mandatory human approval.
+- `t_c04` — LLM-assisted comparison to surface material discrepancies between controlled documents.
+
+Each pack contains:
+- claims under evaluation,
+- task definitions and constraints,
+- execution evidence,
+- a signed Decision Summary.
 
 ---
 
