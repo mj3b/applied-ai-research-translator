@@ -1,5 +1,8 @@
 # Applied AI Research Translator
 
+**Version:** v1.0  
+**Status:** Decision-complete reference implementation
+
 A delivery-first system for translating applied AI research into **auditable, decision-ready artifacts**.
 
 This repository is not about building autonomous agents.  
@@ -17,7 +20,7 @@ Applied AI research often ends with:
 - architectural proposals,
 - or proof-of-concept demonstrations.
 
-In real delivery environments—especially regulated ones—those outputs are not sufficient to justify action.
+In real delivery environments—especially regulated or high-stakes ones—those outputs are not sufficient to justify action.
 
 Decision owners need:
 - explicit claims,
@@ -51,11 +54,11 @@ No component in this repository is allowed to silently make or enact decisions.
 
 This repository is organized around **decisions**, not code experiments or research papers.
 
-Start with the folders under `packs/`—each one represents a single decision, such as whether an AI technique is acceptable for a specific business or regulatory use.  
+Start with the folders under `packs/`—each one represents a single decision, such as whether an AI technique is acceptable for a specific business or regulatory use.
 
-Open the **Decision Summary** first; it explains what was decided, what evidence was used, what risks were considered, and who approved the outcome, in plain language. 
+Open the **Decision Summary** first; it explains what was decided, what evidence was used, what risks were considered, and who approved the outcome, in plain language.
 
-The `runloop/` folder shows how those decisions were produced in a controlled, auditable way, with mandatory human approval at every step. 
+The `runloop/` folder shows how those decisions were produced in a controlled, auditable way, with mandatory human approval at every step.
 
 You do not need to read code to understand the outcome—this structure is designed so managers, auditors, and decision owners can quickly understand how AI work translates into accountable, production-ready decisions.
 
@@ -116,11 +119,11 @@ The Decision Summary:
 
 ## Where AI Fits in the System
 
-AI is used only to generate **bounded, structured candidate outputs** (such as classifications or comparisons) during a Run. 
+AI is used only to generate **bounded, structured candidate outputs** (such as classifications or comparisons) during a Run.
 
-These outputs have no authority on their own and are never executed automatically. 
+These outputs have no authority on their own and are never executed automatically.
 
-Every AI-generated result must be explicitly reviewed, approved, overridden, or rejected by a human before it can influence a decision. 
+Every AI-generated result must be explicitly reviewed, approved, overridden, or rejected by a human before it can influence a decision.
 
 The final decision is always documented and owned by a human in the Decision Summary.
 
@@ -139,6 +142,7 @@ applied-ai-research-translator/
 ├── src/                # Shared execution and translation logic
 ├── requirements.txt    # Executor dependencies
 └── .gitignore          # Runtime and artifact exclusions
+
 ```
 
 ---
@@ -149,26 +153,28 @@ This repository includes two kinds of packs:
 
 ### Research Translation Packs (paper → decision-ready artifacts)
 
-These packs show how applied research is translated into explicit claims, bounded tasks, evaluation plans, and a decision outcome.
+These packs demonstrate how applied research is translated into explicit claims, bounded tasks, evaluation plans, and a final decision outcome.
 
-- `measuring_agents_in_production_a98e2ca8` — Production measurement and monitoring patterns (**translation-positive**).
-- `haic_reliance_review_59e257ff` — Human–AI collaboration and reliance calibration (**translation-positive**).
-- `multi_agent_failure_modes_e0228882` — Multi-agent LLM failure modes (**translation-negative / explicit rejection**).
+- **`measuring_agents_in_production_a98e2ca8`** — Production measurement and monitoring patterns (**translation-positive**).
+- **`haic_reliance_review_59e257ff`** — Human–AI collaboration and reliance calibration (**translation-positive**).
+- **`multi_agent_failure_modes_e0228882`** — Multi-agent LLM failure modes (**translation-negative / explicit rejection**).
 
-See `docs/research-context.md` for how these papers are used (and why some are rejected for translation).
+See `docs/research-context.md` for details on how these papers are used—and why some are intentionally rejected for translation.
+
+---
 
 ### Operational Run Packs (task → run → decision summary)
 
 These packs show the governed runloop applied to bounded operational tasks with mandatory human approval.
 
-- `t_c02` — LLM-assisted classification to support operational triage, with mandatory human approval.
-- `t_c04` — LLM-assisted comparison to surface material discrepancies between controlled documents.
+- **`t_c02`** — LLM-assisted classification to support operational triage, with mandatory human approval.
+- **`t_c04`** — LLM-assisted comparison to surface material discrepancies between controlled documents.
 
 Each pack contains:
 - claims under evaluation,
 - task definitions and constraints,
 - execution evidence,
-- a signed Decision Summary.
+- a signed **Decision Summary**.
 
 ---
 
@@ -187,10 +193,10 @@ It is designed for environments where decisions must be **defensible**, not mere
 
 ## Who This Is For
 
-- Principal Engineers
-- AI Governance and Risk Leads
-- Research-to-Production Architects
-- Technical decision owners operating under real delivery constraints
+- Principal Engineers  
+- AI Governance and Risk Leads  
+- Research-to-Production Architects  
+- Technical decision owners operating under real delivery constraints  
 
 ---
 
@@ -203,5 +209,6 @@ This repository contains:
 
 It is intentionally minimal, explicit, and conservative by design.
 
+For version history, see `CHANGELOG.md`.
 
 
