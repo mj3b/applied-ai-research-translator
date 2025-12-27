@@ -3,6 +3,8 @@
 This repository demonstrates a **decision-discipline** method for translating applied AI research into
 **auditable, decision-ready artifacts**.
 
+This work draws on three complementary research strands: (1) measurement and observability of AI agents in production, which informs evidence and evaluation discipline; (2) documented coordination and governance failure modes of multi-agent LLM systems, which justify explicit rejection and non-agentic boundaries; and (3) informatics research on human–AI reliance and decision support, which grounds abstention, conditional decisions, and preservation of human accountability as first-class decision outcomes.
+
 It intentionally avoids autonomy and multi-agent execution. The goal is not to prove cleverness—
 it is to prove **defensibility** under real operating constraints.
 
