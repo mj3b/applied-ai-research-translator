@@ -1,0 +1,23 @@
+{
+  "run_id": "demo-A-explicit-abstention",
+  "scenario": "A",
+  "checks": {
+    "schema_validation": "pass",
+    "abstention_rule_triggered": true,
+    "override_applied": false
+  },
+  "inputs": {
+    "artifact": "runs/run-A-explicit-abstention/evidence/artifact.txt",
+    "taxonomy": "runs/run-A-explicit-abstention/evidence/taxonomy.json",
+    "runner": "runloop/run_t_c02.py",
+    "run_id_arg": "demo_A",
+    "swarm": 1
+  },
+  "outputs": {
+    "log_dir": "runloop/logs/demo_A",
+    "packaged_outputs": "runs/run-A-explicit-abstention/outputs",
+    "decision_summary": "runs/run-A-explicit-abstention/outputs/decision_summary.json",
+    "supplemental_decision_summary_runloop": "runs/run-A-explicit-abstention/outputs/decision_summary_runloop.json"
+  },
+  "timestamp_utc": "2025-12-26T18:02:38.243277Z"
+}

@@ -1,0 +1,83 @@
+{
+  "claims_version": "0.1.0",
+  "pack_id": "multi_agent_failure_modes_e0228882",
+  "created_at": "2025-12-27T21:31:12Z",
+  "source": {
+    "paper_text_path": "packs/multi_agent_failure_modes_e0228882/sources/paper_text.txt",
+    "method": "manual_v0",
+    "notes": "Claims extracted to demonstrate Applied AI Research Translation workflow; refine quotes + line references as needed."
+  },
+  "claims": [
+    {
+      "claim_id": "c01",
+      "claim_type": "reliability",
+      "claim_text": "Multi-agent LLM systems exhibit systemic failure modes (coordination collapse, feedback loops, incentive misalignment) that can worsen reliability relative to single-agent designs.",
+      "operationalization": {
+        "task": "Enumerate failure modes and map them to controllability requirements for production.",
+        "inputs": [
+          "system design description",
+          "observed failure cases"
+        ],
+        "outputs": [
+          "failure_mode_registry",
+          "control_requirements"
+        ],
+        "metric": "coverage_of_failure_modes"
+      },
+      "testability": {
+        "level": "low",
+        "eval_hint": "This paper is primarily diagnostic; translation depends on finding a bounded, controllable decision-support task.",
+        "failure_modes": [
+          "unbounded scope",
+          "non-deterministic interactions"
+        ]
+      },
+      "dependencies": [
+        "bounded task framing"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "(see failure taxonomy and case studies)",
+          "location_hint": "paper_text.txt (search: 'failure', 'coordination', 'collapse')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c02",
+      "claim_type": "safety",
+      "claim_text": "As the number of interacting agents increases, attribution of responsibility becomes harder, increasing governance and audit risk in regulated environments.",
+      "operationalization": {
+        "task": "Assess accountability traceability for multi-agent workflows vs single-owner decision support.",
+        "inputs": [
+          "workflow graph",
+          "handoff points",
+          "logging plan"
+        ],
+        "outputs": [
+          "accountability_risk_assessment"
+        ],
+        "metric": "traceability_score"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Score traceability using an audit rubric; compare alternative designs.",
+        "failure_modes": [
+          "missing logs",
+          "implicit decisions"
+        ]
+      },
+      "dependencies": [
+        "audit rubric",
+        "logging requirements"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "(see sections on accountability/credit assignment)",
+          "location_hint": "paper_text.txt (search: 'accountability', 'credit', 'responsibility')"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "run_id": "demo-B-human-override",
+  "timestamp_utc": "2025-12-26T18:23:32.289468Z",
+  "inputs": {
+    "artifact": "runloop/examples/artifact.txt",
+    "taxonomy": "runloop/examples/taxonomy.json",
+    "runner": "runloop/run_t_c02.py",
+    "run_id_arg": "demo_B2",
+    "swarm": 1
+  },
+  "checks": {
+    "schema_validation": "pass",
+    "abstention_rule_triggered": false,
+    "override_applied": true
+  },
+  "outputs": {
+    "log_dir": "runloop/logs/demo_B2",
+    "decision_summary": "docs/demo-runs/B/decision_summary.json"
+  }
+}

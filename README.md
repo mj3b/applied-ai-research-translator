@@ -1,10 +1,193 @@
 # Applied AI Research Translator
 
-A delivery-first system for translating applied research into deployable agent specs.
+A delivery-first system for translating applied AI research into **auditable, decision-ready artifacts**.
 
-## Quickstart
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+This repository is not about building autonomous agents.  
+It exists to close the gap between:
 
-./scripts/validate_pack.sh packs/example_paper_001
+- applied research results that look promising on paper, and
+- decisions that must survive production constraints, governance review, and human accountability.
+
+---
+
+## What Problem This Solves
+
+Applied AI research often ends with:
+- benchmark improvements,
+- architectural proposals,
+- or proof-of-concept demonstrations.
+
+In real delivery environments—especially regulated ones—those outputs are not sufficient to justify action.
+
+Decision owners need:
+- explicit claims,
+- tightly bounded tasks,
+- defined constraints and failure modes,
+- traceable evidence from execution,
+- and a clear record of human approval.
+
+This system provides a **structured method** for translating research into that form.
+
+---
+
+## What This Repository Is (and Is Not)
+
+### This *is*:
+- a research-to-decision translation method
+- a governed execution model with mandatory human-in-the-loop control
+- a way to produce decision artifacts suitable for phase-gate, audit, or executive review
+
+### This is *not*:
+- an agent framework
+- an autonomy platform
+- a prompt-engineering demo
+- an orchestration showcase
+
+No component in this repository is allowed to silently make or enact decisions.
+
+---
+
+## How to Read This Repository (Non-Technical Overview)
+
+This repository is organized around **decisions**, not code experiments or research papers.
+
+Start with the folders under `packs/`—each one represents a single decision, such as whether an AI technique is acceptable for a specific business or regulatory use.  
+
+Open the **Decision Summary** first; it explains what was decided, what evidence was used, what risks were considered, and who approved the outcome, in plain language. 
+
+The `runloop/` folder shows how those decisions were produced in a controlled, auditable way, with mandatory human approval at every step. 
+
+You do not need to read code to understand the outcome—this structure is designed so managers, auditors, and decision owners can quickly understand how AI work translates into accountable, production-ready decisions.
+
+---
+
+## Core Concepts
+
+### Claim
+
+A falsifiable statement derived from applied research that is relevant to an operational decision.
+
+Claims are:
+- explicit,
+- versioned,
+- and evaluated through bounded tasks rather than assumed to generalize.
+
+---
+
+### Task
+
+A tightly scoped operational action designed to test or support a claim.
+
+Tasks define:
+- inputs and outputs,
+- constraints (latency, cost, data quality),
+- failure and abstention conditions,
+- required human oversight points.
+
+Tasks are locked before execution.
+
+---
+
+### Run
+
+A mechanical execution of a pre-locked task.
+
+A Run:
+- generates bounded candidate outputs,
+- enforces schemas and abstention rules,
+- requires explicit human approval,
+- produces a complete, immutable audit trail.
+
+A Run does **not** make decisions.
+
+---
+
+### Decision Summary
+
+The primary product of the system.
+
+The Decision Summary:
+- is assembled deterministically from run artifacts,
+- contains no model-written narrative,
+- records evidence, uncertainty, and human authorization,
+- is suitable for governance, audit, and downstream review.
+
+---
+
+## Where AI Fits in the System
+
+AI is used only to generate **bounded, structured candidate outputs** (such as classifications or comparisons) during a Run. 
+
+These outputs have no authority on their own and are never executed automatically. 
+
+Every AI-generated result must be explicitly reviewed, approved, overridden, or rejected by a human before it can influence a decision. 
+
+The final decision is always documented and owned by a human in the Decision Summary.
+
+---
+
+## Repository Structure
+
+```text
+applied-ai-research-translator/
+├── packs/              # Decision packs (claims, tasks, outputs)
+├── runloop/            # Governed executor (mechanical, auditable)
+├── schemas/            # JSON schemas enforcing contracts
+├── scripts/            # Validation and reproducibility tooling
+├── examples/
+│   └── runs/           # Example run inputs
+├── src/                # Shared execution and translation logic
+├── requirements.txt    # Executor dependencies
+└── .gitignore          # Runtime and artifact exclusions
+```
+
+---
+
+## Example Decision Packs
+
+### measuring_agents_in_production_a98e2ca8
+Production measurement and monitoring patterns (translation-positive).
+
+### haic_reliance_review_59e257ff
+Human–AI collaboration and reliance calibration (translation-positive).
+
+### multi_agent_failure_modes_e0228882
+Multi-agent LLM failure modes (translation-negative / explicit rejection).
+
+See `docs/research-context.md` for how these papers are used (and why some are rejected for translation).
+
+---
+
+## Why This Matters in Production
+
+This approach:
+- prevents silent automation,
+- makes uncertainty explicit,
+- preserves human accountability,
+- enables post-hoc audit and re-evaluation,
+- scales decision support without pretending to remove responsibility.
+
+It is designed for environments where decisions must be **defensible**, not merely fast.
+
+---
+
+## Who This Is For
+
+- Principal Engineers
+- AI Governance and Risk Leads
+- Research-to-Production Architects
+- Technical decision owners operating under real delivery constraints
+
+---
+
+## Status
+
+This repository contains:
+- working executors,
+- real decision artifacts,
+- schema-validated outputs.
+
+It is intentionally minimal, explicit, and conservative by design.
+
+
+

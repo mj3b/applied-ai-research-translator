@@ -1,0 +1,19 @@
+{
+  "eval_plan_version": "0.1.0",
+  "pack_id": "multi_agent_failure_modes_e0228882",
+  "created_at": "2025-12-27T21:31:43Z",
+  "purpose": "Evaluate whether multi-agent failure research yields a bounded, controllable decision-support task; otherwise reject translation.",
+  "key_questions": [
+    "Is there a bounded task that does not require autonomy?",
+    "Can accountability remain singular and auditable?"
+  ],
+  "metrics": [
+    "bounded_task_identified",
+    "audit_traceability_score"
+  ],
+  "acceptance": [
+    "Prefer abstention over unbounded translation.",
+    "Human ownership must be explicit."
+  ],
+  "notes": "Evaluation plan is intentionally lightweight for public example packs."
+}

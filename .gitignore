@@ -14,3 +14,6 @@ packs/**/sources/paper.pdf
 runs/**
 *.bak
 
+
+# Do not commit full PDFs of papers
+packs/**/sources/*.pdf

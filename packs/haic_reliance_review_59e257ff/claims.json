@@ -1,0 +1,162 @@
+{
+  "claims_version": "0.1.0",
+  "pack_id": "haic_reliance_review_59e257ff",
+  "created_at": "2025-12-27T21:31:12Z",
+  "source": {
+    "paper_text_path": "packs/haic_reliance_review_59e257ff/sources/paper_text.txt",
+    "method": "manual_v0",
+    "notes": "Claims extracted to demonstrate Applied AI Research Translation workflow; refine quotes + line references as needed."
+  },
+  "claims": [
+    {
+      "claim_id": "c01",
+      "claim_type": "method",
+      "claim_text": "Human–AI collaboration can improve decision outcomes when roles are complementary and the system is designed to calibrate reliance rather than replace human judgment.",
+      "operationalization": {
+        "task": "Define a decision-support workflow where AI produces bounded recommendations and humans retain final authority.",
+        "inputs": [
+          "decision cases",
+          "AI outputs",
+          "human final decisions"
+        ],
+        "outputs": [
+          "decision outcome",
+          "reliance/override annotations"
+        ],
+        "metric": "decision_quality_delta"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Compare human-only vs human+AI under the same case set; measure decision accuracy and reliance calibration signals.",
+        "failure_modes": [
+          "automation bias",
+          "under-reliance",
+          "unclear role assignment"
+        ]
+      },
+      "dependencies": [
+        "clear role boundaries",
+        "override path",
+        "case set with ground truth or expert rubric"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "(see sections on reliance and complementary roles)",
+          "location_hint": "paper_text.txt (search: 'reliance', 'collaboration', 'complement')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c02",
+      "claim_type": "measurement",
+      "claim_text": "Mis-calibrated reliance (over-trust or under-trust) is a primary failure mode in human–AI systems; systems should measure and actively manage reliance, not just model accuracy.",
+      "operationalization": {
+        "task": "Measure reliance/override behavior and identify cases where reliance is mis-calibrated.",
+        "inputs": [
+          "AI confidence signals",
+          "human accept/override logs",
+          "case difficulty labels"
+        ],
+        "outputs": [
+          "over_reliance_rate",
+          "under_reliance_rate",
+          "override_quality"
+        ],
+        "metric": "override_quality"
+      },
+      "testability": {
+        "level": "high",
+        "eval_hint": "Instrument acceptance vs override and compare to rubric/ground truth; stratify by AI confidence.",
+        "failure_modes": [
+          "missing instrumentation",
+          "confounded by user expertise"
+        ]
+      },
+      "dependencies": [
+        "logging of accept/override",
+        "confidence labeling policy"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "(see discussion of trust/reliance calibration)",
+          "location_hint": "paper_text.txt (search: 'trust', 'reliance', 'calibration')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c03",
+      "claim_type": "reliability",
+      "claim_text": "Human skill and intuition can degrade when AI systems dominate the workflow; designs should preserve human agency and require periodic independent judgment.",
+      "operationalization": {
+        "task": "Introduce 'independent judgment' checkpoints and monitor human performance over time.",
+        "inputs": [
+          "periodic human-only evaluations",
+          "human+AI evaluations",
+          "time windows"
+        ],
+        "outputs": [
+          "skill_retention_trend",
+          "calibration_trend"
+        ],
+        "metric": "human_performance_trend"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Run periodic blind evaluations without AI assistance; compare drift in human accuracy/confidence.",
+        "failure_modes": [
+          "insufficient sample size",
+          "practice effects"
+        ]
+      },
+      "dependencies": [
+        "challenge set",
+        "schedule for periodic human-only checks"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "(see sections on deskilling/agency)",
+          "location_hint": "paper_text.txt (search: 'skill', 'agency', 'deskilling')"
+        }
+      ]
+    },
+    {
+      "claim_id": "c04",
+      "claim_type": "method",
+      "claim_text": "For high-stakes decisions, accountability requires explicit documentation of role assignment, rationale, and override conditions; opaque assistance increases risk even if accuracy improves.",
+      "operationalization": {
+        "task": "Produce an audit-ready decision summary with evidence, rationale, and ownership for each decision.",
+        "inputs": [
+          "case evidence",
+          "AI structured outputs",
+          "human rationale"
+        ],
+        "outputs": [
+          "decision_summary_record"
+        ],
+        "metric": "audit_completeness_rate"
+      },
+      "testability": {
+        "level": "high",
+        "eval_hint": "Validate decision summaries against a completeness rubric; measure missing-field rate.",
+        "failure_modes": [
+          "narrative drift",
+          "missing evidence links"
+        ]
+      },
+      "dependencies": [
+        "decision summary schema",
+        "evidence linkage rules"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "(see accountability and decision-making sections)",
+          "location_hint": "paper_text.txt (search: 'accountability', 'decision-making')"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "run_id": "manual_v0",
+  "task_id": "t01",
+  "decision": "proceed_to_task_design",
+  "confidence": "medium",
+  "rationale": [
+    "Paper is centered on human–AI decision-making and reliance calibration, which maps directly to bounded decision-support tasks.",
+    "Translation does not require autonomy; it reinforces explicit human ownership and measurable override behavior."
+  ],
+  "notes": "Next: refine line-referenced citations and build a small challenge set to measure reliance calibration."
+}
