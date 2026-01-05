@@ -1,7 +1,27 @@
 # Applied AI Research Translator
 
+[![Status: Decision-Complete](https://img.shields.io/badge/status-decision--complete-5b6cff)](#status)
+[![AI Stance: Non-Agentic](https://img.shields.io/badge/ai-non--agentic-2d7ff9)](#what-this-repository-is-and-is-not)
+[![Governance: Human-in-the-Loop](https://img.shields.io/badge/governance-human--in--the--loop-3bb273)](#where-ai-fits-in-the-system)
+[![Property: Audit-Ready](https://img.shields.io/badge/property-audit--ready-0aa2c0)](#decision-summary)
+[![Schema: Enforced](https://img.shields.io/badge/contracts-schema--validated-8a5cff)](#repository-structure)
+[![License: MIT](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+
 **Version:** v1.0  
 **Status:** Decision-complete reference implementation
+
+## Contents
+- [What Problem This Solves](#what-problem-this-solves)
+- [What This Repository Is (and Is Not)](#what-this-repository-is-and-is-not)
+- [Core Concepts](#core-concepts)
+- [Where AI Fits in the System](#where-ai-fits-in-the-system)
+- [Repository Structure](#repository-structure)
+- [Example Decision Packs](#example-decision-packs)
+- [Why This Matters in Production](#why-this-matters-in-production)
+- [Who This Is For](#who-this-is-for)
+- [Status](#status)
+
+---
 
 A delivery-first system for translating applied AI research into **auditable, decision-ready artifacts**.
 
@@ -47,6 +67,10 @@ This system provides a **structured method** for translating research into that 
 - an orchestration showcase
 
 No component in this repository is allowed to silently make or enact decisions.
+
+> **Reader contract:**  
+> This repository assumes decisions must be defensible under review.  
+> If you are looking for autonomous agents, background inference, or self-directing systems, this is not that.
 
 ---
 
@@ -202,10 +226,11 @@ It is designed for environments where decisions must be **defensible**, not mere
 
 ## Status
 
-This repository contains:
-- working executors,
-- real decision artifacts,
-- schema-validated outputs.
+**v1.0 — Decision-Complete Reference Implementation**
+
+- Core method stable
+- Executors and schemas operational
+- New packs may be added without altering governance guarantees
 
 It is intentionally minimal, explicit, and conservative by design.
 
