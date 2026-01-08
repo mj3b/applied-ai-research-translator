@@ -5,7 +5,7 @@
 [![Governance: Human-in-the-Loop](https://img.shields.io/badge/governance-human--in--the--loop-3bb273)](#where-ai-fits-in-the-system)
 [![Property: Audit-Ready](https://img.shields.io/badge/property-audit--ready-0aa2c0)](#decision-summary)
 [![Schema: Enforced](https://img.shields.io/badge/contracts-schema--validated-8a5cff)](#repository-structure)
-[![License: MIT](https://img.shields.io/badge/license-MIT-black)](LICENSE)
+
 
 **Version:** v1.0  
 **Status:** Decision-complete reference implementation
