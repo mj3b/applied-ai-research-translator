@@ -35,12 +35,12 @@ It exists to close the gap between:
 
 ## What Problem This Solves
 
-Applied AI research often ends with:
+AI research often ends with:
 - benchmark improvements,
 - architectural proposals,
 - or proof-of-concept demonstrations.
 
-In real delivery environments—especially regulated or high-stakes ones—those outputs are not sufficient to justify action.
+In delivery environments—especially regulated or high-stakes ones—those outputs are not sufficient to justify action.
 
 Decision owners need:
 - explicit claims,
