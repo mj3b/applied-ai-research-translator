@@ -55,20 +55,20 @@ This system provides that translation process. It also handles the case where tr
 │                                     risk → REJECT                  │
 │       │                                    │                       │
 │       ▼                                    ▼                       │
-│  ┌─────────────────────┐       ┌─────────────────────┐            │
-│  │  Task Definition    │       │  Decision Summary   │            │
-│  │                     │       │  decision: reject   │            │
-│  │  inputs · outputs   │       │  confidence: high   │            │
-│  │  constraints        │       │  rationale: [...]   │            │
-│  │  failure conditions │       │                     │            │
-│  │  human gate points  │       │  Pack archived as   │            │
-│  │                     │       │  negative example   │            │
-│  │  Schema: tasks.json │       └─────────────────────┘            │
+│  ┌─────────────────────┐       ┌─────────────────────┐             │
+│  │  Task Definition    │       │  Decision Summary   │             │
+│  │                     │       │  decision: reject   │             │
+│  │  inputs · outputs   │       │  confidence: high   │             │
+│  │  constraints        │       │  rationale: [...]   │             │
+│  │  failure conditions │       │                     │             │
+│  │  human gate points  │       │  Pack archived as   │             │
+│  │                     │       │  negative example   │             │
+│  │  Schema: tasks.json │       └─────────────────────┘             │
 │  └──────────┬──────────┘                                           │
 │             │                                                      │
 │             ▼                                                      │
 │  ┌──────────────────────────────────────────────┐                  │
-│  │  Governed Run (runloop/)                     │  ← Mechanical   │
+│  │  Governed Run (runloop/)                     │  ← Mechanical    │
 │  │                                              │                  │
 │  │  Bounded candidate outputs                   │                  │
 │  │  Schema validation + abstention rules        │                  │
@@ -78,7 +78,7 @@ This system provides that translation process. It also handles the case where tr
 │                         │                                          │
 │                         ▼                                          │
 │  ┌──────────────────────────────────────────────┐                  │
-│  │  Human Gate (mandatory)                      │  ← Authority    │
+│  │  Human Gate (mandatory)                      │  ← Authority     │
 │  │                                              │                  │
 │  │  Accept · Override · Reject                  │                  │
 │  │  All decisions logged with notes             │                  │
@@ -87,7 +87,7 @@ This system provides that translation process. It also handles the case where tr
 │                         │                                          │
 │                         ▼                                          │
 │  ┌──────────────────────────────────────────────┐                  │
-│  │  Decision Summary (primary artifact)         │  ← Product      │
+│  │  Decision Summary (primary artifact)         │  ← Product       │
 │  │                                              │                  │
 │  │  Assembled deterministically from run logs   │                  │
 │  │  No model-written narrative                  │                  │
