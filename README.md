@@ -197,7 +197,6 @@ The multi-agent rejection is the most important pack in the repository. It demon
 ## Repository Structure
 
 ```text
-```text
 applied-ai-research-translator/
 │
 ├── README.md                                   ← You are here: research-to-decision translation overview
