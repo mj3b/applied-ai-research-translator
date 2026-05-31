@@ -1,0 +1,118 @@
+Applied AI Research Translator
+Copyright 2026 Mark Julius Banasihan
+
+This product includes software, documentation, schemas, research translation artifacts,
+decision-summary templates, and example governance packs developed for the Applied AI
+Research Translator project.
+
+Licensed under the Apache License, Version 2.0. You may obtain a copy of the License at:
+
+https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software and documentation
+distributed under the License are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES
+OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific
+language governing permissions and limitations under the License.
+
+---
+
+## Attribution
+
+Derivative works, adaptations, forks, institutional implementations, academic citations,
+and research extensions should preserve attribution to the original project:
+
+Applied AI Research Translator: A Governed Research-to-Decision Translation System  
+Mark Julius Banasihan  
+Version 1.1  
+Apache License 2.0  
+Repository: https://github.com/mj3b/applied-ai-research-translator  
+ORCID: https://orcid.org/0009-0001-8121-2878
+
+Recommended citation:
+
+Banasihan, Mark Julius. Applied AI Research Translator: A Governed Research-to-Decision
+Translation System. Version 1.1. 2026. Software. Apache License 2.0.
+https://github.com/mj3b/applied-ai-research-translator
+
+---
+
+## Research and Governance Notice
+
+This repository provides a governed research-to-decision translation framework for applied AI
+research. It is intended to support claim extraction, bounded task design, schema validation,
+human-gate review, abstention, rejection, and audit-ready decision reconstruction.
+
+Use of this repository does not establish that a research claim is valid, that a source is
+authoritative, that a system is safe for deployment, that a regulatory obligation has been
+satisfied, or that an institutional decision has been approved.
+
+The repository separates research interpretation from operational authorization. Any deployment,
+procurement, institutional adoption, regulatory filing, or production use requires independent
+review by the responsible organization and its qualified legal, security, compliance, governance,
+domain, and technical authorities.
+
+---
+
+## No Regulatory, Legal, or Institutional Approval
+
+This project is a research software artifact. It does not provide legal advice, regulatory
+approval, safety certification, institutional authorization, or compliance certification.
+
+Users remain responsible for determining whether their use of this software complies with
+applicable law, contractual obligations, institutional policies, research ethics requirements,
+security controls, data protection obligations, and AI governance requirements.
+
+---
+
+## Source Material Notice
+
+Research sources, papers, reports, PDFs, online publications, code repositories, and other external
+materials used in packs may carry their own copyrights, licenses, permissions, restrictions, and
+citation requirements.
+
+Including source-derived excerpts, metadata, claims, or summaries in a pack does not transfer rights
+in the underlying source material. Users who create, adapt, publish, or redistribute packs are
+responsible for verifying that their use of source material is lawful, properly cited, and consistent
+with applicable licenses or permissions.
+
+---
+
+## AI Output and Human Review Notice
+
+The project treats AI-generated outputs as intermediate evidence artifacts. AI-generated outputs
+should not be treated as final decisions, institutional approvals, validated research conclusions,
+or deployment authorizations without human review and documented authorization.
+
+Human reviewers remain responsible for accept, override, reject, and approval decisions recorded
+through the human gate or any derivative review process.
+
+---
+
+## Security and Confidentiality Notice
+
+Do not place confidential, proprietary, regulated, personal, or sensitive data into research packs,
+run inputs, logs, examples, or decision summaries unless the deployment environment has been
+reviewed and approved for that data.
+
+The reference implementation is provided for research and governance demonstration purposes. Users
+are responsible for security review, dependency review, access control, logging policy, retention
+policy, and data protection before institutional or production use.
+
+---
+
+## Trademarks
+
+All trademarks, service marks, product names, organization names, and repository names used in this
+project remain the property of their respective owners. Their appearance in documentation, examples,
+or research packs does not imply endorsement, sponsorship, approval, or affiliation.
+
+---
+
+## Preservation of Notices
+
+Redistributions of this project, derivative works, institutional adaptations, and substantial
+documentation reuse should retain this NOTICE file, the Apache 2.0 LICENSE file, and citation
+metadata where practicable.
+
+The governance model depends on attribution, provenance, and decision traceability. Preserving these
+notices supports scholarly credit, audit reconstruction, and responsible reuse.
