@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-label="Research-to-Decision Pipeline">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 52px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 24px Arial, sans-serif; fill: #475569; }
+      .section { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .body { font: 400 18px Arial, sans-serif; fill: #334155; }
+      .small { font: 400 16px Arial, sans-serif; fill: #475569; }
+      .footer { font: 400 16px Arial, sans-serif; fill: #64748b; }
+
+      .neutral { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; }
+      .blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2.4; }
+      .purple { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 2.4; }
+      .amber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 2.4; }
+      .green { fill: #ecfdf5; stroke: #10b981; stroke-width: 2.4; }
+      .red { fill: #fef2f2; stroke: #ef4444; stroke-width: 2.4; }
+      .caption { fill: #eef2f7; stroke: #cbd5e1; stroke-width: 1.5; }
+      .zone { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1.5; }
+
+      .line { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .lineSoft { stroke: #94a3b8; stroke-width: 2.4; fill: none; marker-end: url(#arrowSoft); }
+      .dash { stroke: #64748b; stroke-width: 3; stroke-dasharray: 10 10; fill: none; marker-end: url(#arrow); }
+      .boundary { stroke: #0f172a; stroke-width: 2.5; stroke-dasharray: 10 10; fill: none; }
+    </style>
+
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M2,2 L11,7 L2,12 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrowSoft" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M2,2 L11,7 L2,12 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1600" height="960" />
+<text x="80" y="100" class="title">
+<tspan x="80" dy="0">Research-to-Decision Pipeline</tspan>
+</text><text x="80" y="148" class="subtitle">
+<tspan x="80" dy="0">A governed path from external research material to an audit-ready decision record.</tspan>
+</text>
+    <rect x="80" y="220" width="180" height="170" rx="20" class="neutral" />
+    <text x="102" y="262" class="label">
+<tspan x="102" dy="0">Source</tspan>
+</text>
+    <text x="102" y="298" class="body">
+<tspan x="102" dy="0">Paper</tspan>
+<tspan x="102" dy="22">PDF</tspan>
+<tspan x="102" dy="22">Report</tspan>
+<tspan x="102" dy="22">Repository</tspan>
+</text>
+    
+    <rect x="340" y="220" width="180" height="170" rx="20" class="blue" />
+    <text x="362" y="262" class="label">
+<tspan x="362" dy="0">Claims</tspan>
+</text>
+    <text x="362" y="298" class="body">
+<tspan x="362" dy="0">Falsifiable</tspan>
+<tspan x="362" dy="22">Scoped</tspan>
+<tspan x="362" dy="22">Evidence-linked</tspan>
+</text>
+    
+    <rect x="600" y="220" width="180" height="170" rx="20" class="blue" />
+    <text x="622" y="262" class="label">
+<tspan x="622" dy="0">Tasks</tspan>
+</text>
+    <text x="622" y="298" class="body">
+<tspan x="622" dy="0">Bounded</tspan>
+<tspan x="622" dy="22">Inputs</tspan>
+<tspan x="622" dy="22">Outputs</tspan>
+</text>
+    
+    <rect x="860" y="220" width="180" height="170" rx="20" class="purple" />
+    <text x="882" y="262" class="label">
+<tspan x="882" dy="0">Evaluation</tspan>
+</text>
+    <text x="882" y="298" class="body">
+<tspan x="882" dy="0">Criteria</tspan>
+<tspan x="882" dy="22">Failure states</tspan>
+<tspan x="882" dy="22">Abstention</tspan>
+</text>
+    
+    <rect x="1120" y="220" width="180" height="170" rx="20" class="amber" />
+    <text x="1142" y="262" class="label">
+<tspan x="1142" dy="0">Run / Review</tspan>
+</text>
+    <text x="1142" y="298" class="body">
+<tspan x="1142" dy="0">Candidate output</tspan>
+<tspan x="1142" dy="22">Evidence</tspan>
+<tspan x="1142" dy="22">Validation</tspan>
+</text>
+    
+    <rect x="1380" y="220" width="180" height="170" rx="20" class="green" />
+    <text x="1402" y="262" class="label">
+<tspan x="1402" dy="0">Decision</tspan>
+</text>
+    <text x="1402" y="298" class="body">
+<tspan x="1402" dy="0">Human gate</tspan>
+<tspan x="1402" dy="22">Rationale</tspan>
+<tspan x="1402" dy="22">Summary</tspan>
+</text>
+    <path class="line" d="M260 305 H340" />
+<path class="line" d="M520 305 H600" />
+<path class="line" d="M780 305 H860" />
+<path class="line" d="M1040 305 H1120" />
+<path class="line" d="M1300 305 H1380" />
+<rect x="80" y="470" width="1480" height="270" rx="22" class="zone" />
+<text x="110" y="515" class="section">
+<tspan x="110" dy="0">Governance controls applied across the chain</tspan>
+</text><text x="120" y="560" class="body">
+<tspan x="120" dy="0">• Provenance: preserve source material, version, citation, and retrieval context.</tspan>
+</text><text x="120" y="605" class="body">
+<tspan x="120" dy="0">• Containment: convert only bounded, testable claims into task definitions.</tspan>
+</text><text x="120" y="650" class="body">
+<tspan x="120" dy="0">• Abstention: stop when evidence, schema, evaluation, or review conditions fail.</tspan>
+</text><text x="120" y="695" class="body">
+<tspan x="120" dy="0">• Authority: model output remains evidence until a human reviewer accepts, overrides, or rejects.</tspan>
+</text><text x="80" y="925" class="footer">
+<tspan x="80" dy="0">Applied AI Research Translator, visual asset for v1.1 archival release</tspan>
+</text></svg>

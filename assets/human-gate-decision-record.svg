@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-label="Human-Gate Decision Record">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 52px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 24px Arial, sans-serif; fill: #475569; }
+      .section { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .body { font: 400 18px Arial, sans-serif; fill: #334155; }
+      .small { font: 400 16px Arial, sans-serif; fill: #475569; }
+      .footer { font: 400 16px Arial, sans-serif; fill: #64748b; }
+
+      .neutral { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; }
+      .blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2.4; }
+      .purple { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 2.4; }
+      .amber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 2.4; }
+      .green { fill: #ecfdf5; stroke: #10b981; stroke-width: 2.4; }
+      .red { fill: #fef2f2; stroke: #ef4444; stroke-width: 2.4; }
+      .caption { fill: #eef2f7; stroke: #cbd5e1; stroke-width: 1.5; }
+      .zone { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1.5; }
+
+      .line { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .lineSoft { stroke: #94a3b8; stroke-width: 2.4; fill: none; marker-end: url(#arrowSoft); }
+      .dash { stroke: #64748b; stroke-width: 3; stroke-dasharray: 10 10; fill: none; marker-end: url(#arrow); }
+      .boundary { stroke: #0f172a; stroke-width: 2.5; stroke-dasharray: 10 10; fill: none; }
+    </style>
+
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M2,2 L11,7 L2,12 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrowSoft" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M2,2 L11,7 L2,12 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1600" height="960" />
+<text x="80" y="100" class="title">
+<tspan x="80" dy="0">Human-Gate Decision Record</tspan>
+</text><text x="80" y="148" class="subtitle">
+<tspan x="80" dy="0">The reviewer converts proposed evidence into an authorized outcome or stops the workflow.</tspan>
+</text>
+    <rect x="100" y="255" width="300" height="130" rx="20" class="amber" />
+    <text x="122" y="297" class="label">
+<tspan x="122" dy="0">Proposed Output</tspan>
+</text>
+    <text x="122" y="333" class="body">
+<tspan x="122" dy="0">Candidate result</tspan>
+<tspan x="122" dy="22">validated against schema</tspan>
+<tspan x="122" dy="22">and task constraints</tspan>
+</text>
+    
+    <rect x="600" y="255" width="350" height="130" rx="20" class="green" />
+    <text x="622" y="297" class="label">
+<tspan x="622" dy="0">Human Gate</tspan>
+</text>
+    <text x="622" y="333" class="body">
+<tspan x="622" dy="0">Reviewer assesses evidence,</tspan>
+<tspan x="622" dy="22">scope, confidence, and</tspan>
+<tspan x="622" dy="22">authority boundary</tspan>
+</text>
+    <path class="line" d="M400 320 H600" />
+
+    <rect x="120" y="540" width="230" height="140" rx="20" class="green" />
+    <text x="142" y="582" class="label">
+<tspan x="142" dy="0">Accept</tspan>
+</text>
+    <text x="142" y="618" class="body">
+<tspan x="142" dy="0">Output becomes final</tspan>
+<tspan x="142" dy="22">inside the recorded boundary</tspan>
+</text>
+    
+    <rect x="420" y="540" width="230" height="140" rx="20" class="purple" />
+    <text x="442" y="582" class="label">
+<tspan x="442" dy="0">Override</tspan>
+</text>
+    <text x="442" y="618" class="body">
+<tspan x="442" dy="0">Reviewer changes output</tspan>
+<tspan x="442" dy="22">and records the reason</tspan>
+</text>
+    
+    <rect x="720" y="540" width="230" height="140" rx="20" class="red" />
+    <text x="742" y="582" class="label">
+<tspan x="742" dy="0">Reject</tspan>
+</text>
+    <text x="742" y="618" class="body">
+<tspan x="742" dy="0">Output fails evidence,</tspan>
+<tspan x="742" dy="22">scope, or authority test</tspan>
+</text>
+    
+    <rect x="1020" y="540" width="260" height="140" rx="20" class="amber" />
+    <text x="1042" y="582" class="label">
+<tspan x="1042" dy="0">Abstain / Escalate</tspan>
+</text>
+    <text x="1042" y="618" class="body">
+<tspan x="1042" dy="0">Evidence or authority</tspan>
+<tspan x="1042" dy="22">is insufficient</tspan>
+</text>
+    <path class="lineSoft" d="M775 385 C775 465 235 475 235 540" />
+<path class="lineSoft" d="M775 385 C775 465 535 475 535 540" />
+<path class="lineSoft" d="M775 385 C775 465 835 475 835 540" />
+<path class="lineSoft" d="M775 385 C775 465 1150 475 1150 540" />
+
+    <rect x="530" y="775" width="480" height="120" rx="20" class="neutral" />
+    <text x="552" y="817" class="label">
+<tspan x="552" dy="0">Decision Summary</tspan>
+</text>
+    <text x="552" y="853" class="body">
+<tspan x="552" dy="0">Final record: decision, rationale,</tspan>
+<tspan x="552" dy="22">confidence, conditions, and limits</tspan>
+</text>
+    <path class="line" d="M235 680 C235 745 470 750 610 775" />
+<path class="line" d="M535 680 C535 735 620 748 690 775" />
+<path class="line" d="M835 680 C835 735 800 748 770 775" />
+<path class="line" d="M1150 680 C1150 745 1040 750 930 775" />
+<text x="80" y="925" class="footer">
+<tspan x="80" dy="0">Applied AI Research Translator, visual asset for v1.1 archival release</tspan>
+</text></svg>
