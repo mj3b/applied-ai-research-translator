@@ -1,4 +1,4 @@
-# TRACEABILITY
+# Traceability
 
 ## Source-to-Decision Traceability for Applied AI Research Translation
 
