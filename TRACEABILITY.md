@@ -1,4 +1,4 @@
-# TRACEABILITY.md
+# TRACEABILITY
 
 ## Source-to-Decision Traceability for Applied AI Research Translation
 
