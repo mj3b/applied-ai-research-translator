@@ -407,10 +407,6 @@ v1.1 expands the research-community framing and release metadata for archival us
 }
 ```
 
-## Suggested Citation Description
-
-Applied AI Research Translator is an open-source software artifact for converting applied AI research into governed, audit-ready decision records. The system addresses the research-to-deployment gap between academic findings and operational adoption by translating papers, PDFs, online publications, and related research artifacts into falsifiable claims, bounded tasks, schema-validated execution outputs, abstention conditions, human-gate review, and deterministic decision summaries. Version 1.1 strengthens the research-community framing by treating research translation as a governance control point: AI-generated outputs remain intermediate evidence artifacts while final authorization, override, rejection, and deployment conditions remain assigned to a human decision record. The repository includes schemas, runloop code, example research packs, demo decision summaries, validation scripts, and documentation for translation-positive and translation-negative cases. It is intended for researchers, governance practitioners, institutional reviewers, and applied AI teams studying auditability, decision accountability, human oversight, and controlled research translation in AI-assisted systems. Licensed under Apache 2.0.
-
 ## Author
 
 Mark Julius Banasihan  
