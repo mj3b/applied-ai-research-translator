@@ -7,7 +7,7 @@
 [![Governance: Human-in-the-Loop](https://img.shields.io/badge/governance-human--in--the--loop-3bb273)](#human-gate)
 [![Schema: Enforced](https://img.shields.io/badge/contracts-schema--validated-8a5cff)](#schemas)
 [![Property: Audit-Ready](https://img.shields.io/badge/property-audit--ready-0aa2c0)](#decision-summary)
-[![License](https://img.shields.io/github/license/mj3b/applied-ai-research-translator)](LICENSE)
+[![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0001--8121--2878-brightgreen)](https://orcid.org/0009-0001-8121-2878)
 
 Applied AI research rarely arrives as a deployment-ready object. It arrives as papers, preprints, PDFs, benchmark claims, technical reports, blog posts, evaluation writeups, vendor publications, institutional guidance, and source repositories. Each source may contain useful knowledge, but operational authority requires a separate governance record.
