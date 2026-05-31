@@ -1,6 +1,8 @@
 # Applied AI Research Translator
 
-[![Status: Decision-Complete](https://img.shields.io/badge/status-decision--complete-5b6cff)](#status)
+[![DOI](https://zenodo.org/badge/1121938011.svg)](https://doi.org/10.5281/zenodo.20478120)
+[![Release: v1.1](https://img.shields.io/badge/release-v1.1-0aa2c0)](https://github.com/mj3b/applied-ai-research-translator/releases/tag/v1.1)
+[![Status: Research-Grade Archival Release](https://img.shields.io/badge/status-research--grade%20archival%20release-5b6cff)](#status)
 [![AI Stance: Non-Agentic](https://img.shields.io/badge/AI-non--agentic-2d7ff9)](#governed-execution-model)
 [![Governance: Human-in-the-Loop](https://img.shields.io/badge/governance-human--in--the--loop-3bb273)](#human-gate)
 [![Schema: Enforced](https://img.shields.io/badge/contracts-schema--validated-8a5cff)](#schemas)
@@ -343,10 +345,10 @@ applied-ai-research-translator/
 │       └── t_c04_input.json                    ← Example discrepancy-review run input
 │
 └── assets/                                     ← Visual diagrams, matrices, and publication assets
-    ├── research-to-decision-pipeline.png       ← Visual overview of governed translation flow
-    ├── governance-boundary.png                 ← Non-agentic boundary: AI evidence vs. human authority
-    ├── artifact-traceability-map.png           ← Source → claim → task → run → decision summary
-    └── human-gate-decision-record.png          ← Human accept, override, reject control model
+    ├── research-to-decision-pipeline.svg       ← Visual overview of governed translation flow
+    ├── governance-boundary.svg                 ← Non-agentic boundary: AI evidence vs. human authority
+    ├── artifact-traceability-map.svg           ← Source → claim → task → run → decision summary
+    └── human-gate-decision-record.svg          ← Human accept, override, reject control model
 ```
 
 ```
@@ -402,6 +404,7 @@ v1.1 expands the research-community framing and release metadata for archival us
   title     = {Applied {AI} Research Translator: A Governed Research-to-Decision Translation System},
   year      = {2026},
   version   = {1.1},
+  doi       = {10.5281/zenodo.20478121},
   url       = {https://github.com/mj3b/applied-ai-research-translator},
   license   = {Apache-2.0}
 }
