@@ -197,48 +197,159 @@ The multi-agent rejection is the most important pack in the repository. It demon
 ## Repository Structure
 
 ```text
+```text
 applied-ai-research-translator/
 │
-├── packs/                           # Decision packs, one per paper or task
-│   ├── <pack_id>/
-│   │   ├── agent_spec.json          # Agent specification, schema-validated
-│   │   ├── claims.json              # Falsifiable claims extracted from source material
-│   │   ├── tasks.json               # Locked task definitions
-│   │   ├── eval_plan.json           # Evaluation criteria and metrics
-│   │   ├── decision_summary.json    # Final human-authorized decision
+├── README.md                                   ← You are here: research-to-decision translation overview
+├── RESEARCH-RATIONALE.md                       ← Why online research, PDFs, papers, and reports require governance before operational use
+├── TRANSLATION-METHOD.md                       ← How research claims become bounded tasks, verdicts, and decision records
+├── GOVERNANCE-MODEL.md                         ← Governance boundary: provenance, schema control, abstention, human gate, audit trail
+├── TRACEABILITY.md                             ← Source material → claims → tasks → run artifacts → decision summary
+├── LIMITATIONS.md                              ← Known limits, excluded use cases, unresolved research questions, disclosure language
+├── CHANGELOG.md                                ← Version history, release notes, v1.1 archival release rationale
+├── CITATION.cff                                ← Machine-readable citation metadata for GitHub, ORCID, and Zenodo
+├── .zenodo.json                                ← Optional Zenodo metadata override for DOI archival release
+├── CONTRIBUTING.md                             ← How researchers and practitioners can adapt packs, schemas, and runloop logic
+├── LICENSE                                     ← Apache License 2.0
+├── NOTICE                                      ← Attribution and derivative-use notice
+├── requirements.txt                            ← Root Python dependencies
+├── .env.example                                ← Environment variable template for local execution
+├── .gitleaks.toml                              ← Secret-scanning configuration
+│
+├── packs/                                      ← Governed research translation packs, one source or task per pack
+│   ├── README.md                               ← Pack schema, verdict logic, required files, and reviewer instructions
+│   │
+│   ├── example_paper_001/                      ← Minimal demonstration pack
+│   │   └── agent_spec.json                     ← Schema-validated agent or task specification
+│   │
+│   ├── haic_reliance_review_59e257ff/          ← Translation-positive pack: human-AI reliance calibration
+│   │   ├── agent_spec.json                     ← Agent/task specification with bounded role and constraints
+│   │   ├── claims.json                         ← Falsifiable claims extracted from source material
+│   │   ├── tasks.json                          ← Locked tasks derived from selected claims
+│   │   ├── eval_plan.json                      ← Evaluation criteria, metrics, and review conditions
+│   │   ├── decision_summary.json               ← Final human-authorized translation decision
 │   │   └── sources/
-│   │       └── paper_text.txt       # Source text used for translation
+│   │       └── paper_text.txt                  ← Captured source text used for claim extraction
+│   │
+│   ├── measuring_agents_in_production_a98e2ca8/ ← Translation-positive pack: production measurement for agents
+│   │   ├── agent_spec.json                     ← Agent/task specification
+│   │   ├── claims.json                         ← Extracted claims with source-grounded evidence
+│   │   ├── tasks.json                          ← Bounded operational tasks
+│   │   ├── eval_plan.json                      ← Measurement and evaluation plan
+│   │   └── sources/
+│   │       └── paper_text.txt                  ← Source text preserved for audit reconstruction
+│   │
+│   ├── multi_agent_failure_modes_e0228882/     ← Translation-negative pack: autonomous multi-agent failure modes
+│   │   ├── agent_spec.json                     ← Specification showing the boundary problem
+│   │   ├── claims.json                         ← Extracted claims and failure-mode evidence
+│   │   ├── tasks.json                          ← Proposed task boundary and rejection basis
+│   │   ├── eval_plan.json                      ← Evaluation criteria used to test translation feasibility
+│   │   ├── decision_summary.json               ← Human-authorized rejection decision
+│   │   └── sources/
+│   │       └── paper_text.txt                  ← Source text preserved for review
+│   │
+│   └── test_paper_agent_translation_d0702c41/  ← Development test pack for translation workflow validation
+│       ├── agent_spec.json                     ← Test specification
+│       └── eval_plan.json                      ← Test evaluation plan
 │
-├── schemas/                         # JSON Schema contracts
-│   ├── agent_spec.schema.json
-│   ├── claims.schema.json
-│   ├── decision_summary.schema.json
-│   ├── run_input.schema.json
-│   ├── run_output.schema.json
-│   └── tasks.schema.json
+├── schemas/                                    ← JSON Schema contracts for governed translation artifacts
+│   ├── README.md                               ← Contract index, validation rules, and schema dependency map
+│   ├── agent_spec.schema.json                  ← Required structure for agent or task specifications
+│   ├── claims.schema.json                      ← Required structure for extracted, falsifiable research claims
+│   ├── tasks.schema.json                       ← Required structure for bounded task definitions
+│   ├── run_input.schema.json                   ← Required structure for governed run inputs
+│   ├── run_output.schema.json                  ← Required structure for governed run outputs
+│   └── decision_summary.schema.json            ← Required structure for final decision artifacts
 │
-├── runloop/                         # Governed executor
-│   ├── README_RUNLOOP.md
-│   ├── DECISIONS.md
-│   ├── run_t_c02.py
-│   ├── make_decision_summary.py
-│   ├── make_decisions_index.py
-│   └── src/
-│       ├── human_gate.py
-│       ├── openai_runner.py
-│       ├── schemas.py
-│       └── logger.py
+├── runloop/                                    ← Governed execution layer for bounded AI-assisted tasks
+│   ├── README_RUNLOOP.md                       ← Execution model, run order, artifact trail, and human gate logic
+│   ├── DECISIONS.md                            ← Runloop design decisions and governance trade-offs
+│   ├── requirements.txt                        ← Runtime-specific dependencies
+│   ├── run_t_c02.py                            ← Reference governed run for task t_c02
+│   ├── make_decision_summary.py                ← Deterministic decision-summary assembler
+│   ├── make_decision_summary_t_c04.py          ← Deterministic summary assembler for task t_c04
+│   ├── make_decisions_index.py                 ← Decision index generator for completed runs
+│   │
+│   ├── examples/                               ← Runtime examples used by governed runs
+│   │   ├── artifact.txt                        ← Example input artifact
+│   │   ├── artifact_t_c04.txt                  ← Example input artifact for discrepancy review
+│   │   ├── taxonomy.json                       ← Example taxonomy
+│   │   └── taxonomy_t_c04.json                 ← Example taxonomy for t_c04
+│   │
+│   └── src/                                    ← Runtime support modules
+│       ├── __init__.py                         ← Package initialization
+│       ├── human_gate.py                       ← Human accept, override, and reject control point
+│       ├── openai_runner.py                    ← Bounded model-call runner
+│       ├── schemas.py                          ← Runtime schema loading and validation
+│       └── logger.py                           ← Artifact logging and run trace support
 │
-├── docs/
-│   ├── research-context.md
-│   └── demo-runs/
-│       └── LOCKED_3_DEMO_RUNS.md
+├── src/                                        ← Shared translation and task execution logic
+│   ├── runner/
+│   │   └── run_task.py                         ← Generic task runner for schema-bound execution
+│   │
+│   └── translator/
+│       ├── __init__.py                         ← Translator package initialization
+│       ├── cli.py                              ← Command-line interface for research translation workflow
+│       └── quote_finder.py                     ← Source quote and evidence extraction support
 │
-├── scripts/                         # Validation tooling
-├── src/                             # Shared execution logic
-├── examples/runs/                   # Example run inputs
-├── requirements.txt
-└── .env.example
+├── scripts/                                    ← Validation, security, and reproducibility tooling
+│   ├── README.md                               ← Script index and validation sequence
+│   ├── install-pre-commit-gitleaks.sh          ← Local secret-scanning hook installation
+│   ├── run_examples.sh                         ← Reproducible example-run script
+│   ├── validate_pack.sh                        ← Full pack validation wrapper
+│   ├── validate_claims.sh                      ← Claim schema validation
+│   ├── validate_tasks.sh                       ← Task schema validation
+│   ├── validate_run_input.sh                   ← Run-input schema validation
+│   ├── validate_run_output.sh                  ← Run-output schema validation
+│   └── validate_decision_summary.sh            ← Decision-summary schema validation
+│
+├── docs/                                       ← Research context, demonstrations, specifications, and governance notes
+│   ├── research-context.md                     ← Research background and institutional problem statement
+│   │
+│   ├── demo-runs/                              ← Locked demonstration runs and audit artifacts
+│   │   ├── LOCKED_3_DEMO_RUNS.md               ← Three locked demo runs with review notes
+│   │   ├── A/
+│   │   │   ├── run-manifest.json               ← Run A manifest
+│   │   │   └── decision_summary.json           ← Run A decision artifact
+│   │   ├── B/
+│   │   │   ├── run-manifest.json               ← Run B manifest
+│   │   │   └── decision_summary.json           ← Run B decision artifact
+│   │   └── C/
+│   │       ├── run-manifest.json               ← Run C manifest
+│   │       └── decision_summary.json           ← Run C decision artifact
+│   │
+│   ├── specifications/                         ← Technical and governance specifications
+│   │   ├── artifact-model.md                   ← Required artifacts from source text through decision summary
+│   │   ├── translation-verdicts.md             ← Positive, negative, conditional, and rejection verdict definitions
+│   │   ├── abstention-model.md                 ← When the system halts, rejects, or requires human review
+│   │   ├── human-gate.md                       ← Human authorization, override, rejection, and accountability record
+│   │   └── audit-reconstruction.md             ← How a reviewer reconstructs a completed decision path
+│   │
+│   ├── governance/                             ← Institutional governance documentation
+│   │   ├── research-provenance.md              ← Source capture, source volatility, and versioning controls
+│   │   ├── online-research-controls.md         ← Controls for web pages, PDFs, reports, repositories, and preprints
+│   │   ├── nist-ai-rmf-mapping.md              ← Mapping to NIST AI RMF functions and governance outcomes
+│   │   ├── eu-ai-act-mapping.md                ← Mapping to high-risk system obligations and oversight logic
+│   │   ├── iso-42001-mapping.md                ← Mapping to AI management system controls
+│   │   ├── security-considerations.md          ← Secrets, prompt injection, source poisoning, and dependency risks
+│   │   └── institutional-review-template.md    ← Template for research, governance, or audit reviewers
+│   │
+│   └── release/
+│       ├── v1.0-release-notes.md               ← Initial decision-complete implementation
+│       └── v1.1-release-notes.md               ← Research-grade archival and metadata release
+│
+├── examples/                                   ← Example governed run inputs and reproducibility material
+│   └── runs/
+│       ├── t_c02_input_with_snippets.json      ← Example run input with source snippets
+│       └── t_c04_input.json                    ← Example discrepancy-review run input
+│
+└── assets/                                     ← Visual diagrams, matrices, and publication assets
+    ├── research-to-decision-pipeline.png       ← Visual overview of governed translation flow
+    ├── governance-boundary.png                 ← Non-agentic boundary: AI evidence vs. human authority
+    ├── artifact-traceability-map.png           ← Source → claim → task → run → decision summary
+    └── human-gate-decision-record.png          ← Human accept, override, reject control model
+```
+
 ```
 
 ## Quick Start
