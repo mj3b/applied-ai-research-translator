@@ -1,0 +1,144 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-label="Governance Boundary">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 52px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 24px Arial, sans-serif; fill: #475569; }
+      .section { font: 700 28px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 24px Arial, sans-serif; fill: #0f172a; }
+      .body { font: 400 18px Arial, sans-serif; fill: #334155; }
+      .small { font: 400 16px Arial, sans-serif; fill: #475569; }
+      .footer { font: 400 16px Arial, sans-serif; fill: #64748b; }
+
+      .neutral { fill: #ffffff; stroke: #94a3b8; stroke-width: 2; }
+      .blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2.4; }
+      .purple { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 2.4; }
+      .amber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 2.4; }
+      .green { fill: #ecfdf5; stroke: #10b981; stroke-width: 2.4; }
+      .zone { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 1.5; }
+
+      .line { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .lineSoft { stroke: #94a3b8; stroke-width: 2.4; fill: none; marker-end: url(#arrowSoft); }
+      .boundary { stroke: #0f172a; stroke-width: 2.5; stroke-dasharray: 10 10; fill: none; }
+    </style>
+
+    <marker id="arrow" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M2,2 L11,7 L2,12 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrowSoft" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto">
+      <path d="M2,2 L11,7 L2,12 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="960" />
+
+  <text x="80" y="100" class="title">
+<tspan x="80" dy="0">Governance Boundary</tspan>
+</text>
+  <text x="80" y="148" class="subtitle">
+<tspan x="80" dy="0">AI may generate evidence inside a bounded workflow. A human reviewer authorizes the decision.</tspan>
+</text>
+
+  <rect x="80" y="220" width="660" height="520" rx="24" class="zone" />
+  <text x="110" y="260" class="section">
+<tspan x="110" dy="0">Evidence Layer</tspan>
+</text>
+  <text x="110" y="295" class="small">
+<tspan x="110" dy="0">Machine-checkable artifacts generated or validated</tspan>
+</text>
+  <text x="110" y="318" class="small">
+<tspan x="110" dy="0">before final authorization.</tspan>
+</text>
+
+  
+    <rect x="130" y="355" width="260" height="115" rx="20" class="blue" />
+    <text x="152" y="397" class="label">
+<tspan x="152" dy="0">AI Candidate</tspan>
+</text>
+    <text x="152" y="433" class="body">
+<tspan x="152" dy="0">Structured output</tspan>
+<tspan x="152" dy="22">under task constraints</tspan>
+</text>
+    
+  
+    <rect x="450" y="355" width="230" height="115" rx="20" class="purple" />
+    <text x="472" y="397" class="label">
+<tspan x="472" dy="0">Validation</tspan>
+</text>
+    <text x="472" y="433" class="body">
+<tspan x="472" dy="0">Schema check</tspan>
+<tspan x="472" dy="22">Evidence check</tspan>
+</text>
+    
+  
+    <rect x="275" y="560" width="240" height="115" rx="20" class="amber" />
+    <text x="297" y="602" class="label">
+<tspan x="297" dy="0">Proposed Output</tspan>
+</text>
+    <text x="297" y="638" class="body">
+<tspan x="297" dy="0">Intermediate</tspan>
+<tspan x="297" dy="22">review artifact</tspan>
+</text>
+    
+
+  <path class="line" d="M390 412 H450" />
+  <path class="lineSoft" d="M260 470 C260 520 330 530 355 560" />
+  <path class="lineSoft" d="M565 470 C565 520 500 530 435 560" />
+
+  <path class="boundary" d="M800 180 V790" />
+  <text x="735" y="830" class="section">
+<tspan x="735" dy="0">Boundary</tspan>
+</text>
+
+  <rect x="900" y="220" width="620" height="520" rx="24" class="zone" />
+  <text x="930" y="260" class="section">
+<tspan x="930" dy="0">Authority Layer</tspan>
+</text>
+  <text x="930" y="295" class="small">
+<tspan x="930" dy="0">Institutional judgment records accept, override, reject,</tspan>
+</text>
+  <text x="930" y="318" class="small">
+<tspan x="930" dy="0">or escalation decisions.</tspan>
+</text>
+
+  
+    <rect x="980" y="355" width="260" height="115" rx="20" class="green" />
+    <text x="1002" y="397" class="label">
+<tspan x="1002" dy="0">Human Gate</tspan>
+</text>
+    <text x="1002" y="433" class="body">
+<tspan x="1002" dy="0">Accept</tspan>
+<tspan x="1002" dy="22">Override</tspan>
+<tspan x="1002" dy="22">Reject</tspan>
+</text>
+    
+  
+    <rect x="1300" y="355" width="220" height="115" rx="20" class="green" />
+    <text x="1322" y="397" class="label">
+<tspan x="1322" dy="0">Decision Summary</tspan>
+</text>
+    <text x="1322" y="433" class="body">
+<tspan x="1322" dy="0">Rationale</tspan>
+<tspan x="1322" dy="22">Confidence</tspan>
+<tspan x="1322" dy="22">Limits</tspan>
+</text>
+    
+  
+    <rect x="1130" y="560" width="270" height="115" rx="20" class="neutral" />
+    <text x="1152" y="602" class="label">
+<tspan x="1152" dy="0">Audit Record</tspan>
+</text>
+    <text x="1152" y="638" class="body">
+<tspan x="1152" dy="0">Reconstructable</tspan>
+<tspan x="1152" dy="22">source-to-decision path</tspan>
+</text>
+    
+
+  <path class="line" d="M1240 412 H1300" />
+  <path class="line" d="M515 617 H1060" />
+  <path class="lineSoft" d="M1410 470 C1410 520 1350 530 1260 560" />
+
+  <text x="80" y="925" class="footer">
+<tspan x="80" dy="0">Applied AI Research Translator, visual asset for v1.1 archival release</tspan>
+</text>
+</svg>
