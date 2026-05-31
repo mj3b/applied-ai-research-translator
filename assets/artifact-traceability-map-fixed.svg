@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860" role="img" aria-label="Artifact Traceability Map">
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .title { font: 700 38px Arial, sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 19px Arial, sans-serif; fill: #475569; }
+      .section { font: 700 21px Arial, sans-serif; fill: #0f172a; }
+      .label { font: 700 18px Arial, sans-serif; fill: #0f172a; }
+      .small { font: 400 15px Arial, sans-serif; fill: #334155; }
+      .tiny { font: 400 12px Arial, sans-serif; fill: #475569; }
+      .footer { font: 400 13px Arial, sans-serif; fill: #64748b; }
+      .box { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.6; }
+      .box-blue { fill: #eff6ff; stroke: #3b82f6; stroke-width: 2; }
+      .box-green { fill: #ecfdf5; stroke: #10b981; stroke-width: 2; }
+      .box-amber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 2; }
+      .box-purple { fill: #f5f3ff; stroke: #8b5cf6; stroke-width: 2; }
+      .line { stroke: #64748b; stroke-width: 2.5; fill: none; marker-end: url(#arrow); }
+      .line-soft { stroke: #94a3b8; stroke-width: 2.1; fill: none; marker-end: url(#arrowSoft); }
+      .line-dash { stroke: #64748b; stroke-width: 2.3; stroke-dasharray: 8 8; fill: none; marker-end: url(#arrow); }
+      .caption { fill: #e2e8f0; stroke: #cbd5e1; stroke-width: 1.2; }
+    </style>
+    <marker id="arrow" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto">
+      <path d="M2,2 L11,6.5 L2,11 Z" fill="#64748b" />
+    </marker>
+    <marker id="arrowSoft" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto">
+      <path d="M2,2 L11,6.5 L2,11 Z" fill="#94a3b8" />
+    </marker>
+  </defs>
+  <rect class="bg" x="0" y="0" width="1400" height="860" />
+<text x="70" y="82" class="title">
+<tspan x="70" dy="0">Artifact Traceability Map</tspan>
+</text><text x="70" y="118" class="subtitle">
+<tspan x="70" dy="0">Every downstream decision should point back to source material, claims, tasks, and review artifacts.</tspan>
+</text><rect class="box" x="80" y="190" width="250" height="118" rx="18" />
+<text x="102" y="228" class="label">
+<tspan x="102" dy="0">sources/paper_text.txt</tspan>
+</text>
+<text x="102" y="256" class="small">
+<tspan x="102" dy="0">Source material preserved</tspan>
+<tspan x="102" dy="20">for later inspection</tspan>
+</text><rect class="box-blue" x="415" y="190" width="250" height="118" rx="18" />
+<text x="437" y="228" class="label">
+<tspan x="437" dy="0">claims.json</tspan>
+</text>
+<text x="437" y="256" class="small">
+<tspan x="437" dy="0">Research claims extracted</tspan>
+<tspan x="437" dy="20">with scope and evidence</tspan>
+</text><rect class="box-blue" x="750" y="190" width="250" height="118" rx="18" />
+<text x="772" y="228" class="label">
+<tspan x="772" dy="0">tasks.json</tspan>
+</text>
+<text x="772" y="256" class="small">
+<tspan x="772" dy="0">Bounded tasks derived</tspan>
+<tspan x="772" dy="20">from selected claims</tspan>
+</text><rect class="box-purple" x="1085" y="190" width="245" height="118" rx="18" />
+<text x="1107" y="228" class="label">
+<tspan x="1107" dy="0">eval_plan.json</tspan>
+</text>
+<text x="1107" y="256" class="small">
+<tspan x="1107" dy="0">Criteria declared</tspan>
+<tspan x="1107" dy="20">before judgment</tspan>
+</text><rect class="box" x="230" y="455" width="260" height="118" rx="18" />
+<text x="252" y="493" class="label">
+<tspan x="252" dy="0">run_input.json</tspan>
+</text>
+<text x="252" y="521" class="small">
+<tspan x="252" dy="0">Execution context</tspan>
+<tspan x="252" dy="20">recorded</tspan>
+</text><rect class="box-amber" x="585" y="455" width="260" height="118" rx="18" />
+<text x="607" y="493" class="label">
+<tspan x="607" dy="0">run_output.json</tspan>
+</text>
+<text x="607" y="521" class="small">
+<tspan x="607" dy="0">System output</tspan>
+<tspan x="607" dy="20">remains intermediate</tspan>
+</text><rect class="box-green" x="940" y="455" width="270" height="118" rx="18" />
+<text x="962" y="493" class="label">
+<tspan x="962" dy="0">human_gate.json</tspan>
+</text>
+<text x="962" y="521" class="small">
+<tspan x="962" dy="0">Reviewer decision:</tspan>
+<tspan x="962" dy="20">accept, override, reject</tspan>
+</text><rect class="box-green" x="520" y="685" width="360" height="118" rx="18" />
+<text x="542" y="723" class="label">
+<tspan x="542" dy="0">decision_summary.json</tspan>
+</text>
+<text x="542" y="751" class="small">
+<tspan x="542" dy="0">Final audit-facing record:</tspan>
+<tspan x="542" dy="20">rationale, confidence, limits</tspan>
+</text><path class="line" d="M330 249 H415" />
+<path class="line" d="M665 249 H750" />
+<path class="line" d="M1000 249 H1085" />
+<path class="line-soft" d="M1208 308 C1208 385 1130 415 1075 455" />
+<path class="line" d="M940 514 H845" />
+<path class="line" d="M585 514 H490" />
+<path class="line" d="M715 573 C715 630 704 650 704 685" />
+<path class="line" d="M1075 573 C1075 650 870 640 780 685" />
+<path class="line-dash" d="M205 308 C205 525 365 630 565 685" />
+<rect class="caption" x="80" y="355" width="520" height="56" rx="14" />
+<text x="108" y="390" class="section">
+<tspan x="108" dy="0">Audit question: how did this source become this decision?</tspan>
+</text><rect class="caption" x="790" y="340" width="540" height="68" rx="14" />
+<text x="820" y="368" class="small">
+<tspan x="820" dy="0">Solid arrows show governed artifact flow.</tspan>
+<tspan x="820" dy="22">Dashed arrow shows reconstructability back to source.</tspan>
+</text><text x="70" y="835" class="footer">
+<tspan x="70" dy="0">Applied AI Research Translator, visual asset for v1.1 archival release</tspan>
+</text>
+</svg>
