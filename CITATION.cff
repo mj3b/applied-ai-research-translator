@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+title: "Applied AI Research Translator: A Governed Research-to-Decision Translation System"
+
+authors:
+  - family-names: "Banasihan"
+    given-names: "Mark Julius"
+    orcid: "https://orcid.org/0009-0001-8121-2878"
+
+abstract: >-
+  Applied AI Research Translator is an open-source research software artifact for
+  converting applied AI research into governed, audit-ready decision records. The
+  system treats research translation as a governance control point: papers,
+  preprints, PDFs, online publications, technical reports, and related research
+  artifacts are decomposed into falsifiable claims, bounded tasks,
+  schema-validated outputs, abstention conditions, human-gate review, and
+  deterministic decision summaries. Version 1.1 strengthens the repository as a
+  research-grade archival release by making the governance rationale,
+  translation method, traceability model, and limitation register explicit for
+  researchers, institutional reviewers, and applied AI governance teams.
+
+version: "1.1"
+date-released: "2026-05-31"
+license: "Apache-2.0"
+
+repository-code: "https://github.com/mj3b/applied-ai-research-translator"
+url: "https://github.com/mj3b/applied-ai-research-translator"
+
+keywords:
+  - "AI governance"
+  - "AI safety"
+  - "AI safety and policy"
+  - "applied AI"
+  - "research translation"
+  - "decision accountability"
+  - "decision records"
+  - "auditability"
+  - "human oversight"
+  - "human-in-the-loop governance"
+  - "schema validation"
+  - "abstention"
+  - "research-to-decision systems"
+
+preferred-citation:
+  type: software
+  title: "Applied AI Research Translator: A Governed Research-to-Decision Translation System"
+  authors:
+    - family-names: "Banasihan"
+      given-names: "Mark Julius"
+      orcid: "https://orcid.org/0009-0001-8121-2878"
+  version: "1.1"
+  date-released: "2026-05-31"
+  license: "Apache-2.0"
+  repository-code: "https://github.com/mj3b/applied-ai-research-translator"
+  url: "https://github.com/mj3b/applied-ai-research-translator"
+  abstract: >-
+    Applied AI Research Translator is an open-source research software artifact
+    for converting applied AI research into governed, audit-ready decision
+    records through claim extraction, bounded task design, schema validation,
+    abstention conditions, human-gate review, and deterministic decision
+    summaries.
