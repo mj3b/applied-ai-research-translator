@@ -1,0 +1,64 @@
+{
+  "intake_version": "0.1",
+  "pack_id": "multi_agent_failure_modes_e0228882",
+  "source_id": "source_001",
+  "source_type": "paper",
+  "source_status": {
+    "review_status": "unknown",
+    "evidence_type": "theoretical",
+    "epistemic_status": "preliminary",
+    "update_condition": "Update the verdict if the source provides bounded, testable tasks that preserve human decision authority without requiring open-ended multi-agent autonomy."
+  },
+  "ai_safety_domain": {
+    "capability_forecasting": false,
+    "misuse": false,
+    "loss_of_control": true,
+    "structural_or_gradual_risk": true,
+    "compute_governance": false,
+    "model_weight_security": false,
+    "liability_or_private_governance": false,
+    "international_governance": false,
+    "concentration_of_power": false
+  },
+  "capability_and_autonomy": {
+    "model_class": "agentic_system",
+    "autonomy_level": "open_ended_agentic",
+    "task_horizon_relevance": "unknown",
+    "tool_use_scope": "external_systems"
+  },
+  "risk_screen": {
+    "misuse_pathways": [
+      "unknown"
+    ],
+    "dual_use_status": "unknown",
+    "loss_of_control_indicators": [
+      "collusion",
+      "toolchain_takeover",
+      "power_seeking"
+    ],
+    "oversight_failure_modes": [
+      "monitor_evasion",
+      "evaluation_gaming",
+      "insufficient_expertise"
+    ],
+    "catastrophic_risk_relevance": "plausible"
+  },
+  "governance_mapping": {
+    "decision_lever": "policy_mapping",
+    "required_review": [
+      "researcher",
+      "ai_safety_reviewer",
+      "governance"
+    ],
+    "translation_boundary": "policy_mapping_only"
+  },
+  "translation_verdict": {
+    "verdict": "human_review_required",
+    "rationale": "The source appears to concern multi-agent failure modes and oversight limits. The pack should preserve research value for policy mapping and safety analysis before any bounded task translation is attempted.",
+    "conditions": [
+      "Do not create autonomous multi-agent execution tasks from this source.",
+      "Use the source for failure-mode taxonomy, oversight design, or policy mapping unless a reviewer explicitly approves a narrower bounded task.",
+      "Record any future task translation as an exception with human-gate rationale."
+    ]
+  }
+}
