@@ -221,6 +221,43 @@ The human gate prevents a model-produced artifact from becoming institutional ju
 
 ---
 
+## AI-Assisted Development and Authorship Boundary
+
+The repository’s own construction followed the same governance premise it recommends for research translation: AI systems may assist in producing intermediate artifacts, but they do not hold final decision authority.
+
+AI tools, including Claude and ChatGPT, were used during the author’s research, drafting, documentation, and software-construction workflow. Their role was bounded to support work such as methodology refinement, document drafting, schema and artifact design, repository organization, validation-script development, diagram planning, and review of governance language.
+
+This assistance created candidate material. It did not determine the repository’s research claims, governance model, translation method, safety-policy intake design, schema boundaries, pack verdicts, citation metadata, release decisions, or final public language. Those decisions were selected, revised, accepted, rejected, or integrated by the author.
+
+That distinction matters for the research rationale. The project is not merely about governing AI-assisted work in the abstract. It also treats its own development process as an example of the same control pattern:
+
+```text
+AI-assisted draft or candidate artifact
+  ↓
+human selection, revision, and rejection
+  ↓
+schema, traceability, and documentation review
+  ↓
+author-owned release decision
+```
+
+The disclosure is therefore methodological rather than ceremonial. It records where AI assistance entered the work and where authority remained. It also prevents a common ambiguity in AI-assisted research: whether model-produced language, structure, or code should be treated as authorship, evidence, or decision. In this repository, it is treated as intermediate material.
+
+| Development Area | AI-Assisted Contribution | Human-Owned Decision |
+|---|---|---|
+| Research framing | Candidate language, structural comparisons, and explanatory drafts | Final thesis, scope, claims, and limitation language |
+| Translation method | Draft method language and artifact-order refinements | Final method architecture and translation verdict logic |
+| Safety-policy intake | Candidate schema language and classification examples | Final intake fields, boundaries, and reviewer logic |
+| Repository construction | Draft README sections, file organization suggestions, and validation-script scaffolding | Final file selection, integration, commit content, and release decisions |
+| Citations and references | Candidate reference organization and bibliography structure | Final source selection, relevance judgment, and citation inclusion |
+| Governance language | Candidate formulations of human gate, abstention, rejection, and audit logic | Final governance model and authority boundary |
+
+The author assumes responsibility for the repository’s contents, including the research framing, artifact architecture, source selection, safety-policy classification logic, human-gate model, translation verdict structure, limitations, references, citation metadata, and release record.
+
+This disclosure strengthens the repository’s credibility because it applies the project’s own principle to itself: AI assistance can accelerate drafting and construction, but accountable research software still requires human judgment, review, and final authorship responsibility.
+
+---
+
 ## Translation-Positive, Restricted, and Translation-Negative Cases
 
 The repository includes translation-positive, conditional, restricted, and translation-negative examples because all of these states are required for credible governance.
@@ -350,8 +387,11 @@ This file cites only the core sources needed to ground the research rationale. S
 2. National Institute of Standards and Technology. *AI RMF Core: Govern, Map, Measure, Manage*. NIST AI Resource Center. https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
 3. OECD. *OECD AI Principles*. https://www.oecd.org/en/topics/sub-issues/ai-principles.html
 4. National Academies of Sciences, Engineering, and Medicine. *Reproducibility and Replicability in Science*. The National Academies Press. https://nap.nationalacademies.org/catalog/25303/reproducibility-and-replicability-in-science
-5. Citation File Format. *Citation File Format Documentation*. https://citation-file-format.github.io/
-6. Zenodo Help. *CITATION.cff File*. https://help.zenodo.org/docs/github/describe-software/citation-file/
+5. Committee on Publication Ethics. *Authorship and AI Tools.* https://publicationethics.org/cope-position-statements/ai-author
+6. Nature Portfolio. *Artificial Intelligence Policies.* https://www.nature.com/nature-portfolio/editorial-policies/ai
+7. International Committee of Medical Journal Editors. *Recommendations for the Conduct, Reporting, Editing, and Publication of Scholarly Work in Medical Journals.* https://www.icmje.org/recommendations/
+8. Citation File Format. *Citation File Format Documentation*. https://citation-file-format.github.io/
+9. Zenodo Help. *CITATION.cff File*. https://help.zenodo.org/docs/github/describe-software/citation-file/
 
 ---
 
