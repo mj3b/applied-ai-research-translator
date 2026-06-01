@@ -1,0 +1,56 @@
+{
+  "intake_version": "0.1",
+  "pack_id": "replace_with_pack_id",
+  "source_id": "source_001",
+  "source_type": "paper",
+  "source_status": {
+    "review_status": "unknown",
+    "evidence_type": "unknown",
+    "epistemic_status": "unknown",
+    "update_condition": "State what evidence would change this source classification or translation verdict."
+  },
+  "ai_safety_domain": {
+    "capability_forecasting": false,
+    "misuse": false,
+    "loss_of_control": false,
+    "structural_or_gradual_risk": false,
+    "compute_governance": false,
+    "model_weight_security": false,
+    "liability_or_private_governance": false,
+    "international_governance": false,
+    "concentration_of_power": false
+  },
+  "capability_and_autonomy": {
+    "model_class": "unknown",
+    "autonomy_level": "unknown",
+    "task_horizon_relevance": "unknown",
+    "tool_use_scope": "unknown"
+  },
+  "risk_screen": {
+    "misuse_pathways": [
+      "unknown"
+    ],
+    "dual_use_status": "unknown",
+    "loss_of_control_indicators": [
+      "unknown"
+    ],
+    "oversight_failure_modes": [
+      "unknown"
+    ],
+    "catastrophic_risk_relevance": "unknown"
+  },
+  "governance_mapping": {
+    "decision_lever": "research_review",
+    "required_review": [
+      "researcher"
+    ],
+    "translation_boundary": "claim_extraction_only"
+  },
+  "translation_verdict": {
+    "verdict": "human_review_required",
+    "rationale": "Draft intake requires researcher review before translation proceeds.",
+    "conditions": [
+      "Replace placeholder classifications with source-specific evidence."
+    ]
+  }
+}
