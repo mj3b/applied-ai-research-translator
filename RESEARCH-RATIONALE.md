@@ -269,7 +269,7 @@ The repository is not trying to replace established AI governance or research-in
 | Software citation practice | Research software should be citable with machine-readable metadata | The repository includes `CITATION.cff`, Zenodo DOI metadata, release notes, and archival statements |
 | Institutional review practice | High-impact decisions require accountable human review | The repository treats human gate records as authority artifacts |
 
-This is the credibility move: the repository should avoid saying it creates a complete governance program. It should say it supplies one missing layer that many governance programs need.
+This is an important note: the repository avoids saying it creates a complete governance program. It says it supplies one missing layer that many governance programs need.
 
 ---
 
