@@ -1,0 +1,391 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mj3b/applied-ai-research-translator/schemas/safety_policy_intake.schema.json",
+  "title": "Safety and Policy Intake",
+  "description": "Schema for classifying AI safety and policy relevance before research claims are translated into governed tasks.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "intake_version",
+    "pack_id",
+    "source_id",
+    "source_type",
+    "source_status",
+    "ai_safety_domain",
+    "capability_and_autonomy",
+    "risk_screen",
+    "governance_mapping",
+    "translation_verdict"
+  ],
+  "properties": {
+    "intake_version": {
+      "type": "string",
+      "const": "0.1"
+    },
+    "pack_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable pack identifier."
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable source identifier inside the pack."
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "paper",
+        "preprint",
+        "blog",
+        "policy_memo",
+        "benchmark",
+        "technical_report",
+        "legal_text",
+        "repository",
+        "vendor_report",
+        "standard_or_guidance",
+        "other"
+      ]
+    },
+    "source_status": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "review_status",
+        "evidence_type",
+        "epistemic_status",
+        "update_condition"
+      ],
+      "properties": {
+        "review_status": {
+          "type": "string",
+          "enum": [
+            "peer_reviewed",
+            "preprint",
+            "informal",
+            "institutional",
+            "legal",
+            "standards_body",
+            "unknown"
+          ]
+        },
+        "evidence_type": {
+          "type": "string",
+          "enum": [
+            "empirical",
+            "theoretical",
+            "forecast",
+            "scenario",
+            "benchmark",
+            "policy_argument",
+            "legal_requirement",
+            "implementation",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "epistemic_status": {
+          "type": "string",
+          "enum": [
+            "high_confidence",
+            "moderate_confidence",
+            "preliminary",
+            "speculative",
+            "normative",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "update_condition": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What evidence would change the intake classification or translation verdict?"
+        }
+      }
+    },
+    "ai_safety_domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_forecasting",
+        "misuse",
+        "loss_of_control",
+        "structural_or_gradual_risk",
+        "compute_governance",
+        "model_weight_security",
+        "liability_or_private_governance",
+        "international_governance",
+        "concentration_of_power"
+      ],
+      "properties": {
+        "capability_forecasting": {
+          "type": "boolean"
+        },
+        "misuse": {
+          "type": "boolean"
+        },
+        "loss_of_control": {
+          "type": "boolean"
+        },
+        "structural_or_gradual_risk": {
+          "type": "boolean"
+        },
+        "compute_governance": {
+          "type": "boolean"
+        },
+        "model_weight_security": {
+          "type": "boolean"
+        },
+        "liability_or_private_governance": {
+          "type": "boolean"
+        },
+        "international_governance": {
+          "type": "boolean"
+        },
+        "concentration_of_power": {
+          "type": "boolean"
+        }
+      }
+    },
+    "capability_and_autonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model_class",
+        "autonomy_level",
+        "task_horizon_relevance",
+        "tool_use_scope"
+      ],
+      "properties": {
+        "model_class": {
+          "type": "string",
+          "enum": [
+            "current_llm",
+            "frontier_model",
+            "open_weight_model",
+            "agentic_system",
+            "unknown"
+          ]
+        },
+        "autonomy_level": {
+          "type": "string",
+          "enum": [
+            "none",
+            "advisory",
+            "bounded_tool_use",
+            "delegated_task",
+            "open_ended_agentic",
+            "unknown"
+          ]
+        },
+        "task_horizon_relevance": {
+          "type": "string",
+          "enum": [
+            "none",
+            "short",
+            "medium",
+            "long",
+            "frontier",
+            "unknown"
+          ]
+        },
+        "tool_use_scope": {
+          "type": "string",
+          "enum": [
+            "none",
+            "local_tools",
+            "code_execution",
+            "internet_access",
+            "external_systems",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "risk_screen": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "misuse_pathways",
+        "dual_use_status",
+        "loss_of_control_indicators",
+        "oversight_failure_modes",
+        "catastrophic_risk_relevance"
+      ],
+      "properties": {
+        "misuse_pathways": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "cyber",
+              "bio",
+              "chemical",
+              "radiological",
+              "persuasion",
+              "surveillance",
+              "fraud",
+              "critical_infrastructure",
+              "weapons",
+              "none",
+              "unknown"
+            ]
+          }
+        },
+        "dual_use_status": {
+          "type": "string",
+          "enum": [
+            "benign",
+            "dual_use",
+            "hazardous",
+            "unknown"
+          ]
+        },
+        "loss_of_control_indicators": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "situational_awareness",
+              "strategic_deception",
+              "alignment_faking",
+              "power_seeking",
+              "autonomous_replication",
+              "resource_acquisition",
+              "toolchain_takeover",
+              "reward_hacking",
+              "collusion",
+              "shutdown_resistance",
+              "none",
+              "unknown"
+            ]
+          }
+        },
+        "oversight_failure_modes": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "monitor_evasion",
+              "evaluation_gaming",
+              "deceptive_compliance",
+              "human_overreliance",
+              "automation_bias",
+              "rubber_stamp_review",
+              "insufficient_expertise",
+              "none",
+              "unknown"
+            ]
+          }
+        },
+        "catastrophic_risk_relevance": {
+          "type": "string",
+          "enum": [
+            "none",
+            "indirect",
+            "plausible",
+            "central",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "governance_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "decision_lever",
+        "required_review",
+        "translation_boundary"
+      ],
+      "properties": {
+        "decision_lever": {
+          "type": "string",
+          "enum": [
+            "evaluation",
+            "deployment_gate",
+            "monitoring",
+            "disclosure",
+            "compute",
+            "model_weights",
+            "liability",
+            "procurement",
+            "international_verification",
+            "research_review",
+            "policy_mapping",
+            "other"
+          ]
+        },
+        "required_review": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "researcher",
+              "domain_expert",
+              "ai_safety_reviewer",
+              "security",
+              "legal",
+              "policy",
+              "governance",
+              "executive",
+              "external_regulator",
+              "ethics_review"
+            ]
+          }
+        },
+        "translation_boundary": {
+          "type": "string",
+          "enum": [
+            "claim_extraction_only",
+            "evaluation_design",
+            "governed_task",
+            "policy_mapping_only",
+            "restricted",
+            "reject"
+          ]
+        }
+      }
+    },
+    "translation_verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verdict",
+        "rationale",
+        "conditions"
+      ],
+      "properties": {
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "proceed",
+            "proceed_with_constraints",
+            "evaluation_only",
+            "policy_mapping_only",
+            "restricted",
+            "human_review_required",
+            "reject",
+            "abstain"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "conditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
