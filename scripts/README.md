@@ -1,70 +1,46 @@
-# Validation and Execution Scripts
+# Script Validation Layer
 
-The `scripts/` directory contains the repository’s validation and reproducibility utilities. These scripts make research translation artifacts testable before they are treated as review-ready, release-ready, or decision-complete.
+The `scripts/` directory contains the repository’s validation, reproducibility, and local security utilities. These scripts turn governed artifacts into checkable files: a claim file either satisfies its schema or it fails; a task file either declares a bounded task correctly or it fails; a safety-policy intake file either classifies the source before translation or it fails.
 
-In this repository, scripts are part of the governance boundary. They enforce artifact contracts, check schema compliance, run examples, and reduce the chance that a research pack becomes a decision record through informal judgment.
+This directory should be treated as part of the governance boundary. The scripts do not decide whether a research claim is true. They decide whether the artifact has enough structure to be reviewed.
 
----
+## Script inventory
 
-## Script Inventory
+| Script | Artifact checked | Governance function |
+|---|---|---|
+| `validate_safety_policy_intake.sh` | `safety_policy_intake.json` | Confirms AI safety and policy sources are classified before claims become tasks |
+| `validate_pack.sh` | `agent_spec.json` inside a pack | Confirms the pack has a schema-valid agent or task specification |
+| `validate_claims.sh` | `claims.json` inside a pack | Confirms extracted research claims satisfy the claim contract |
+| `validate_tasks.sh` | `tasks.json` inside a pack | Confirms task definitions satisfy the bounded-task contract |
+| `validate_run_input.sh` | run-input JSON file | Confirms governed execution input satisfies the run-input contract |
+| `validate_run_output.sh` | run-output JSON file | Confirms governed execution output satisfies the run-output contract |
+| `validate_decision_summary.sh` | `decision_summary.json` | Confirms final decision artifacts satisfy the decision-summary contract |
+| `run_examples.sh` | example runs | Runs reference examples and validates their output artifacts |
+| `install-pre-commit-gitleaks.sh` | local Git hooks | Installs local secret-scanning support before source material or logs are committed |
 
-| Script | Purpose | Primary Artifact | Governance Function |
-|---|---|---|---|
-| `install-pre-commit-gitleaks.sh` | Installs local secret-scanning hooks | Repository commits | Reduces credential leakage risk before source material, logs, or examples are committed |
-| `run_examples.sh` | Runs the example workflows | Example run inputs and runtime artifacts | Tests whether reference workflows remain executable and reproducible |
-| `validate_claims.sh` | Validates extracted research claims | `claims.json` | Confirms claim artifacts follow the required structure |
-| `validate_tasks.sh` | Validates bounded task definitions | `tasks.json` | Confirms task artifacts define controlled execution units |
-| `validate_run_input.sh` | Validates governed run inputs | `run_input.json` | Confirms the run input is structured before execution |
-| `validate_run_output.sh` | Validates governed run outputs | `run_output.json` | Confirms the output artifact is structured before review |
-| `validate_decision_summary.sh` | Validates final decision summaries | `decision_summary.json` | Confirms the final decision artifact carries the required minimum record |
-| `validate_pack.sh` | Validates a pack as a grouped translation unit | `packs/<pack_id>/` | Checks whether a pack’s artifacts are present and schema-valid |
+## Validation order
 
----
-
-## Why the Scripts Matter
-
-A governed research translation system needs a repeatable way to distinguish a structured artifact from an informal file. The scripts provide that distinction.
+For AI safety and policy sources, run the safety-policy intake check first.
 
 ```text
-artifact written
+safety_policy_intake.json
   ↓
-schema selected
+agent_spec.json
   ↓
-validation script run
+claims.json
   ↓
-pass, fail, or revise
+tasks.json
   ↓
-artifact becomes eligible for review
+run input
+  ↓
+run output
+  ↓
+decision_summary.json
 ```
 
-A passing script result does not prove that the research translation is correct. It proves that the artifact has the minimum structure needed for review, reconstruction, and challenge.
+That order matters. `safety_policy_intake.json` asks what kind of authority the source should be allowed to have. `claims.json` asks what the source says. `tasks.json` asks what bounded work may follow. The intake gate should happen before the repository turns a source into executable or reviewable tasks.
 
-That distinction matters. Schema-valid artifacts can still contain weak claims, poor evidence, incomplete reasoning, or overbroad conclusions. Validation is the floor.
-
----
-
-## Recommended Validation Order
-
-Use this sequence when preparing a pack for review.
-
-| Step | Command | What It Tests |
-|---:|---|---|
-| 1 | `./scripts/validate_claims.sh packs/<pack_id>/claims.json` | Source-derived claims are structured and reviewable |
-| 2 | `./scripts/validate_tasks.sh packs/<pack_id>/tasks.json` | Tasks are bounded and linked to the pack |
-| 3 | `./scripts/validate_decision_summary.sh packs/<pack_id>/decision_summary.json` | Final decision record has required fields |
-| 4 | `./scripts/validate_pack.sh packs/<pack_id>` | Pack-level artifact set is coherent |
-| 5 | `./scripts/run_examples.sh` | Reference examples still execute |
-
-Run input and run output validation should be used whenever a governed run is created or replayed.
-
-```bash
-./scripts/validate_run_input.sh examples/runs/<run_input>.json
-./scripts/validate_run_output.sh <path_to_run_output>.json
-```
-
----
-
-## Quick Start
+## Quick start
 
 From the repository root:
 
@@ -72,334 +48,177 @@ From the repository root:
 chmod +x scripts/*.sh
 ```
 
-Validate a claim file:
+Install validation dependencies:
 
 ```bash
-./scripts/validate_claims.sh packs/<pack_id>/claims.json
+python3 -m pip install jsonschema
 ```
 
-Validate a task file:
+Validate the safety-policy intake artifact for the first worked example:
 
 ```bash
-./scripts/validate_tasks.sh packs/<pack_id>/tasks.json
+./scripts/validate_safety_policy_intake.sh packs/multi_agent_failure_modes_e0228882/safety_policy_intake.json
+```
+
+Validate a pack’s agent specification:
+
+```bash
+./scripts/validate_pack.sh packs/haic_reliance_review_59e257ff
+```
+
+Validate claims:
+
+```bash
+./scripts/validate_claims.sh packs/haic_reliance_review_59e257ff
+```
+
+Validate tasks:
+
+```bash
+./scripts/validate_tasks.sh packs/haic_reliance_review_59e257ff
+```
+
+Validate a run input:
+
+```bash
+./scripts/validate_run_input.sh examples/runs/t_c02_input_with_snippets.json
+```
+
+Validate a run output:
+
+```bash
+./scripts/validate_run_output.sh runs/example_t_c02_from_examples/output.json
 ```
 
 Validate a decision summary:
 
 ```bash
-./scripts/validate_decision_summary.sh packs/<pack_id>/decision_summary.json
+./scripts/validate_decision_summary.sh packs/haic_reliance_review_59e257ff/decision_summary.json
 ```
 
-Validate a full pack:
-
-```bash
-./scripts/validate_pack.sh packs/<pack_id>
-```
-
-Run examples:
+Run the example workflow:
 
 ```bash
 ./scripts/run_examples.sh
 ```
 
-Install the local secret-scanning hook:
+## `validate_safety_policy_intake.sh`
+
+This script validates `safety_policy_intake.json` against `schemas/safety_policy_intake.schema.json`.
+
+Use it when a source touches AI safety, AI policy, frontier capability, misuse, loss of control, compute governance, model-weight security, liability, international governance, or concentration of power.
 
 ```bash
-./scripts/install-pre-commit-gitleaks.sh
+./scripts/validate_safety_policy_intake.sh packs/<pack_id>/safety_policy_intake.json
 ```
 
----
+A passing result means the intake artifact has the required structure. It does not mean the source is safe to operationalize. It means the source has been classified well enough for review.
 
-## Script Responsibilities
+A failing result means the pack should remain below translation-ready status until the missing or invalid fields are corrected.
 
-### `validate_claims.sh`
+## `validate_pack.sh`
 
-This script validates a `claims.json` file against the claim schema.
-
-Use it when a research source has been decomposed into extracted claims.
+This script validates `agent_spec.json` inside a pack.
 
 ```bash
-./scripts/validate_claims.sh packs/<pack_id>/claims.json
+./scripts/validate_pack.sh packs/<pack_id>
 ```
 
-Review question:
+The script currently checks for the required agent specification and validates it against `schemas/agent_spec.schema.json`. It is a pack-entry check, not a complete audit of every artifact in the pack.
 
-```text
-Do these claims have the structure required for source-grounded review?
-```
+## `validate_claims.sh`
 
-The script should be run before any claim is used to justify task design.
-
----
-
-### `validate_tasks.sh`
-
-This script validates a `tasks.json` file against the task schema.
-
-Use it after converting selected claims into bounded tasks.
+This script validates `claims.json` inside a pack.
 
 ```bash
-./scripts/validate_tasks.sh packs/<pack_id>/tasks.json
+./scripts/validate_claims.sh packs/<pack_id>
 ```
 
-Review question:
+Use it after source material has been decomposed into falsifiable, source-linked claims. A passing result means the claim file satisfies the claim schema. It does not prove that the claims are correct, complete, or sufficiently evidenced.
 
-```text
-Does this task artifact define a bounded execution or review unit?
+## `validate_tasks.sh`
+
+This script validates `tasks.json` inside a pack.
+
+```bash
+./scripts/validate_tasks.sh packs/<pack_id>
 ```
 
-The script helps prevent task definitions from becoming open-ended implementation instructions.
+Use it after selected claims have been converted into bounded tasks. A passing result means the task file satisfies the task schema. It does not approve the task for deployment or autonomous execution.
 
----
-
-### `validate_run_input.sh`
+## `validate_run_input.sh`
 
 This script validates a governed run input.
 
-Use it before executing or replaying a run.
-
 ```bash
-./scripts/validate_run_input.sh examples/runs/<run_input>.json
+./scripts/validate_run_input.sh examples/runs/<input_file>.json
 ```
 
-Review question:
+Use it before execution or replay. The run input records what entered the governed execution path.
 
-```text
-Is the input context structured enough to support reproducibility and review?
-```
-
-Run inputs should be treated as decision evidence. An output cannot be interpreted responsibly when the input context is missing or malformed.
-
----
-
-### `validate_run_output.sh`
+## `validate_run_output.sh`
 
 This script validates a governed run output.
 
-Use it after execution and before human review.
-
 ```bash
-./scripts/validate_run_output.sh <path_to_run_output>.json
+./scripts/validate_run_output.sh runs/<run_id>/output.json
 ```
 
-Review question:
+Use it after execution and before decision-summary assembly. The run output remains an intermediate artifact until human review and deterministic decision-summary generation occur.
 
-```text
-Is the system output structured enough for review, abstention, rejection, or finalization?
-```
+## `validate_decision_summary.sh`
 
-A valid run output remains intermediate. It does not become a final decision until human review and decision-summary assembly are complete.
-
----
-
-### `validate_decision_summary.sh`
-
-This script validates the final decision-summary artifact.
-
-Use it before describing a pack or run as decision-complete.
+This script validates a decision-summary artifact.
 
 ```bash
 ./scripts/validate_decision_summary.sh packs/<pack_id>/decision_summary.json
 ```
 
-Review question:
+Use it before calling a translation decision complete. The decision summary is the audit-facing artifact that records the final outcome, rationale, confidence, limits, and human authorization state.
 
-```text
-Does the final artifact record the decision, rationale, confidence, and traceability fields required for reconstruction?
-```
+## `run_examples.sh`
 
-The decision summary is the artifact most likely to be read by researchers, auditors, and institutional reviewers. It should pass validation before release.
-
----
-
-### `validate_pack.sh`
-
-This script validates a pack as a grouped translation unit.
-
-Use it when preparing a pack for review, release, or archival citation.
-
-```bash
-./scripts/validate_pack.sh packs/<pack_id>
-```
-
-Review question:
-
-```text
-Do the pack artifacts cohere as a research-to-decision record?
-```
-
-A pack-level validation script should be treated as a readiness check, not as a methodological endorsement.
-
----
-
-### `run_examples.sh`
-
-This script runs the repository’s example workflows.
-
-Use it before release, after runtime changes, or after schema changes.
+This script runs the repository’s reference examples and validates the resulting outputs.
 
 ```bash
 ./scripts/run_examples.sh
 ```
 
-Review question:
+Use it before release, after changing runner logic, after changing schemas, or after adding new validation checks that may affect reproducibility.
 
-```text
-Do the reference workflows still execute under the current repository state?
-```
+## `install-pre-commit-gitleaks.sh`
 
-This script supports reproducibility. It also catches drift between schemas, runtime code, and examples.
-
----
-
-### `install-pre-commit-gitleaks.sh`
-
-This script installs local secret-scanning support using the repository’s Gitleaks configuration.
-
-Use it before working with source material, example logs, run artifacts, or environment variables.
+This script installs local secret-scanning support.
 
 ```bash
 ./scripts/install-pre-commit-gitleaks.sh
 ```
 
-Review question:
+Use it before committing source text, run artifacts, logs, or environment files. Research translation can involve copied material, snippets, and configuration. Secret scanning reduces the chance that credentials or tokens are committed.
+
+## GitHub Actions
+
+The safety-policy intake patch also adds:
 
 ```text
-Has the local environment reduced the risk of committing secrets?
+.github/workflows/validate-artifacts.yml
 ```
 
-Research translation can involve copied text, examples, logs, and configuration. Secret scanning is a minimal guardrail, especially when researchers test workflows locally.
+GitHub Actions workflows live under `.github/workflows/` and are written as YAML files. This workflow validates every `safety_policy_intake.json` file found under `packs/` and can be extended later to validate every governed artifact in the repository.
 
----
+## Failure interpretation
 
-## Governance Interpretation of Script Results
-
-| Result | Meaning | Appropriate Action |
+| Failure | Meaning | Correct response |
 |---|---|---|
-| Pass | Artifact satisfies the declared schema or script check | Proceed to human review or next validation step |
-| Fail | Artifact violates the schema or script expectation | Revise the artifact or schema before review |
-| Script error | Tooling failed or expected dependency is missing | Fix the script environment before interpreting artifact quality |
-| Missing file | Required artifact is absent | Decide whether the pack is development-stage or incomplete |
-| Partial validation | Some artifacts pass and others fail | Treat the pack as below decision-complete maturity |
+| Missing file | The expected artifact is absent | Add the artifact or keep the pack below the relevant maturity level |
+| Schema validation error | The artifact violates the declared contract | Correct the artifact or revise the schema deliberately |
+| Missing dependency | The local environment lacks a required package | Install the dependency with `python3 -m pip install jsonschema` |
+| Permission error | The script is not executable | Run `chmod +x scripts/<script>.sh` |
+| Path error | The command is being run from the wrong directory or the file path is wrong | Run commands from the repository root and verify the file path |
 
-A failed validation is useful evidence. It identifies where the translation record cannot yet support review.
+## Release standard
 
----
+Before a release, run the validation chain on every mature pack that the release notes describe as review-ready or decision-complete. Development scaffolds may remain partial, but their status should be labeled clearly in `packs/README.md`.
 
-## When to Run Scripts
+The standard is strict: a governed artifact should fail early when its structure is incomplete. Silent success is more dangerous than visible failure.
 
-| Situation | Scripts to Run |
-|---|---|
-| Adding a new research pack | `validate_claims.sh`, `validate_tasks.sh`, `validate_decision_summary.sh`, `validate_pack.sh` |
-| Editing schemas | All validation scripts and `run_examples.sh` |
-| Editing runloop code | `run_examples.sh`, `validate_run_input.sh`, `validate_run_output.sh`, `validate_decision_summary.sh` |
-| Preparing a release | `validate_pack.sh` for mature packs, `run_examples.sh`, secret scan |
-| Updating examples | `run_examples.sh`, run input/output validation |
-| Adding source material | Secret scan, claim validation after extraction |
-| Preparing Zenodo archival release | Full validation of packs cited in the README and release notes |
-
----
-
-## Pre-Release Validation Checklist
-
-Before a release, run this sequence from the repository root:
-
-```bash
-chmod +x scripts/*.sh
-
-./scripts/validate_claims.sh packs/haic_reliance_review_59e257ff/claims.json
-./scripts/validate_tasks.sh packs/haic_reliance_review_59e257ff/tasks.json
-./scripts/validate_decision_summary.sh packs/haic_reliance_review_59e257ff/decision_summary.json
-
-./scripts/validate_claims.sh packs/multi_agent_failure_modes_e0228882/claims.json
-./scripts/validate_tasks.sh packs/multi_agent_failure_modes_e0228882/tasks.json
-./scripts/validate_decision_summary.sh packs/multi_agent_failure_modes_e0228882/decision_summary.json
-
-./scripts/run_examples.sh
-```
-
-For packs that remain development scaffolds, document their maturity level in `packs/README.md` instead of forcing them to appear decision-complete.
-
----
-
-## Failure Modes the Scripts Help Detect
-
-| Failure Mode | Likely Script Signal | Governance Concern |
-|---|---|---|
-| Missing provenance | Claim validation failure or pack validation failure | The reviewer cannot trace the claim to source material |
-| Orphaned task | Task validation failure | The task may have no source-grounded claim |
-| Informal run input | Run input validation failure | The execution context cannot be reconstructed |
-| Unstructured output | Run output validation failure | Human review lacks a stable artifact |
-| Missing final rationale | Decision-summary validation failure | The decision cannot be defended or reconstructed |
-| Example drift | `run_examples.sh` failure | Runtime code, schemas, and examples no longer align |
-| Secret exposure | Gitleaks hook finding | Repository may contain credentials or sensitive data |
-
-These failures should be fixed before release unless the repository explicitly labels the affected artifact as development-stage.
-
----
-
-## Script Design Principles
-
-Scripts should remain small, inspectable, and conservative.
-
-| Principle | Meaning |
-|---|---|
-| Validate artifacts, do not infer approval | A script can say whether structure is valid. It should not decide whether a research claim is true |
-| Fail visibly | Errors should stop the workflow and return useful information |
-| Preserve human review | Script success should move an artifact to review, not replace review |
-| Keep paths explicit | Commands should show which artifact is being validated |
-| Avoid hidden mutation | Validation scripts should not silently rewrite governed artifacts |
-| Support release reconstruction | Script output should help a release reviewer reproduce the validation path |
-
-The scripts are intentionally modest. Their value comes from enforcing stable contracts in the source-to-decision chain.
-
----
-
-## Adding a New Script
-
-New scripts should explain which governance control they enforce.
-
-Recommended header pattern:
-
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-
-# Purpose:
-#   Validate or reproduce a specific governed artifact.
-#
-# Governance control:
-#   Explain which part of the source → claim → task → run → decision chain this script protects.
-#
-# Usage:
-#   ./scripts/<script_name>.sh <artifact_path>
-```
-
-A new script should include:
-
-| Requirement | Reason |
-|---|---|
-| Explicit input path | Prevents accidental validation of the wrong artifact |
-| Non-zero exit on failure | Makes automation and release checks reliable |
-| Clear error message | Reduces reviewer ambiguity |
-| No hidden writes during validation | Preserves artifact integrity |
-| Schema or control reference | Shows which governance rule is being enforced |
-
----
-
-## Directory Structure
-
-```text
-scripts/
-├── README.md
-├── install-pre-commit-gitleaks.sh
-├── run_examples.sh
-├── validate_claims.sh
-├── validate_decision_summary.sh
-├── validate_pack.sh
-├── validate_run_input.sh
-├── validate_run_output.sh
-└── validate_tasks.sh
-```
-
-The current script set corresponds to the repository’s core artifact chain: claims, tasks, run inputs, run outputs, decision summaries, pack readiness, examples, and secret scanning. The governing standard is direct: a script is useful when it makes a research translation artifact harder to misread as more complete than it is.
