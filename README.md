@@ -414,6 +414,7 @@ applied-ai-research-translator/
 │
 ├── README.md                                   ← Project overview, research-to-decision model, quick start, citation, and repository map
 ├── RESEARCH-RATIONALE.md                       ← Why papers, PDFs, reports, repositories, and online research require governance before operational use
+├── REFERENCES.md                               ← Curated bibliography for AI governance, AI safety, research integrity, software citation, standards, laws, and repository-specific sources
 ├── TRANSLATION-METHOD.md                       ← How research sources become claims, tasks, verdicts, and decision records
 ├── GOVERNANCE-MODEL.md                         ← Governance boundary: provenance, schema control, abstention, human gate, and audit trail
 ├── TRACEABILITY.md                             ← Source material → safety-policy intake → claims → tasks → run artifacts → decision summary
