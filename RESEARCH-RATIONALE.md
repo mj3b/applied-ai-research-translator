@@ -309,54 +309,49 @@ The project’s value for the research community is methodological. It gives res
 
 ---
 
-## Should the Repository Include References?
+## Source Base and Citation Practice
 
-Yes.
+Applied AI Research Translator is a research software artifact, so its credibility depends on two kinds of evidence.
 
-The repository now has enough research, governance, standards, citation, and safety-policy material that a central reference file would make it more credible. The best structure is:
+First, the repository must preserve its own internal artifact trail: source material, safety-policy intake, claims, tasks, evaluation plans, validation outputs, human-gate records, and decision summaries. That evidence shows how a specific research source became, or failed to become, a governed decision artifact.
+
+Second, the repository should situate its method against stable external sources: AI governance frameworks, research-integrity norms, software citation practice, archival metadata standards, and AI safety and policy literature. These sources do not authorize the repository’s outputs. They help readers understand the standards, risks, and scholarly conventions that the repository is designed to support.
+
+For that reason, the repository should maintain a central reference file:
 
 ```text
 REFERENCES.md
 ```
 
-or:
+This file should serve as the curated bibliography for the project. Major documents may include short local reference sections, but the full source base should live in one place so researchers, reviewers, and citation auditors can inspect the intellectual and governance context without searching across the repository.
 
-```text
-docs/references.md
-```
+A useful reference file should group sources by function:
 
-Use one central reference file for stable external sources, then cite it from major documents such as `RESEARCH-RATIONALE.md`, `GOVERNANCE-MODEL.md`, `LIMITATIONS.md`, `TRACEABILITY.md`, and `docs/governance/*.md`.
+| Reference Category                      | Purpose                                                                                                                                        |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| AI governance frameworks                | Context for risk management, human oversight, accountability, and institutional governance                                                     |
+| AI safety and policy literature         | Context for capability evaluation, misuse, loss of control, model-weight security, compute governance, liability, and international governance |
+| Research integrity and reproducibility  | Context for evidence preservation, reconstructability, replication limits, and reviewer challenge                                              |
+| Software citation and archival metadata | Context for treating the repository as citable research software                                                                               |
+| Standards and regulatory mappings       | Context for NIST, EU AI Act, ISO/IEC 42001, and related governance-facing evidence                                                             |
+| Repository-specific sources             | Zenodo DOI, release notes, pack-level source files, and project metadata                                                                       |
 
-A central references file should include:
-
-| Reference Category | Examples |
-|---|---|
-| AI governance frameworks | NIST AI RMF, OECD AI Principles |
-| Research integrity and reproducibility | National Academies reproducibility and replicability work |
-| Software citation and archival metadata | Citation File Format, GitHub citation files, Zenodo GitHub integration |
-| AI safety and policy sources | Capability evaluation, misuse, loss-of-control, model-weight security, compute governance, liability, international governance |
-| Standards mappings | NIST, EU AI Act, ISO/IEC 42001 materials |
-| Repository-specific sources | Zenodo DOI, release notes, pack-level source files |
-
-The main documents should not become citation dumps. They should include a short **References** section with the most important sources and point readers to the central reference file for the full bibliography.
-
----
+The purpose of `REFERENCES.md` is modest but important: it makes the project’s intellectual dependencies visible. The repository’s central claim remains artifact-level and methodological. It proposes a governed path from research source to decision record. The references explain why that path matters and where the design sits in the broader research and governance conversation.
 
 ## Suggested Citation Context
 
 Use this repository when citing research software that demonstrates governed research-to-decision translation, especially in work concerning AI governance, AI safety, responsible AI operations, human oversight, auditability, decision accountability, institutional review, and controlled use of AI-assisted research workflows.
 
----
-
 ## References
+
+This file cites only the core sources needed to ground the research rationale. See `REFERENCES.md` for the full project bibliography.
 
 1. National Institute of Standards and Technology. *AI Risk Management Framework*. NIST AI Resource Center. https://www.nist.gov/itl/ai-risk-management-framework
 2. National Institute of Standards and Technology. *AI RMF Core: Govern, Map, Measure, Manage*. NIST AI Resource Center. https://airc.nist.gov/airmf-resources/airmf/5-sec-core/
 3. OECD. *OECD AI Principles*. https://www.oecd.org/en/topics/sub-issues/ai-principles.html
 4. National Academies of Sciences, Engineering, and Medicine. *Reproducibility and Replicability in Science*. The National Academies Press. https://nap.nationalacademies.org/catalog/25303/reproducibility-and-replicability-in-science
-5. GitHub Docs. *About CITATION files*. https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-citation-files
-6. Zenodo Help. *CITATION.cff file*. https://help.zenodo.org/docs/github/describe-software/citation-file/
-7. Citation File Format. *Citation File Format documentation*. https://citation-file-format.github.io/
+5. Citation File Format. *Citation File Format Documentation*. https://citation-file-format.github.io/
+6. Zenodo Help. *CITATION.cff File*. https://help.zenodo.org/docs/github/describe-software/citation-file/
 
 ---
 
