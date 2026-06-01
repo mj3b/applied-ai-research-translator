@@ -1,0 +1,46 @@
+{
+  "intake_version": "0.1",
+  "pack_id": "",
+  "source_id": "",
+  "source_type": "paper | preprint | blog | policy_memo | benchmark | technical_report | legal_text | repository | vendor_report | other",
+  "source_status": {
+    "review_status": "peer_reviewed | preprint | informal | institutional | legal | unknown",
+    "evidence_type": "empirical | theoretical | forecast | scenario | benchmark | policy_argument | legal_requirement | implementation",
+    "epistemic_status": "high_confidence | moderate_confidence | preliminary | speculative | normative | mixed | unknown",
+    "update_condition": ""
+  },
+  "ai_safety_domain": {
+    "capability_forecasting": false,
+    "misuse": false,
+    "loss_of_control": false,
+    "structural_or_gradual_risk": false,
+    "compute_governance": false,
+    "model_weight_security": false,
+    "liability_or_private_governance": false,
+    "international_governance": false,
+    "concentration_of_power": false
+  },
+  "capability_and_autonomy": {
+    "model_class": "current_llm | frontier_model | open_weight_model | agentic_system | unknown",
+    "autonomy_level": "none | advisory | bounded_tool_use | delegated_task | open_ended_agentic",
+    "task_horizon_relevance": "none | short | medium | long | frontier | unknown",
+    "tool_use_scope": "none | local_tools | code_execution | internet_access | external_systems | unknown"
+  },
+  "risk_screen": {
+    "misuse_pathways": [],
+    "dual_use_status": "benign | dual_use | hazardous | unknown",
+    "loss_of_control_indicators": [],
+    "oversight_failure_modes": [],
+    "catastrophic_risk_relevance": "none | indirect | plausible | central | unknown"
+  },
+  "governance_mapping": {
+    "decision_lever": "evaluation | deployment_gate | monitoring | disclosure | compute | model_weights | liability | procurement | international_verification | other",
+    "required_review": ["researcher"],
+    "translation_boundary": "claim_extraction_only | evaluation_design | governed_task | policy_mapping_only | restricted | reject"
+  },
+  "translation_verdict": {
+    "verdict": "proceed | proceed_with_constraints | evaluation_only | policy_mapping_only | restricted | human_review_required | reject | abstain",
+    "rationale": "",
+    "conditions": []
+  }
+}
