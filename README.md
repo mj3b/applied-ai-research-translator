@@ -420,7 +420,6 @@ applied-ai-research-translator/
 ├── LIMITATIONS.md                              ← Known limits, excluded use cases, unresolved questions, and disclosure language
 ├── CHANGELOG.md                                ← Version history, release notes, and archival release rationale
 ├── CITATION.cff                                ← Machine-readable citation metadata for GitHub, ORCID, and Zenodo
-├── .zenodo.json                                ← Optional Zenodo metadata override for DOI archival release
 ├── CONTRIBUTING.md                             ← How researchers and practitioners can adapt packs, schemas, and runloop logic
 ├── LICENSE                                     ← Apache License 2.0
 ├── NOTICE                                      ← Attribution, reuse, and derivative-use notice
