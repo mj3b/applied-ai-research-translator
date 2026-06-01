@@ -1,5 +1,8 @@
 # Research-to-Decision Translator
-## A governed artifact system for applied AI research translation.
+
+**Repository:** `applied-ai-research-translator`
+
+A governed artifact system for translating applied AI research into audit-ready decision records.
 
 [![DOI](https://zenodo.org/badge/1121938011.svg)](https://doi.org/10.5281/zenodo.20478120)
 [![Release: v1.1.1](https://img.shields.io/badge/release-v1.1.1-0aa2c0)](https://github.com/mj3b/applied-ai-research-translator/releases/tag/v1.1.1)
