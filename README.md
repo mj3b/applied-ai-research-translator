@@ -615,6 +615,18 @@ Make the path from research source to decision artifact visible enough to review
 
 ---
 
+## AI-Assisted Research Disclosure
+
+This repository was developed with AI assistance as part of the author’s research, drafting, documentation, and software-construction workflow. AI tools, including Claude and ChatGPT, were used to support methodology refinement, document drafting, schema and artifact design, repository organization, validation-script development, diagram planning, and review of governance language.
+
+All AI-assisted outputs were treated as draft or candidate material. They did not determine the repository’s research claims, governance model, translation method, safety-policy intake design, schema boundaries, pack verdicts, citation metadata, release decisions, or final public language. Those decisions were selected, revised, accepted, rejected, or integrated by the author.
+
+The author assumes sole responsibility for the repository’s contents, including the research framing, artifact architecture, source selection, safety-policy classification logic, human-gate model, translation verdict structure, limitations, citations, and release metadata.
+
+This disclosure is consistent with the repository’s central governance position: AI systems may assist in producing intermediate artifacts, but they do not hold authorship, accountability, or final decision authority.
+
+---
+
 ## Citation
 
 ```bibtex
