@@ -43,6 +43,7 @@ The core boundary is this: the repository governs translation from research arti
 | L9 | Security exposure | Online research, PDFs, repositories, and source text may contain adversarial or poisoned content | Source capture, bounded tasks, schema checks, and safety-policy intake reduce exposure | Prompt injection, malicious code, or poisoned claims require additional security controls |
 | L10 | Regulatory mapping | The architecture aligns conceptually with governance frameworks but is not a legal compliance instrument | Documentation separates governance artifact from certification | Institutions still need legal, regulatory, and sector-specific review |
 | L11 | Production readiness | The repo is research software and reference implementation | Runloop, schemas, and validators demonstrate controlled execution | Production deployment requires access control, monitoring, logging hardening, and security review |
+| L12 | AI-assisted development disclosure | Parts of the repository were developed with AI assistance, which creates authorship, review, provenance, and accountability considerations | AI-assisted outputs are treated as draft or candidate material; the author retains responsibility for final selection, integration, accuracy, and release decisions | AI assistance can still introduce drafting bias, omission, hallucinated references, or overconfident framing if human review is weak |
 
 ---
 
@@ -142,7 +143,28 @@ Future releases should strengthen model-version capture, provider metadata, prom
 
 ---
 
-## L8. Human Gate Quality Depends on Reviewer Competence
+## L8. AI-Assisted Development Requires Disclosure and Human Accountability
+
+The repository itself was developed with AI assistance in research, drafting, documentation, schema design, repository organization, validation-script development, diagram planning, and governance-language review. That use is consistent with the repository’s own method only when AI-assisted outputs remain draft or candidate material.
+
+The limitation is straightforward: AI assistance can produce plausible text, structure, citations, classifications, or implementation suggestions that still require human verification. It can compress drafting time while introducing overconfident framing, missing sources, hallucinated references, subtle conceptual drift, or language that implies stronger evidence than the artifacts support.
+
+The repository addresses this by assigning responsibility to the author, not to the AI tools used during development.
+
+| AI-Assisted Activity | Permitted Role | Required Human Control |
+|---|---|---|
+| Methodology refinement | Drafting and comparison support | Author selects the final method and rejects unsupported framing |
+| Document drafting | Candidate language and organization | Author reviews, edits, accepts, rejects, and integrates final text |
+| Schema and artifact design | Structural suggestions and field candidates | Author decides the artifact contract and validation boundary |
+| Repository construction | File organization, README structure, and script support | Author verifies placement, execution, and release readiness |
+| Citation and reference work | Candidate source lists and citation scaffolding | Author checks source relevance, accuracy, and inclusion |
+| Governance language review | Terminology refinement and consistency checks | Author preserves the accountability model and limitation register |
+
+This limitation should be disclosed rather than hidden. It strengthens the repository because the project argues for the same boundary in its own construction: AI can assist in producing intermediate artifacts, but it cannot hold authorship, accountability, or final decision authority.
+
+---
+
+## L9. Human Gate Quality Depends on Reviewer Competence
 
 The human gate is an accountability mechanism. It records who accepted, overrode, rejected, abstained, or escalated a proposed output. It does not guarantee that the reviewer has sufficient domain expertise, institutional authority, or incentive alignment.
 
@@ -152,7 +174,7 @@ The repository addresses this by making human decisions explicit. It records the
 
 ---
 
-## L9. Online Research and PDF Inputs Carry Security Risk
+## L10. Online Research and PDF Inputs Carry Security Risk
 
 Research inputs can be adversarial. PDFs may contain hidden text, misleading metadata, embedded instructions, or compromised links. Web pages may change after capture. GitHub repositories may contain unsafe code or dependency risk. Vendor reports may frame claims in ways that make adoption seem lower-risk than the evidence supports.
 
@@ -171,7 +193,7 @@ The system should treat online material as evidence requiring provenance control
 
 ---
 
-## L10. Regulatory Alignment Is Informative, Not Certification
+## L11. Regulatory Alignment Is Informative, Not Certification
 
 The repository is relevant to AI governance frameworks because it creates evidence for traceability, human oversight, decision reconstruction, safety-policy classification, and task containment. It should not be described as certifying compliance with NIST AI RMF, the EU AI Act, ISO/IEC 42001, institutional review requirements, or sector-specific law.
 
@@ -179,7 +201,7 @@ A governance artifact can support a compliance argument. It does not become the 
 
 ---
 
-## L11. Production Deployment Requires Additional Controls
+## L12. Production Deployment Requires Additional Controls
 
 The repository is research software. Production deployment would require additional engineering and organizational controls.
 
@@ -211,6 +233,7 @@ The following claims are supported by the repository:
 | The repository separates model-generated candidates from human-authorized final outputs | Human gate and deterministic decision summary architecture |
 | The repository creates an audit trail for selected demonstration runs | Demo-run manifests and decision summaries |
 | The repository provides a research software artifact for studying decision accountability in AI-assisted research translation | Full repo architecture and documentation |
+| The repository discloses AI-assisted development while preserving human authorship and accountability | README disclosure, limitation register, and author responsibility statement |
 
 The following claims should be avoided unless supported by later validation work:
 
@@ -223,6 +246,7 @@ The following claims should be avoided unless supported by later validation work
 | The system generalizes across all research domains | Current pack corpus is limited |
 | The system removes the need for expert review | Human, safety, legal, security, and domain review remain central controls |
 | The system is production-ready | Additional security, access, monitoring, and governance controls are required |
+| AI assistance makes the repository self-validating | AI-assisted outputs require human verification, source checking, and artifact review |
 
 ---
 
@@ -242,6 +266,12 @@ This repository provides a reference implementation for converting applied AI re
 
 The repository is intended as research software for studying controlled research translation, auditability, human oversight, safety-policy intake, and decision accountability in AI-assisted workflows. Its methodological contribution is the conversion of research sources into bounded, schema-validated decision artifacts, including documented rejection, restriction, or abstention when translation exceeds the governance boundary. The current release demonstrates the pattern through a limited set of example packs and governed runs. Broader claims about validity, reliability, cross-domain performance, or production fitness require further empirical evaluation.
 
+### AI-Assisted Development Disclosure
+
+This repository was developed with AI assistance as part of the author’s research, drafting, documentation, and software-construction workflow. AI-assisted outputs were treated as draft or candidate material subject to human review. The author assumes sole responsibility for final content, source selection, methodological framing, safety-policy classification logic, artifact architecture, validation design, release metadata, and public claims.
+
+This disclosure does not assign authorship or decision authority to AI systems. It records that AI tools supported intermediate artifact production while final intellectual, methodological, editorial, and release decisions remained with the author.
+
 ---
 
 ## Version-Specific Limitations for v1.1.1
@@ -251,6 +281,7 @@ v1.1.1 strengthens the repository’s AI safety and policy handling by adding sa
 | Area | v1.1.1 Status | Future Work |
 |---|---|---|
 | Documentation | Research rationale, method, governance model, traceability, limitations, safety-policy intake, and review guidance are defined | Add more worked reviewer examples and cross-source comparison guidance |
+| AI-assisted development disclosure | AI assistance is disclosed as part of repository development, with final responsibility assigned to the author | Add an optional standalone `AI-ASSISTED-DISCLOSURE.md` with tool names, dates, and review procedure if stronger audit detail is desired |
 | Pack coverage | Selected positive, negative, and safety-policy classified examples | Expand cross-domain corpus |
 | Safety-policy intake | Schema, validator, template, and worked example are included | Add inter-reviewer comparison, reviewer qualification fields, and restricted-handling examples |
 | Runtime | Demonstration runloop with human gate | Add stronger metadata capture and tamper-evident logs |
