@@ -634,7 +634,7 @@ This disclosure is consistent with the repository’s central governance positio
   author    = {Banasihan, Mark Julius},
   title     = {Applied {AI} Research Translator: A Governed Research-to-Decision Translation System},
   year      = {2026},
-  version   = {1.1},
+  version   = {1.1.1},
   doi       = {10.5281/zenodo.20478121},
   url       = {https://github.com/mj3b/applied-ai-research-translator},
   license   = {Apache-2.0}
