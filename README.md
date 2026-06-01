@@ -610,7 +610,7 @@ Make the path from research source to decision artifact visible enough to review
 |---|---|---|
 | v1.0 | Decision-complete reference implementation | Established core translation method, schemas, example packs, governed runloop, and human gate |
 | v1.1 | Research-grade archival release | Strengthened research rationale, governance framing, citation metadata, specifications, governance docs, release docs, and institutional README structure |
-| v1.1.x | Safety-policy intake enhancement | Adds first-gate classification for AI safety and policy sources before claim extraction and task translation |
+| v1.1.1 | Safety-policy intake enhancement | Adds first-gate classification for AI safety and policy sources before claim extraction and task translation |
 
 ---
 
