@@ -15,6 +15,8 @@ The schema layer prevents that collapse.
 ```text
 research source
   ↓
+schema-bound safety and policy intake
+  ↓
 schema-bound claim record
   ↓
 schema-bound task definition
@@ -26,7 +28,7 @@ schema-bound run output
 schema-bound decision summary
 ```
 
-Each schema forces one step in the chain to become inspectable. A reviewer should be able to ask: what source was used, what claim was extracted, what task was authorized, what input was processed, what output was produced, and what decision was recorded?
+Each schema forces one step in the chain to become inspectable. A reviewer should be able to ask: what source was used, what safety or policy risk it carried, what claim was extracted, what task was authorized, what input was processed, what output was produced, and what decision was recorded?
 
 ---
 
@@ -34,6 +36,7 @@ Each schema forces one step in the chain to become inspectable. A reviewer shoul
 
 | Schema | Governs | Required Root Fields | Governance Function |
 |---|---|---|---|
+| `safety_policy_intake.schema.json` | Safety and policy source intake | `intake_version`, `pack_id`, `source_id`, `source_type`, `source_status`, `ai_safety_domain`, `capability_and_autonomy`, `risk_screen`, `governance_mapping`, `translation_verdict` | Classifies AI safety and policy relevance before claims become tasks |
 | `agent_spec.schema.json` | Agent, task, or translation-unit specification | `spec_version`, `spec_id`, `created_at`, `status`, `decision`, `inputs`, `outputs`, `evaluation`, `governance` | Defines the bounded decision context before execution |
 | `claims.schema.json` | Extracted research claims | `claims_version`, `pack_id`, `created_at`, `source`, `claims` | Converts source material into reviewable, falsifiable claim records |
 | `tasks.schema.json` | Bounded task definitions | `tasks_version`, `pack_id`, `created_at`, `source`, `tasks` | Converts selected claims into controlled operational tasks |
@@ -49,14 +52,40 @@ The schemas should be understood as a chain. Later artifacts inherit accountabil
 
 | Sequence | Artifact | Schema | Reviewer Question |
 |---:|---|---|---|
-| 1 | Specification | `agent_spec.schema.json` | What decision context is being governed? |
-| 2 | Claims | `claims.schema.json` | What did the source actually support? |
-| 3 | Tasks | `tasks.schema.json` | What bounded task follows from the selected claim? |
-| 4 | Run input | `run_input.schema.json` | What exact input entered the governed run? |
-| 5 | Run output | `run_output.schema.json` | What did the system produce, and what evidence did it provide? |
-| 6 | Decision summary | `decision_summary.schema.json` | What final decision was recorded, at what confidence, and for what reasons? |
+| 1 | Safety and policy intake | `safety_policy_intake.schema.json` | What AI safety or policy risk class does the source carry before translation begins? |
+| 2 | Specification | `agent_spec.schema.json` | What decision context is being governed? |
+| 3 | Claims | `claims.schema.json` | What did the source actually support? |
+| 4 | Tasks | `tasks.schema.json` | What bounded task follows from the selected claim? |
+| 5 | Run input | `run_input.schema.json` | What exact input entered the governed run? |
+| 6 | Run output | `run_output.schema.json` | What did the system produce, and what evidence did it provide? |
+| 7 | Decision summary | `decision_summary.schema.json` | What final decision was recorded, at what confidence, and for what reasons? |
 
 A valid downstream artifact cannot repair a missing upstream artifact. A clean decision summary with weak source provenance remains a weak governance record.
+
+---
+
+## `safety_policy_intake.schema.json`
+
+The safety-policy intake schema governs the first review boundary for AI safety and policy sources. It classifies the source before the repository extracts claims, designs tasks, or treats a pack as translation-ready.
+
+This schema exists because AI safety material does not enter the repository as a neutral document class. A benchmark, a frontier-model forecast, a dual-use report, a loss-of-control argument, a legal requirement, and a model-weight security analysis carry different evidence strength, review obligations, and translation boundaries.
+
+| Field | Purpose | Governance Role |
+|---|---|---|
+| `intake_version` | Identifies the intake artifact format | Supports versioned review of the intake gate |
+| `pack_id` | Links the intake to a research pack | Preserves pack-level traceability before claims are extracted |
+| `source_id` | Identifies the source within the pack | Allows later artifacts to point back to the classified source |
+| `source_type` | Classifies the source as paper, preprint, benchmark, legal text, repository, vendor report, or related source type | Prevents dissimilar sources from entering the same translation path by default |
+| `source_status` | Records review status, evidence type, epistemic status, and update condition | Preserves the difference between empirical evidence, forecast, scenario, legal requirement, implementation evidence, and policy argument |
+| `ai_safety_domain` | Marks capability forecasting, misuse, loss of control, structural risk, compute governance, model-weight security, liability, international governance, and concentration of power | Routes the source to the right safety or policy review frame |
+| `capability_and_autonomy` | Records model class, autonomy level, task-horizon relevance, and tool-use scope | Prevents agentic or frontier-relevant sources from being translated as ordinary task material |
+| `risk_screen` | Records misuse pathways, dual-use status, loss-of-control indicators, oversight failure modes, and catastrophic-risk relevance | Makes the safety concern visible before task design |
+| `governance_mapping` | Records decision lever, required reviewers, and translation boundary | Assigns review authority and prevents over-authorized translation |
+| `translation_verdict` | Records proceed, proceed with constraints, evaluation-only, policy-mapping-only, restricted, human-review-required, reject, or abstain | Converts source classification into an auditable routing decision |
+
+A valid safety-policy intake file does not prove that the source is safe to operationalize. It proves that the pack has made a pre-translation risk classification. For AI safety and policy sources, that classification should occur before `claims.json` and before any task in `tasks.json` is treated as review-ready.
+
+The most important field is `translation_boundary`. It determines whether the source may support claim extraction, evaluation design, governed task design, policy mapping, restricted handling, or rejection. A source can remain valuable for research while being blocked from task translation.
 
 ---
 
@@ -175,6 +204,7 @@ The decision summary is the artifact a later reviewer should be able to inspect 
 Use the validation scripts from the repository root.
 
 ```bash
+./scripts/validate_safety_policy_intake.sh packs/<pack_id>/safety_policy_intake.json
 ./scripts/validate_claims.sh packs/<pack_id>/claims.json
 ./scripts/validate_tasks.sh packs/<pack_id>/tasks.json
 ./scripts/validate_run_input.sh examples/runs/<run_input>.json
@@ -196,6 +226,7 @@ The validation scripts should be run before a pack is described as review-ready,
 
 | Rule | Enforced Through | Rationale |
 |---|---|---|
+| AI safety and policy sources should be classified before translation | `safety_policy_intake.translation_verdict`, `governance_mapping.translation_boundary` | Prevents high-risk or dual-use sources from becoming tasks by default |
 | A task should trace to a claim | `tasks.source.claims_path` | Prevents ungrounded task design |
 | A claim should trace to source material | `claims.source.paper_text_path` | Prevents source-free interpretation |
 | A run should trace to a task | `run_input.task_id`, `run_output.task_id` | Prevents unauthorized execution |
@@ -229,6 +260,7 @@ The current schema layer is sufficient for v1.1 archival release. The next matur
 
 | Candidate Addition | Target Schema | Governance Value |
 |---|---|---|
+| `source_risk_profile` cross-reference | `claims.schema.json` and `tasks.schema.json` | Links claim extraction and task design back to the safety-policy intake decision |
 | `reviewer_id` or `reviewer_role` | `decision_summary.schema.json` | Records who held decision authority |
 | `decision_timestamp` | `decision_summary.schema.json` | Separates run time from approval time |
 | `source_version` | `claims.schema.json` | Handles mutable online sources and preprint updates |
@@ -269,6 +301,7 @@ schemas/
 ├── decision_summary.schema.json
 ├── run_input.schema.json
 ├── run_output.schema.json
+├── safety_policy_intake.schema.json
 └── tasks.schema.json
 ```
 
@@ -278,4 +311,4 @@ schemas/
 
 The current schema layer establishes the minimum artifact contracts required for governed research translation. It is intentionally small. Its purpose is to make the decision path inspectable without turning the repository into a full governance platform.
 
-The schema standard is direct: every artifact should help a later reviewer reconstruct what source was used, what claim was made, what task was authorized, what output was produced, and what decision was recorded.
+The schema standard is direct: every artifact should help a later reviewer reconstruct what source was used, what safety-policy boundary was assigned, what claim was made, what task was authorized, what output was produced, and what decision was recorded.
