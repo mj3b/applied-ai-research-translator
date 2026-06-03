@@ -1,0 +1,663 @@
+{
+  "tasks_version": "0.1.0",
+  "pack_id": "gradual_disempowerment_human_influence_2501a",
+  "created_at": "2026-06-02T00:00:00Z",
+  "source": {
+    "claims_path": "packs/gradual_disempowerment_human_influence_2501a/claims.json",
+    "method": "manual_from_claims_v0",
+    "notes": "Tasks translate the paper into enterprise governance assessment artifacts for human influence telemetry."
+  },
+  "tasks": [
+    {
+      "task_id": "t_c01",
+      "from_claim_id": "c01",
+      "name": "Human influence retention assessment",
+      "objective": "Assess whether an AI-enabled workflow preserves, reduces, or transfers human influence over a decision.",
+      "inputs": {
+        "required": [
+          {
+            "name": "workflow_description",
+            "type": "string",
+            "description": "Description of the AI-enabled workflow under review.",
+            "example": "AI assistant produces denial-risk summaries for claims reviewers."
+          },
+          {
+            "name": "decision_inventory",
+            "type": "array",
+            "description": "Decisions, decision owners, AI touchpoints, review paths, and escalation paths.",
+            "example": [
+              "recommendation",
+              "approval",
+              "appeal"
+            ]
+          }
+        ],
+        "optional": [
+          {
+            "name": "runtime_logs",
+            "type": "object",
+            "description": "Logs showing AI recommendations, human overrides, escalations, autonomous actions, or review delays.",
+            "example": {
+              "recommendations": 1000,
+              "overrides": 42
+            }
+          },
+          {
+            "name": "baseline_process",
+            "type": "string",
+            "description": "Description of the pre-AI workflow and human dependency.",
+            "example": "Human analyst reviewed every case before recommendation."
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "finding",
+            "evidence",
+            "confidence",
+            "limits",
+            "human_gate_recommendation"
+          ],
+          "properties": {
+            "finding": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "human_gate_recommendation": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 3
+      },
+      "constraints": {
+        "assumptions": [
+          "The source is theoretical and supports governance instrumentation rather than deployment proof.",
+          "Enterprise application requires local workflow evidence."
+        ],
+        "non_goals": [
+          "Autonomous enforcement",
+          "Civilizational prediction",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation",
+          "artifact_review",
+          "dashboard_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing decision owner evidence",
+          "Missing workflow baseline",
+          "No evidence of how AI changed human review or decision rights"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "human_influence_retention_index",
+          "evidence_completeness",
+          "reviewer_agreement"
+        ],
+        "acceptance_thresholds": [
+          "Each finding cites at least 3 artifacts.",
+          "No high-confidence finding without named decision owner and review evidence."
+        ],
+        "test_set_plan": "Use a stratified set of enterprise AI workflows, with human reviewer labels for decision authority, feedback mechanism integrity, and evidence completeness."
+      },
+      "governance": {
+        "human_checkpoint": "AI governance reviewer confirms output before it is used in advisory reporting or customer recommendations.",
+        "logging_requirements": [
+          "Store source pack id",
+          "Store workflow artifact ids",
+          "Store evidence references",
+          "Store human reviewer decision and timestamp"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c02",
+      "from_claim_id": "c02",
+      "name": "Local success versus systemic drift check",
+      "objective": "Identify cases where AI improves local task performance while weakening human feedback, appeal, override, or expertise mechanisms.",
+      "inputs": {
+        "required": [
+          {
+            "name": "workflow_description",
+            "type": "string",
+            "description": "Description of the AI-enabled workflow under review.",
+            "example": "AI assistant produces denial-risk summaries for claims reviewers."
+          },
+          {
+            "name": "decision_inventory",
+            "type": "array",
+            "description": "Decisions, decision owners, AI touchpoints, review paths, and escalation paths.",
+            "example": [
+              "recommendation",
+              "approval",
+              "appeal"
+            ]
+          }
+        ],
+        "optional": [
+          {
+            "name": "runtime_logs",
+            "type": "object",
+            "description": "Logs showing AI recommendations, human overrides, escalations, autonomous actions, or review delays.",
+            "example": {
+              "recommendations": 1000,
+              "overrides": 42
+            }
+          },
+          {
+            "name": "baseline_process",
+            "type": "string",
+            "description": "Description of the pre-AI workflow and human dependency.",
+            "example": "Human analyst reviewed every case before recommendation."
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "finding",
+            "evidence",
+            "confidence",
+            "limits",
+            "human_gate_recommendation"
+          ],
+          "properties": {
+            "finding": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "human_gate_recommendation": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 3
+      },
+      "constraints": {
+        "assumptions": [
+          "The source is theoretical and supports governance instrumentation rather than deployment proof.",
+          "Enterprise application requires local workflow evidence."
+        ],
+        "non_goals": [
+          "Autonomous enforcement",
+          "Civilizational prediction",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation",
+          "artifact_review",
+          "dashboard_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing decision owner evidence",
+          "Missing workflow baseline",
+          "No evidence of how AI changed human review or decision rights"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "local_success_systemic_drift_flag",
+          "feedback_loop_integrity_score"
+        ],
+        "acceptance_thresholds": [
+          "Output distinguishes local KPI improvement from governance effect.",
+          "Reviewer can identify affected feedback mechanism."
+        ],
+        "test_set_plan": "Use a stratified set of enterprise AI workflows, with human reviewer labels for decision authority, feedback mechanism integrity, and evidence completeness."
+      },
+      "governance": {
+        "human_checkpoint": "AI governance reviewer confirms output before it is used in advisory reporting or customer recommendations.",
+        "logging_requirements": [
+          "Store source pack id",
+          "Store workflow artifact ids",
+          "Store evidence references",
+          "Store human reviewer decision and timestamp"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c03",
+      "from_claim_id": "c03",
+      "name": "Cross-system influence transfer map",
+      "objective": "Map how AI adoption in one workflow shifts burden or authority into another team, system, market, or governance function.",
+      "inputs": {
+        "required": [
+          {
+            "name": "workflow_description",
+            "type": "string",
+            "description": "Description of the AI-enabled workflow under review.",
+            "example": "AI assistant produces denial-risk summaries for claims reviewers."
+          },
+          {
+            "name": "decision_inventory",
+            "type": "array",
+            "description": "Decisions, decision owners, AI touchpoints, review paths, and escalation paths.",
+            "example": [
+              "recommendation",
+              "approval",
+              "appeal"
+            ]
+          }
+        ],
+        "optional": [
+          {
+            "name": "runtime_logs",
+            "type": "object",
+            "description": "Logs showing AI recommendations, human overrides, escalations, autonomous actions, or review delays.",
+            "example": {
+              "recommendations": 1000,
+              "overrides": 42
+            }
+          },
+          {
+            "name": "baseline_process",
+            "type": "string",
+            "description": "Description of the pre-AI workflow and human dependency.",
+            "example": "Human analyst reviewed every case before recommendation."
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "finding",
+            "evidence",
+            "confidence",
+            "limits",
+            "human_gate_recommendation"
+          ],
+          "properties": {
+            "finding": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "human_gate_recommendation": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 3
+      },
+      "constraints": {
+        "assumptions": [
+          "The source is theoretical and supports governance instrumentation rather than deployment proof.",
+          "Enterprise application requires local workflow evidence."
+        ],
+        "non_goals": [
+          "Autonomous enforcement",
+          "Civilizational prediction",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation",
+          "artifact_review",
+          "dashboard_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing decision owner evidence",
+          "Missing workflow baseline",
+          "No evidence of how AI changed human review or decision rights"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "cross_system_influence_transfer_score",
+          "dependency_coverage"
+        ],
+        "acceptance_thresholds": [
+          "At least one upstream and one downstream dependency documented.",
+          "No asserted transfer without evidence of workflow dependency."
+        ],
+        "test_set_plan": "Use a stratified set of enterprise AI workflows, with human reviewer labels for decision authority, feedback mechanism integrity, and evidence completeness."
+      },
+      "governance": {
+        "human_checkpoint": "AI governance reviewer confirms output before it is used in advisory reporting or customer recommendations.",
+        "logging_requirements": [
+          "Store source pack id",
+          "Store workflow artifact ids",
+          "Store evidence references",
+          "Store human reviewer decision and timestamp"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c04",
+      "from_claim_id": "c04",
+      "name": "Augmentation versus displacement classification",
+      "objective": "Classify AI-enabled workflow changes as augmentation, partial displacement, decision-authority transfer, or feedback-loop weakening.",
+      "inputs": {
+        "required": [
+          {
+            "name": "workflow_description",
+            "type": "string",
+            "description": "Description of the AI-enabled workflow under review.",
+            "example": "AI assistant produces denial-risk summaries for claims reviewers."
+          },
+          {
+            "name": "decision_inventory",
+            "type": "array",
+            "description": "Decisions, decision owners, AI touchpoints, review paths, and escalation paths.",
+            "example": [
+              "recommendation",
+              "approval",
+              "appeal"
+            ]
+          }
+        ],
+        "optional": [
+          {
+            "name": "runtime_logs",
+            "type": "object",
+            "description": "Logs showing AI recommendations, human overrides, escalations, autonomous actions, or review delays.",
+            "example": {
+              "recommendations": 1000,
+              "overrides": 42
+            }
+          },
+          {
+            "name": "baseline_process",
+            "type": "string",
+            "description": "Description of the pre-AI workflow and human dependency.",
+            "example": "Human analyst reviewed every case before recommendation."
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "finding",
+            "evidence",
+            "confidence",
+            "limits",
+            "human_gate_recommendation"
+          ],
+          "properties": {
+            "finding": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "human_gate_recommendation": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 3
+      },
+      "constraints": {
+        "assumptions": [
+          "The source is theoretical and supports governance instrumentation rather than deployment proof.",
+          "Enterprise application requires local workflow evidence."
+        ],
+        "non_goals": [
+          "Autonomous enforcement",
+          "Civilizational prediction",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation",
+          "artifact_review",
+          "dashboard_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing decision owner evidence",
+          "Missing workflow baseline",
+          "No evidence of how AI changed human review or decision rights"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "augmentation_displacement_classification_accuracy",
+          "human_review_substance_score"
+        ],
+        "acceptance_thresholds": [
+          "Human reviewer confirms classification rubric.",
+          "Output includes uncertainty when baseline workflow is incomplete."
+        ],
+        "test_set_plan": "Use a stratified set of enterprise AI workflows, with human reviewer labels for decision authority, feedback mechanism integrity, and evidence completeness."
+      },
+      "governance": {
+        "human_checkpoint": "AI governance reviewer confirms output before it is used in advisory reporting or customer recommendations.",
+        "logging_requirements": [
+          "Store source pack id",
+          "Store workflow artifact ids",
+          "Store evidence references",
+          "Store human reviewer decision and timestamp"
+        ]
+      }
+    },
+    {
+      "task_id": "t_c05",
+      "from_claim_id": "c05",
+      "name": "Translation boundary and reviewer gate",
+      "objective": "Determine whether a gradual-disempowerment finding should remain research mapping, become evaluation design, or support a governed advisory recommendation.",
+      "inputs": {
+        "required": [
+          {
+            "name": "workflow_description",
+            "type": "string",
+            "description": "Description of the AI-enabled workflow under review.",
+            "example": "AI assistant produces denial-risk summaries for claims reviewers."
+          },
+          {
+            "name": "decision_inventory",
+            "type": "array",
+            "description": "Decisions, decision owners, AI touchpoints, review paths, and escalation paths.",
+            "example": [
+              "recommendation",
+              "approval",
+              "appeal"
+            ]
+          }
+        ],
+        "optional": [
+          {
+            "name": "runtime_logs",
+            "type": "object",
+            "description": "Logs showing AI recommendations, human overrides, escalations, autonomous actions, or review delays.",
+            "example": {
+              "recommendations": 1000,
+              "overrides": 42
+            }
+          },
+          {
+            "name": "baseline_process",
+            "type": "string",
+            "description": "Description of the pre-AI workflow and human dependency.",
+            "example": "Human analyst reviewed every case before recommendation."
+          }
+        ]
+      },
+      "outputs": {
+        "primary_schema": {
+          "type": "object",
+          "required": [
+            "finding",
+            "evidence",
+            "confidence",
+            "limits",
+            "human_gate_recommendation"
+          ],
+          "properties": {
+            "finding": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "low",
+                "medium",
+                "high"
+              ]
+            },
+            "limits": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "human_gate_recommendation": {
+              "type": "string"
+            }
+          }
+        },
+        "evidence_items_min": 3
+      },
+      "constraints": {
+        "assumptions": [
+          "The source is theoretical and supports governance instrumentation rather than deployment proof.",
+          "Enterprise application requires local workflow evidence."
+        ],
+        "non_goals": [
+          "Autonomous enforcement",
+          "Civilizational prediction",
+          "Model training"
+        ],
+        "allowed_tools": [
+          "text_search",
+          "json_validation",
+          "artifact_review",
+          "dashboard_review"
+        ]
+      },
+      "abstention": {
+        "required": true,
+        "triggers": [
+          "Missing decision owner evidence",
+          "Missing workflow baseline",
+          "No evidence of how AI changed human review or decision rights"
+        ],
+        "fallback_action": "escalate_to_human"
+      },
+      "evaluation": {
+        "metrics": [
+          "translation_boundary_conformance",
+          "human_gate_completion"
+        ],
+        "acceptance_thresholds": [
+          "No task triggers automated enforcement.",
+          "Policy or executive review required before deployment constraints are recommended."
+        ],
+        "test_set_plan": "Use a stratified set of enterprise AI workflows, with human reviewer labels for decision authority, feedback mechanism integrity, and evidence completeness."
+      },
+      "governance": {
+        "human_checkpoint": "AI governance reviewer confirms output before it is used in advisory reporting or customer recommendations.",
+        "logging_requirements": [
+          "Store source pack id",
+          "Store workflow artifact ids",
+          "Store evidence references",
+          "Store human reviewer decision and timestamp"
+        ]
+      }
+    }
+  ]
+}
