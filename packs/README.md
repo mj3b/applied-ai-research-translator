@@ -2,13 +2,13 @@
 
 The `packs/` directory contains the governed research translation units for this repository. Each pack takes one research source, research question, or bounded task family and turns it into inspectable artifacts: source text, safety-policy intake, falsifiable claims, task definitions, evaluation criteria, translation verdicts, and decision summaries.
 
-A pack is not a folder of examples. It is the repository’s core governance object.
+A pack is the repository's core governance object. It records how research moved from source material into a decision artifact, including where translation was allowed, constrained, redirected into evaluation, routed into policy mapping, rejected, or held for human review.
 
 ---
 
 ## What a Pack Does
 
-A research pack records the path from source material to institutional decision. It makes each translation step reviewable before the system moves from research interpretation into operational use.
+A research pack preserves the path from source material to institutional decision. It makes each translation step reviewable before the system moves from research interpretation into operational use.
 
 ```text
 source material
@@ -30,7 +30,13 @@ decision summary
 
 The purpose is to prevent a paper, PDF, online publication, repository, benchmark, policy memo, or technical report from being treated as deployment justification without a record of what was actually extracted, bounded, tested, rejected, or approved.
 
-For AI safety and policy sources, the first governance question is not “what task can we build from this?” It is “what kind of authority should this source be allowed to have?”
+For AI safety and policy sources, the first governance question is this:
+
+```text
+What kind of authority should this source be allowed to have?
+```
+
+That question comes before task design. A source may support claim extraction, evaluation design, policy mapping, reviewer training, or monitoring logic while still failing bounded operational translation.
 
 ---
 
@@ -42,10 +48,11 @@ For AI safety and policy sources, the first governance question is not “what t
 | `haic_reliance_review_59e257ff` | Research translation pack | Human-AI collaboration and reliance calibration | Can reliance behavior be measured in a bounded decision-support workflow? | `proceed_to_task_design` |
 | `measuring_agents_in_production_a98e2ca8` | Research translation pack | Production measurement of AI agents | Can agent evaluation be translated into bounded monitoring and evidence artifacts? | Translation-positive candidate |
 | `multi_agent_failure_modes_e0228882` | Safety-policy reviewed negative translation pack | Multi-agent LLM failure modes | Can multi-agent autonomy be converted into a bounded decision-support task without expanding the accountability surface? | `human_review_required`, policy-mapping boundary |
+| `gradual_disempowerment_human_influence_2501a` | Safety-policy reviewed evaluation pack | Gradual human disempowerment and systemic AI risk | Can the erosion of human influence be translated into enterprise governance instrumentation without overclaiming civilizational theory? | `evaluation_only` |
 | `_template_safety_policy_intake` | Template | AI safety and policy intake | What minimum source-risk fields should be completed before translation? | Drafting aid |
 | `test_paper_agent_translation_d0702c41` | Development test pack | Agent translation workflow testing | Does the pack structure support schema and evaluation workflow testing? | Development example |
 
-The negative translation pack is part of the research contribution. It demonstrates that the translator can stop operationalization when the research source requires autonomy, creates diffuse accountability, or exceeds the repository’s governance boundary.
+The negative and evaluation-only packs are part of the research contribution. They demonstrate that the translator can stop or constrain operationalization when the research source raises autonomy, structural risk, diffuse accountability, or measurement uncertainty beyond the repository's bounded decision-support model.
 
 ---
 
@@ -55,6 +62,7 @@ A mature research translation pack should use this structure:
 
 ```text
 packs/<pack_id>/
+├── README.md
 ├── safety_policy_intake.json
 ├── agent_spec.json
 ├── claims.json
@@ -67,6 +75,7 @@ packs/<pack_id>/
 
 | Artifact | Purpose | Governance Function |
 |---|---|---|
+| `README.md` | Explains the pack purpose, boundary, verdict, artifacts, and review posture | Gives reviewers a plain-language entry point before inspecting JSON artifacts |
 | `sources/paper_text.txt` | Captures the source text, excerpt, or source-derived material used for translation | Preserves provenance and supports later reconstruction |
 | `safety_policy_intake.json` | Classifies AI safety and policy relevance before claims become tasks | Routes the source by evidence type, risk domain, autonomy relevance, dual-use status, review authority, and translation boundary |
 | `agent_spec.json` | Defines the bounded role, system behavior, or translation unit | Prevents open-ended model authority from entering the pack |
@@ -75,7 +84,7 @@ packs/<pack_id>/
 | `eval_plan.json` | Defines metrics, review questions, acceptance criteria, and failure conditions | Makes evidence requirements explicit before the output is judged |
 | `decision_summary.json` | Records the final verdict, rationale, confidence, uncertainty, and human decision | Provides the audit-ready decision artifact |
 
-`Safety_policy_intake.json` is required for AI safety and policy sources. It may be omitted for narrow development scaffolds or non-safety demonstration packs, but any omission should be understood as a maturity limit.
+`Safety_policy_intake.json` is required for AI safety and policy sources. It may be omitted for narrow development scaffolds or non-safety demonstration packs, but the omission should be treated as a maturity limit.
 
 ---
 
@@ -90,7 +99,7 @@ Use it when a source touches any of these domains:
 | Capability forecasting | Forecasts and capability evaluations can affect deployment timing, preparedness, and escalation decisions |
 | Misuse | Dual-use research may lower barriers to cyber, bio, persuasion, surveillance, fraud, or infrastructure harm |
 | Loss of control | Agency, strategic deception, oversight evasion, and power-seeking claims require stronger stop conditions |
-| Structural or gradual risk | Diffuse, cumulative, or institutional risks may require policy mapping rather than task execution |
+| Structural or gradual risk | Diffuse, cumulative, or institutional risks may require policy mapping or evaluation design instead of task execution |
 | Compute governance | Compute can be a policy lever, reporting object, allocation constraint, or verification target |
 | Model-weight security | Weights raise access-control, exfiltration, release, and monitoring questions |
 | Liability or private governance | Legal responsibility and institutional authority should be assigned before translation proceeds |
@@ -136,14 +145,14 @@ A pack should not be described as decision-complete unless the final verdict can
 
 ## Translation Verdicts
 
-The repository supports positive, conditional, restricted, and negative translation outcomes.
+The repository supports positive, conditional, restricted, evaluation-only, policy-mapping, and negative translation outcomes.
 
 | Verdict | Meaning | Typical Evidence |
 |---|---|---|
-| `translation_positive` | The research source supports at least one bounded task under the repository’s governance controls | Claims, tasks, evaluation plan, and reviewable artifact trail |
+| `translation_positive` | The research source supports at least one bounded task under the repository's governance controls | Claims, tasks, evaluation plan, and reviewable artifact trail |
 | `proceed_to_task_design` | The source appears translatable, but task design or evaluation requires further refinement | Claims and initial decision summary |
 | `approve_with_conditions` | The task may proceed only under specified constraints, review conditions, or human-gate requirements | Run artifacts, human-gate notes, and final summary |
-| `evaluation_only` | The source should inform evaluation design without becoming an operational task | Safety-policy intake, evaluation plan, and limitation notes |
+| `evaluation_only` | The source should inform evaluation design, measurement, assessment, or monitoring logic without becoming an operational task | Safety-policy intake, evaluation plan, limitation notes, and decision summary |
 | `policy_mapping_only` | The source should inform governance or policy mapping without execution | Safety-policy intake and policy-mapping rationale |
 | `restricted` | The source contains safety, misuse, security, or governance concerns requiring constrained handling | Intake classification, required reviewer list, and conditions |
 | `human_review_required` | The source may not proceed without designated expert review | Intake verdict and review authority |
@@ -161,7 +170,7 @@ A research claim can move toward task design only when it can be bounded without
 
 | Criterion | Reviewer Question | Pass Signal | Fail Signal |
 |---|---|---|---|
-| Source grounding | Does the claim trace to identifiable source material? | Source text or excerpt supports the claim | Claim is inferred from the paper’s general theme |
+| Source grounding | Does the claim trace to identifiable source material? | Source text or excerpt supports the claim | Claim is inferred from the paper's general theme |
 | Safety-policy classification | Has the source been routed by risk domain and translation boundary? | Intake file validates where applicable | Capability, misuse, autonomy, or legal risk remains unclassified |
 | Falsifiability | Can the claim be tested, contradicted, or measured? | Claim has observable conditions | Claim is aspirational, normative, or too broad |
 | Scope control | Are the population, setting, workflow, or system limits clear? | Pack names where the claim applies | Claim generalizes beyond the source evidence |
@@ -190,11 +199,31 @@ The pack is useful because it treats production behavior as a measurement proble
 
 ### `multi_agent_failure_modes_e0228882`
 
-This pack records a negative translation outcome and now includes a safety-policy intake artifact. The source material concerns systemic failure modes in multi-agent LLM systems, including coordination and accountability concerns. The intake classifies the source as relevant to loss-of-control and structural risk, with an open-ended agentic autonomy profile and policy-mapping boundary.
+This pack records a negative translation outcome and includes a safety-policy intake artifact. The source material concerns systemic failure modes in multi-agent LLM systems, including coordination and accountability concerns. The intake classifies the source as relevant to loss-of-control and structural risk, with an open-ended agentic autonomy profile and policy-mapping boundary.
 
-The decision summary rejects operational translation because the primary contribution requires a degree of autonomous multi-agent interaction that exceeds this repository’s bounded decision-support model.
+The decision summary rejects operational translation because the primary contribution requires a degree of autonomous multi-agent interaction that exceeds this repository's bounded decision-support model.
 
-This remains the strongest governance example in the directory. It shows that a research source can be useful for analysis while being unsuitable for operational translation under the repository’s current control boundary.
+This remains a strong governance example in the directory. It shows that a research source can be useful for analysis while being unsuitable for operational translation under the repository's current control boundary.
+
+### `gradual_disempowerment_human_influence_2501a`
+
+This pack translates *Gradual Disempowerment: Systemic Existential Risks from Incremental AI Development* into an evaluation-only governance pack. The source argues that incremental AI development can erode human influence across large-scale systems, including the economy, culture, and states, even without abrupt takeover or coordinated power-seeking.
+
+The pack's translation object is **human influence telemetry**: a measurement frame for detecting whether AI adoption reduces human labor dependence, transfers decision authority, weakens feedback mechanisms, makes human review ceremonial, or shifts accountability into another system or function.
+
+The pack remains `evaluation_only` because the source is systemic and theoretical. It can inform assessment design, registry extensions, monitoring concepts, and policy mapping. It should not authorize automated enforcement, deployment blocking, or operational prohibition without local workflow evidence and human review.
+
+The five bounded assessment tasks are:
+
+| Task | Governance Function |
+|---|---|
+| Human influence retention assessment | Evaluates whether an AI-enabled workflow preserves, reduces, or transfers human influence over a decision |
+| Local success versus systemic drift check | Distinguishes task-level performance gains from erosion of appeal, override, human expertise, or feedback loops |
+| Cross-system influence transfer map | Identifies where AI adoption shifts burden or accountability into another team, tool, market, or governance function |
+| Augmentation versus displacement classification | Separates AI assistance from decision-authority transfer or feedback-loop weakening |
+| Translation boundary and reviewer gate | Prevents speculative systemic theory from becoming automated enforcement |
+
+This pack is the clearest example of structural-risk translation. Its value is the conversion of a civilizational risk argument into measurable governance questions that can be used in enterprise review, advisory assessment, or AI portfolio monitoring.
 
 ### `_template_safety_policy_intake`
 
@@ -226,6 +255,25 @@ Do not skip from source text to task design. That jump hides the governance deci
 
 ---
 
+## README Convention for Individual Packs
+
+Each mature pack should include its own `README.md` so reviewers can understand the pack before inspecting JSON artifacts.
+
+A pack README should answer these questions in prose:
+
+| Question | Why it matters |
+|---|---|
+| What source does the pack translate? | Establishes provenance and domain |
+| What is the pack allowed to prove? | Prevents scope inflation |
+| What is the translation boundary? | Separates evaluation, policy mapping, and operational task design |
+| What verdict did the pack reach? | Gives reviewers the decision posture |
+| Which artifacts carry the evidence? | Directs review to source text, intake, claims, tasks, eval plan, and decision summary |
+| What should reviewers avoid overclaiming? | Protects the repository from turning research usefulness into authorization |
+
+The README is explanatory. The JSON artifacts remain authoritative for validation and audit reconstruction.
+
+---
+
 ## Naming Convention
 
 Pack names should be descriptive, stable, and reviewable.
@@ -233,7 +281,7 @@ Pack names should be descriptive, stable, and reviewable.
 Recommended pattern:
 
 ```text
-<source_or_topic_slug>_<short_hash>
+<source_or_topic_slug>_<short_hash_or_stable_suffix>
 ```
 
 Examples:
@@ -242,6 +290,7 @@ Examples:
 haic_reliance_review_59e257ff
 measuring_agents_in_production_a98e2ca8
 multi_agent_failure_modes_e0228882
+gradual_disempowerment_human_influence_2501a
 ```
 
 Use lowercase letters, numbers, and underscores. Avoid spaces, dates as the only identifier, and vague names such as `paper1` or `test_final`.
@@ -292,14 +341,15 @@ Do not use a pack to claim more than the artifacts support.
 
 | Avoid Claiming | Use Instead |
 |---|---|
-| “The paper proves this workflow should be deployed.” | “The pack translates selected paper claims into bounded tasks for review.” |
-| “The model is safe.” | “The run produced schema-valid output under the recorded task boundary.” |
-| “The research supports automation.” | “The research supports a bounded decision-support task with human review.” |
-| “The system validated the claim.” | “The system produced a decision record based on the available source, task, and evaluation artifacts.” |
-| “The pack is complete.” | “The pack is decision-complete under the current schema and documented limitations.” |
-| “The safety-policy intake approves the source.” | “The intake classifies the source and assigns a translation boundary for review.” |
+| "The paper proves this workflow should be deployed." | "The pack translates selected paper claims into bounded tasks for review." |
+| "The model is safe." | "The run produced schema-valid output under the recorded task boundary." |
+| "The research supports automation." | "The research supports a bounded decision-support task with human review." |
+| "The system validated the claim." | "The system produced a decision record based on the available source, task, and evaluation artifacts." |
+| "The pack is complete." | "The pack is decision-complete under the current schema and documented limitations." |
+| "The safety-policy intake approves the source." | "The intake classifies the source and assigns a translation boundary for review." |
+| "The gradual disempowerment pack proves AI adoption causes systemic human disempowerment." | "The pack converts a systemic-risk argument into evaluation-only governance questions for human influence review." |
 
-The repository’s credibility depends on keeping the claim at the level of the evidence.
+The repository's credibility depends on keeping the claim at the level of the evidence.
 
 ---
 
@@ -313,6 +363,7 @@ The repository’s credibility depends on keeping the claim at the level of the 
 | `TRACEABILITY.md` | Explains how a reviewer reconstructs the source-to-decision pathway |
 | `LIMITATIONS.md` | Names the limits that constrain how packs should be interpreted |
 | `CONTRIBUTING.md` | Defines how researchers and practitioners should add or modify packs |
+| `README.md` | Provides the repository-wide view of the research-to-decision model, quick start, examples, status, citation, and license |
 
 Read this directory together with the root documents. The packs provide the concrete evidence trail; the root documents define the governance theory and method.
 
@@ -324,10 +375,13 @@ Read this directory together with the root documents. The packs provide the conc
 packs/
 ├── README.md
 ├── _template_safety_policy_intake/
+│   ├── README.md
 │   └── safety_policy_intake.json
 ├── example_paper_001/
+│   ├── README.md
 │   └── agent_spec.json
 ├── haic_reliance_review_59e257ff/
+│   ├── README.md
 │   ├── agent_spec.json
 │   ├── claims.json
 │   ├── tasks.json
@@ -336,6 +390,7 @@ packs/
 │   └── sources/
 │       └── paper_text.txt
 ├── measuring_agents_in_production_a98e2ca8/
+│   ├── README.md
 │   ├── agent_spec.json
 │   ├── claims.json
 │   ├── tasks.json
@@ -343,6 +398,17 @@ packs/
 │   └── sources/
 │       └── paper_text.txt
 ├── multi_agent_failure_modes_e0228882/
+│   ├── README.md
+│   ├── safety_policy_intake.json
+│   ├── agent_spec.json
+│   ├── claims.json
+│   ├── tasks.json
+│   ├── eval_plan.json
+│   ├── decision_summary.json
+│   └── sources/
+│       └── paper_text.txt
+├── gradual_disempowerment_human_influence_2501a/
+│   ├── README.md
 │   ├── safety_policy_intake.json
 │   ├── agent_spec.json
 │   ├── claims.json
@@ -352,6 +418,7 @@ packs/
 │   └── sources/
 │       └── paper_text.txt
 └── test_paper_agent_translation_d0702c41/
+    ├── README.md
     ├── agent_spec.json
     └── eval_plan.json
 ```
@@ -360,7 +427,7 @@ packs/
 
 ## Status
 
-The current directory contains research translation packs, a safety-policy intake template, and development scaffolds. For v1.1 and later releases, the primary archival value is the presence of translation-positive and translation-negative examples that demonstrate how the repository separates research usefulness from operational authorization.
+The current directory contains research translation packs, a safety-policy intake template, an evaluation-only structural-risk pack, a negative translation pack, and development scaffolds. For v1.1.1, the primary archival value is the presence of translation-positive, evaluation-only, and translation-negative examples that demonstrate how the repository separates research usefulness from operational authorization.
 
 The safety-policy intake gate strengthens that separation for AI safety and policy sources. It classifies what kind of evidence the source provides, what risk domain it touches, who must review it, and whether the source may proceed to claims, evaluation design, policy mapping, bounded task translation, restricted handling, or rejection.
 
