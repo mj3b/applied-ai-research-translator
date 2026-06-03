@@ -1,0 +1,227 @@
+{
+  "spec_version": "0.1.0",
+  "spec_id": "spec_gradual_disempowerment_human_influence_2501a",
+  "created_at": "2026-06-02T00:00:00Z",
+  "updated_at": "2026-06-02T00:00:00Z",
+  "status": "draft",
+  "decision": {
+    "name": "human_influence_retention_translation",
+    "user": {
+      "persona": "AI Governance Advisor",
+      "primary_goal": "Translate gradual disempowerment research into bounded enterprise governance instrumentation without creating automated enforcement authority.",
+      "environment": "enterprise AI governance advisory and research translation"
+    },
+    "decision_statement": "Decide whether the paper can support a bounded evaluation pack for measuring human influence retention across AI-enabled workflows.",
+    "scope": {
+      "included": [
+        "Human influence retention assessment",
+        "AI displacement-dependency inventory",
+        "cross-system feedback-loop mapping",
+        "human oversight substance review",
+        "portfolio-level executive reporting design"
+      ],
+      "excluded": [
+        "Autonomous enforcement",
+        "macroeconomic forecasting claims for a specific enterprise",
+        "civilizational risk prediction",
+        "model training or deployment"
+      ]
+    },
+    "failure_cost": {
+      "severity": "high",
+      "harms": [
+        "Overclaiming systemic risk from insufficient enterprise evidence",
+        "Blocking useful AI deployments without a reviewable basis",
+        "Treating ceremonial human review as substantive authority"
+      ],
+      "reversibility": "partially_reversible"
+    },
+    "success_criteria": [
+      "Outputs distinguish augmentation from displacement of human influence.",
+      "Each risk finding traces to a workflow artifact, decision right, feedback mechanism, or oversight record.",
+      "Human reviewer can accept, override, or reject each translation output before customer use."
+    ]
+  },
+  "inputs": {
+    "modalities": [
+      "pdf",
+      "text",
+      "enterprise_artifacts"
+    ],
+    "required_fields": [
+      {
+        "name": "workflow_description",
+        "type": "string",
+        "description": "Description of the AI-enabled workflow or portfolio being assessed.",
+        "constraints": {
+          "allowed_values": null,
+          "regex": null,
+          "min": null,
+          "max": null
+        },
+        "required": true,
+        "example": "Claims triage workflow using an AI assistant to recommend approval, denial, escalation, or documentation request."
+      }
+    ],
+    "optional_fields": [
+      {
+        "name": "decision_inventory",
+        "type": "array",
+        "description": "Existing inventory of decisions, owners, AI touchpoints, and human review points.",
+        "constraints": {
+          "allowed_values": null,
+          "regex": null,
+          "min": null,
+          "max": null
+        },
+        "required": false,
+        "example": [
+          "coverage decision",
+          "appeal routing",
+          "customer communication"
+        ]
+      },
+      {
+        "name": "runtime_logs",
+        "type": "object",
+        "description": "Logs or monitoring data showing AI recommendations, human overrides, escalations, and autonomous actions.",
+        "constraints": {
+          "allowed_values": null,
+          "regex": null,
+          "min": null,
+          "max": null
+        },
+        "required": false,
+        "example": {
+          "recommendations": 1000,
+          "overrides": 42,
+          "escalations": 76
+        }
+      }
+    ],
+    "data_quality_assumptions": [
+      "Enterprise artifacts may omit informal human judgment, political pressure, or off-system decision influence.",
+      "Reported human approvals may represent formal signoff rather than substantive deliberation."
+    ],
+    "redaction_rules": [
+      {
+        "rule": "Remove personal data, customer identifiers, employee names, and sensitive operational details before pack analysis."
+      }
+    ]
+  },
+  "outputs": {
+    "primary_output_schema": {
+      "type": "object",
+      "required": [
+        "human_influence_assessment",
+        "evidence",
+        "limits",
+        "recommended_human_gate"
+      ],
+      "properties": {
+        "human_influence_assessment": {
+          "type": "object"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "limits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "recommended_human_gate": {
+          "type": "string"
+        }
+      }
+    },
+    "evidence_requirements": {
+      "citations_required": true,
+      "citation_format": "source:line_range_or_artifact_id",
+      "min_evidence_items": 3
+    },
+    "confidence_labeling": {
+      "required": true,
+      "scale": "low|medium|high",
+      "calibration_notes": "High confidence requires workflow evidence, decision ownership evidence, and runtime or review logs."
+    },
+    "abstention": {
+      "required": true,
+      "triggers": [
+        {
+          "condition": "No evidence that AI changes decision rights or human review quality."
+        },
+        {
+          "condition": "Workflow artifacts do not identify decision owners."
+        },
+        {
+          "condition": "The analysis would require speculation about civilizational effects."
+        }
+      ],
+      "fallback_action": "escalate_to_human_governance_reviewer",
+      "message_template": "Abstain from translation because the available evidence cannot support a human influence retention finding."
+    }
+  },
+  "evaluation": {
+    "eval_plan_ref": "packs/gradual_disempowerment_human_influence_2501a/eval_plan.json",
+    "target_metrics": [
+      "human_influence_retention_index",
+      "decision_authority_transfer_score",
+      "feedback_loop_integrity_score",
+      "oversight_substance_score"
+    ],
+    "acceptance_thresholds": [
+      "At least one direct evidence item for each asserted displacement mechanism.",
+      "No deployment recommendation without human reviewer signoff."
+    ]
+  },
+  "governance": {
+    "human_in_loop": {
+      "required": true,
+      "checkpoints": [
+        "safety-policy intake approval",
+        "claim extraction review",
+        "task boundary approval",
+        "decision summary approval"
+      ]
+    },
+    "decision_log": {
+      "schema_ref": "schemas/decision_summary.schema.json",
+      "required_fields": [
+        "decision",
+        "confidence",
+        "rationale",
+        "notes"
+      ]
+    },
+    "change_control": {
+      "versioning": "semver",
+      "retrain_or_update_triggers": [
+        "new version of source paper",
+        "new enterprise workflow evidence",
+        "regulatory requirement affecting human oversight"
+      ],
+      "rollback_plan": "Revert to policy_mapping_only if translated metrics are misused as automated enforcement."
+    }
+  },
+  "provenance": {
+    "paper": {
+      "title": "Gradual Disempowerment: Systemic Existential Risks from Incremental AI Development",
+      "authors": [
+        "Jan Kulveit",
+        "Raymond Douglas",
+        "Nora Ammann",
+        "Deger Turan",
+        "David Krueger",
+        "David Duvenaud"
+      ],
+      "arxiv": "2501.16946v2",
+      "paper_text_path": "packs/gradual_disempowerment_human_influence_2501a/sources/paper_text.txt",
+      "source_pdf": "/mnt/data/1780170526253.pdf"
+    }
+  }
+}
