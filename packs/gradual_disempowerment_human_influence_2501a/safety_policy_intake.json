@@ -1,0 +1,68 @@
+{
+  "intake_version": "0.1",
+  "pack_id": "gradual_disempowerment_human_influence_2501a",
+  "source_id": "source_001",
+  "source_type": "preprint",
+  "source_status": {
+    "review_status": "preprint",
+    "evidence_type": "theoretical",
+    "epistemic_status": "preliminary",
+    "update_condition": "Update the verdict if empirical portfolio metrics for human influence retention become available, or if the source is superseded by peer-reviewed work with different measurement guidance."
+  },
+  "ai_safety_domain": {
+    "capability_forecasting": false,
+    "misuse": false,
+    "loss_of_control": true,
+    "structural_or_gradual_risk": true,
+    "compute_governance": false,
+    "model_weight_security": false,
+    "liability_or_private_governance": true,
+    "international_governance": true,
+    "concentration_of_power": true
+  },
+  "capability_and_autonomy": {
+    "model_class": "agentic_system",
+    "autonomy_level": "delegated_task",
+    "task_horizon_relevance": "long",
+    "tool_use_scope": "external_systems"
+  },
+  "risk_screen": {
+    "misuse_pathways": [
+      "persuasion",
+      "surveillance",
+      "critical_infrastructure"
+    ],
+    "dual_use_status": "dual_use",
+    "loss_of_control_indicators": [
+      "resource_acquisition",
+      "power_seeking"
+    ],
+    "oversight_failure_modes": [
+      "human_overreliance",
+      "automation_bias",
+      "rubber_stamp_review",
+      "insufficient_expertise"
+    ],
+    "catastrophic_risk_relevance": "plausible"
+  },
+  "governance_mapping": {
+    "decision_lever": "monitoring",
+    "required_review": [
+      "researcher",
+      "ai_safety_reviewer",
+      "governance",
+      "policy",
+      "executive"
+    ],
+    "translation_boundary": "evaluation_design"
+  },
+  "translation_verdict": {
+    "verdict": "evaluation_only",
+    "rationale": "The source provides a systemic risk theory and measurement agenda for human disempowerment. It supports governance instrumentation, risk mapping, and monitoring design, but it should not be converted into autonomous operational action.",
+    "conditions": [
+      "Use the pack to design human influence telemetry and portfolio-level governance review.",
+      "Do not treat the paper as empirical proof that a specific enterprise deployment is harmful without local evidence.",
+      "Require human review before converting any metric into a deployment block or automated enforcement action."
+    ]
+  }
+}
