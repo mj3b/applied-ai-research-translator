@@ -1,0 +1,68 @@
+{
+  "eval_plan_version": "0.1.0",
+  "pack_id": "gradual_disempowerment_human_influence_2501a",
+  "created_at": "2026-06-02T00:00:00Z",
+  "purpose": "Convert gradual disempowerment from macro-risk theory into bounded enterprise governance evaluation without claiming empirical certainty beyond available evidence.",
+  "primary_evaluations": [
+    {
+      "name": "Human Influence Retention Index",
+      "question": "Does the AI-enabled workflow preserve substantive human decision authority?",
+      "signals": [
+        "named decision owner",
+        "pre-AI baseline",
+        "AI touchpoint",
+        "human override evidence",
+        "appealability",
+        "review timing"
+      ],
+      "failure_condition": "Human approval occurs only after AI has shaped the operative decision and no evidence shows substantive deliberation."
+    },
+    {
+      "name": "Decision Authority Transfer Score",
+      "question": "Has decision authority moved from a human role into AI recommendation, ranking, routing, or execution logic?",
+      "signals": [
+        "decision rights matrix",
+        "recommendation adoption rate",
+        "override rate",
+        "escalation rate",
+        "exception handling"
+      ],
+      "failure_condition": "The workflow cannot explain who holds authority when the AI output is wrong or contested."
+    },
+    {
+      "name": "Feedback Loop Integrity Score",
+      "question": "Which human feedback mechanism previously kept the process aligned, and does it still operate after AI adoption?",
+      "signals": [
+        "complaints",
+        "appeals",
+        "human review meetings",
+        "model monitoring",
+        "user feedback",
+        "governance exceptions"
+      ],
+      "failure_condition": "Feedback is collected but lacks a route to change policy, model use, or workflow design."
+    },
+    {
+      "name": "Cross-System Burden Shift Review",
+      "question": "Does the AI deployment shift alignment burden into legal, compliance, governance, procurement, or downstream users without transferring evidence and authority?",
+      "signals": [
+        "dependency map",
+        "handoff records",
+        "policy exceptions",
+        "control owner list"
+      ],
+      "failure_condition": "A downstream function receives accountability without evidence access or decision rights."
+    }
+  ],
+  "acceptance_criteria": [
+    "Each score traces to workflow evidence rather than general risk language.",
+    "Each report distinguishes augmentation from displacement.",
+    "Each high-risk finding includes a human review gate and limitation statement."
+  ],
+  "limitations": [
+    "The source is theoretical and cannot prove enterprise harm alone.",
+    "Metrics require local workflow artifacts and reviewer judgment.",
+    "Human influence can be formal, informal, or political, and some mechanisms may be absent from records."
+  ],
+  "verdict": "evaluation_only_candidate"
+}
