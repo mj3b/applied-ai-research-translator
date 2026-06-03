@@ -37,10 +37,12 @@ This repository makes that distinction inspectable.
 - [Why the Safety-Policy Intake Gate Matters](#why-the-safety-policy-intake-gate-matters)
 - [Quick Start](#quick-start)
 - [Worked Example](#worked-example)
+- [Gradual Disempowerment Human Influence Pack](#gradual-disempowerment-human-influence-pack)
 - [Core Artifacts](#core-artifacts)
 - [Governance Model](#governance-model)
 - [Schema and Validation Layer](#schema-and-validation-layer)
 - [Example Packs](#example-packs)
+- [Pack README Convention](#pack-readme-convention)
 - [Repository Structure](#repository-structure)
 - [Reading Guide](#reading-guide)
 - [Status](#status)
@@ -267,14 +269,35 @@ packs/multi_agent_failure_modes_e0228882/
 
 This is the most important pack for AI safety and policy reviewers. It shows how the repository preserves a rejection path when source material exceeds the bounded decision-support model.
 
+### 8. Read the evaluation-only systemic-risk example
+
+```text
+packs/gradual_disempowerment_human_influence_2501a/
+```
+
+This pack translates a systemic AI risk paper into human influence telemetry: bounded assessment tasks that ask whether AI adoption preserves, weakens, transfers, or obscures human decision authority inside a workflow.
+
+### 9. Inspect the pack README files
+
+```bash
+find packs -maxdepth 2 -name README.md -print
+```
+
+Each pack-level README states the pack's maturity, allowed use, translation boundary, and decision status. The README is part of the governance surface because it prevents a scaffold, candidate pack, evaluation-only pack, or negative translation case from being mistaken for deployment authorization.
+
 ---
 
 ## Worked Example
+
+The repository now includes two safety-policy examples that show different translation outcomes.
+
+### Negative translation: multi-agent failure modes
 
 The `multi_agent_failure_modes_e0228882` pack demonstrates the safety-policy intake gate.
 
 ```text
 packs/multi_agent_failure_modes_e0228882/
+├── README.md
 ├── safety_policy_intake.json
 ├── agent_spec.json
 ├── claims.json
@@ -289,7 +312,46 @@ The pack concerns autonomous multi-agent failure modes. The intake file classifi
 
 The important point is the verdict. The translator preserves research value without turning the source into an autonomous execution path.
 
-That is the intended behavior.
+### Evaluation-only translation: gradual disempowerment
+
+The `gradual_disempowerment_human_influence_2501a` pack demonstrates a different boundary. It translates *Gradual Disempowerment: Systemic Existential Risks from Incremental AI Development* into measurement and policy-mapping artifacts without converting the paper into a direct deployment prohibition.
+
+```text
+packs/gradual_disempowerment_human_influence_2501a/
+├── README.md
+├── safety_policy_intake.json
+├── agent_spec.json
+├── claims.json
+├── tasks.json
+├── eval_plan.json
+├── decision_summary.json
+└── source/
+    └── paper_text.txt
+```
+
+The pack's operating concept is human influence telemetry. It asks whether AI adoption changes who makes decisions, whose expertise remains necessary, what feedback mechanisms still work, whether human review remains substantive, and where one workflow shifts accountability into another function.
+
+The verdict is `evaluation_only`. The source can support assessment design, registry extensions, risk-scenario mapping, monitoring questions, and advisory review. It does not authorize automated enforcement, deployment blocking, or claims about a specific organization without local evidence and human review.
+
+Together, these two packs show the translator's core governance behavior: research value can produce a task, an evaluation, a policy mapping, a human-review requirement, a rejection, or an abstention.
+
+---
+
+## Gradual Disempowerment Human Influence Pack
+
+The `gradual_disempowerment_human_influence_2501a` pack adds a systemic-risk example to the repository. It treats gradual disempowerment as a measurable governance problem: AI systems may remain locally useful while cumulatively reducing human influence over economic, cultural, organizational, or institutional decisions.
+
+The pack translates the paper into five bounded assessment tasks:
+
+| Task | Governance question | Output boundary |
+|---|---|---|
+| Human influence retention assessment | Does the workflow preserve, reduce, or transfer human decision authority after AI adoption? | Assessment artifact |
+| Local success versus systemic drift check | Does local performance improvement weaken override, appeal, expertise, or feedback mechanisms? | Risk-scenario review |
+| Cross-system influence transfer map | Does automation shift accountability into another function, team, market, or governance layer? | Dependency map |
+| Augmentation versus displacement classification | Does the AI system assist human judgment or replace the human dependency that kept the workflow accountable? | Classification record |
+| Translation boundary and reviewer gate | Does the source remain evaluation-only, policy-mapping-only, or eligible for bounded task design? | Human-gated verdict |
+
+The pack gives safety and governance reviewers a way to inspect systemic AI risk without treating a civilizational-risk paper as direct operational authority. Its correct use is measurement design, risk education, policy mapping, and advisory workflow development. Its incorrect use is automated blocking, production certification, or universal claims about an organization without workflow-specific evidence.
 
 ---
 
@@ -297,7 +359,8 @@ That is the intended behavior.
 
 | Artifact | Function | Governance role |
 |---|---|---|
-| `sources/paper_text.txt` | Captures source material used for translation | Preserves provenance and auditability |
+| `README.md` | States pack purpose, maturity, permitted use, and boundary | Prevents a scaffold, candidate, evaluation-only, or negative pack from being misread as decision authorization |
+| `sources/paper_text.txt` or `source/paper_text.txt` | Captures source material used for translation | Preserves provenance and auditability |
 | `safety_policy_intake.json` | Classifies AI safety and policy relevance | Sets review authority and translation boundary before claims become tasks |
 | `claims.json` | Records extracted claims and source-linked evidence | Prevents unsupported generalization from the source |
 | `tasks.json` | Converts selected claims into bounded operational tasks | Defines execution boundary before AI assistance |
@@ -317,7 +380,8 @@ Governance in this repository is implemented as architecture.
 
 | Governance property | Implementation mechanism | Evidence artifact |
 |---|---|---|
-| Provenance | Source text is captured inside each pack | `sources/paper_text.txt` |
+| Pack-level orientation | Each pack states its purpose, maturity, boundary, and allowed use | pack-level `README.md` |
+| Provenance | Source text is captured inside each pack | `sources/paper_text.txt` or `source/paper_text.txt` |
 | Safety-policy classification | Risk domain and translation boundary are recorded before claims become tasks | `safety_policy_intake.json` |
 | Claim discipline | Claims are typed, scoped, and source-linked | `claims.json`, `claims.schema.json` |
 | Task containment | Inputs, outputs, constraints, and failure conditions are defined before execution | `tasks.json`, `tasks.schema.json` |
@@ -381,10 +445,11 @@ scripts/
 
 Validation does not prove truth. It proves that the artifact has the minimum structure required for review.
 
-Run the first-gate validator:
+Run the first-gate validators:
 
 ```bash
 ./scripts/validate_safety_policy_intake.sh packs/multi_agent_failure_modes_e0228882/safety_policy_intake.json
+./scripts/validate_safety_policy_intake.sh packs/gradual_disempowerment_human_influence_2501a/safety_policy_intake.json
 ```
 
 Run the pack validators:
@@ -404,10 +469,27 @@ Run the pack validators:
 | `haic_reliance_review_59e257ff` | Human-AI collaboration and reliance calibration | Translation-positive | Reliance calibration can be bounded through accept and override instrumentation |
 | `measuring_agents_in_production_a98e2ca8` | Production measurement of AI agents | Translation-positive candidate | Monitoring and workflow-level evaluation can be represented through bounded evidence artifacts |
 | `multi_agent_failure_modes_e0228882` | Multi-agent LLM failure modes | Safety-policy intake, policy-mapping boundary, human review required | Autonomous multi-agent coordination expands the accountability and audit surface beyond this repository’s bounded model |
+| `gradual_disempowerment_human_influence_2501a` | Systemic AI risk and human influence measurement | Safety-policy intake, `evaluation_only` verdict | Incremental AI adoption can be translated into human influence telemetry without authorizing automated enforcement |
 | `example_paper_001` | Minimal demonstration pack | Development scaffold | Used for structure and schema demonstration |
 | `test_paper_agent_translation_d0702c41` | Translation workflow testing | Development scaffold | Used for test workflow validation |
 
-The multi-agent rejection is the clearest governance example. It shows that the system can use research to stop a deployment path.
+The multi-agent rejection is the clearest boundary example. It shows that the system can use research to stop a deployment path. The gradual disempowerment pack shows a second boundary: a source can be strong enough for evaluation design and policy mapping while remaining outside automated deployment control.
+
+---
+
+## Pack README Convention
+
+Each pack now has its own README where the repository state supports it. The pack README is a reviewer-facing control, not decoration. It states what the pack is, what it evaluates, when it may be used, and where its translation boundary sits.
+
+| Pack README field | Reviewer function |
+|---|---|
+| Purpose | Names the source domain and the governance question the pack is allowed to answer |
+| Current contents | Shows which artifacts exist and which are missing |
+| Appropriate use | Prevents a scaffold, candidate pack, evaluation-only pack, or negative translation pack from being treated as authorization |
+| Governance boundary | States what the pack may support and what it cannot prove |
+| Maturity status or verdict | Helps reviewers distinguish development scaffolds from decision-complete packs |
+
+This convention matters because pack directories can look similar even when their authority differs. A folder with claims and tasks may still lack a decision summary. A source may be useful for evaluation design while remaining unsuitable for task execution. A negative translation pack may be more governance-significant than a positive one because it preserves the point where operationalization stopped.
 
 ---
 
@@ -440,9 +522,11 @@ applied-ai-research-translator/
 │   ├── README.md                               ← Pack model, maturity levels, verdict logic, required files, and reviewer instructions
 │   │
 │   ├── _template_safety_policy_intake/         ← Reusable template for AI safety and policy source classification
+│   │   ├── README.md                           ← Template use, source-risk questions, and boundary warning
 │   │   └── safety_policy_intake.json           ← Draft intake artifact for source status, risk domain, review authority, and translation boundary
 │   │
 │   ├── haic_reliance_review_59e257ff/          ← Translation-positive pack: human-AI reliance calibration
+│   │   ├── README.md                           ← Pack purpose, reliance-calibration question, use boundary, and maturity note
 │   │   ├── agent_spec.json                     ← Agent or task specification with bounded role and constraints
 │   │   ├── claims.json                         ← Falsifiable claims extracted from source material
 │   │   ├── tasks.json                          ← Locked tasks derived from selected claims
@@ -452,6 +536,7 @@ applied-ai-research-translator/
 │   │       └── paper_text.txt                  ← Captured source text used for claim extraction and audit reconstruction
 │   │
 │   ├── measuring_agents_in_production_a98e2ca8/ ← Translation-positive candidate: production measurement for AI agents
+│   │   ├── README.md                           ← Pack purpose, evaluation scaffold status, use boundary, and missing decision-summary note
 │   │   ├── agent_spec.json                     ← Agent or task specification
 │   │   ├── claims.json                         ← Extracted claims with source-grounded evidence
 │   │   ├── tasks.json                          ← Bounded operational tasks
@@ -460,6 +545,7 @@ applied-ai-research-translator/
 │   │       └── paper_text.txt                  ← Source text preserved for audit reconstruction
 │   │
 │   ├── multi_agent_failure_modes_e0228882/     ← Translation-negative pack: autonomous multi-agent failure modes
+│   │   ├── README.md                           ← Negative translation rationale, policy-mapping boundary, and human-review constraint
 │   │   ├── safety_policy_intake.json           ← AI safety and policy intake gate for loss-of-control and structural-risk classification
 │   │   ├── agent_spec.json                     ← Specification showing the governance boundary problem
 │   │   ├── claims.json                         ← Extracted claims and failure-mode evidence
@@ -469,10 +555,23 @@ applied-ai-research-translator/
 │   │   └── sources/
 │   │       └── paper_text.txt                  ← Source text preserved for review
 │   │
+│   ├── gradual_disempowerment_human_influence_2501a/ ← Evaluation-only pack: systemic AI risk and human influence telemetry
+│   │   ├── README.md                           ← Pack purpose, human influence telemetry concept, evaluation-only verdict, and use boundary
+│   │   ├── safety_policy_intake.json           ← Structural AI-risk intake with monitoring and evaluation boundary
+│   │   ├── agent_spec.json                     ← Assessment-agent specification for bounded governance translation
+│   │   ├── claims.json                         ← Claims extracted from gradual disempowerment research
+│   │   ├── tasks.json                          ← Human influence retention, systemic drift, burden-shift, and boundary-review tasks
+│   │   ├── eval_plan.json                      ← Assessment questions, metrics, and failure conditions
+│   │   ├── decision_summary.json               ← Human-gated evaluation-only translation verdict
+│   │   └── source/
+│   │       └── paper_text.txt                  ← Source text preserved for review
+│   │
 │   ├── example_paper_001/                      ← Minimal demonstration pack
+│   │   ├── README.md                           ← Scaffold status, appropriate use, and maturity boundary
 │   │   └── agent_spec.json                     ← Schema-validated agent or task specification
 │   │
 │   └── test_paper_agent_translation_d0702c41/  ← Development test pack for translation workflow validation
+│       ├── README.md                           ← Test-pack status, appropriate use, and maturity boundary
 │       ├── agent_spec.json                     ← Test specification
 │       └── eval_plan.json                      ← Test evaluation plan
 │
@@ -590,10 +689,11 @@ applied-ai-research-translator/
 |---|---|---|
 | Principal investigator | `README.md`, then `RESEARCH-RATIONALE.md` | Research contribution, artifact chain, and scholarly boundaries |
 | AI safety researcher | `packs/multi_agent_failure_modes_e0228882/`, then `docs/governance/safety-policy-intake.md` | Autonomy boundary, loss-of-control routing, and rejection logic |
+| Systemic-risk reviewer | `packs/gradual_disempowerment_human_influence_2501a/`, then `TRANSLATION-METHOD.md` | Human influence telemetry, evaluation-only boundary, and cross-system risk translation |
 | AI policy researcher | `docs/governance/`, then `TRANSLATION-METHOD.md` | How policy and governance sources become reviewable artifacts |
 | Technical implementer | `runloop/README_RUNLOOP.md`, then `runloop/src/` | Execution path, schema validation, artifact logging, and human gate |
 | Auditor | `TRACEABILITY.md`, then decision summaries | Source-to-decision reconstruction |
-| Contributor | `CONTRIBUTING.md`, `schemas/README.md`, `packs/README.md` | How to add packs, schemas, and governed artifacts |
+| Contributor | `CONTRIBUTING.md`, `schemas/README.md`, `packs/README.md` | How to add packs, schemas, pack READMEs, and governed artifacts |
 
 ---
 
@@ -616,6 +716,8 @@ Make the path from research source to decision artifact visible enough to review
 | v1.0 | Decision-complete reference implementation | Established core translation method, schemas, example packs, governed runloop, and human gate |
 | v1.1 | Research-grade archival release | Strengthened research rationale, governance framing, citation metadata, specifications, governance docs, release docs, and institutional README structure |
 | v1.1.1 | Safety-policy intake enhancement | Adds first-gate classification for AI safety and policy sources before claim extraction and task translation |
+
+This README keeps the repository version at `v1.1.1`. The added pack READMEs and gradual disempowerment pack expand the examples and documentation surface without changing the cited software version or release badge.
 
 ---
 
