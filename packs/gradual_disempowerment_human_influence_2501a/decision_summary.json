@@ -1,0 +1,12 @@
+{
+  "run_id": "manual_translation_review_2026_06_02",
+  "task_id": "pack_level_translation",
+  "decision": "evaluation_only",
+  "confidence": "medium",
+  "rationale": [
+    "The source provides a strong measurement agenda for detecting and quantifying human influence loss, especially through system-specific metrics and interaction effects.",
+    "The paper is theoretical and should inform advisory assessment, registry extensions, and monitoring design rather than automated enforcement or deployment blocking.",
+    "The pack preserves human review authority at every step and treats gradual disempowerment as a governance instrumentation problem."
+  ],
+  "notes": "Recommended public description: Human Influence Telemetry pack for translating gradual disempowerment research into enterprise AI governance assessment artifacts."
+}
