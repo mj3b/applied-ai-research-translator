@@ -1,0 +1,237 @@
+{
+  "claims_version": "0.1.0",
+  "pack_id": "gradual_disempowerment_human_influence_2501a",
+  "created_at": "2026-06-02T00:00:00Z",
+  "source": {
+    "paper_text_path": "packs/gradual_disempowerment_human_influence_2501a/sources/paper_text.txt",
+    "method": "manual_structural_translation_v0",
+    "notes": "Claims selected for enterprise governance instrumentation. The source is treated as theoretical risk and measurement agenda, not empirical proof for a specific deployment."
+  },
+  "claims": [
+    {
+      "claim_id": "c01",
+      "claim_type": "measurement",
+      "claim_text": "Gradual disempowerment should be translated into measurable human influence retention, because the paper argues that incremental AI can erode explicit and implicit human control mechanisms across societal systems.",
+      "operationalization": {
+        "task": "Assess whether an AI-enabled workflow preserves or erodes human influence over decisions.",
+        "inputs": [
+          "workflow description",
+          "decision inventory",
+          "human review records",
+          "runtime logs where available"
+        ],
+        "outputs": [
+          "human influence retention assessment",
+          "evidence gaps",
+          "review recommendation"
+        ],
+        "metric": "human_influence_retention_index"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Compare pre-AI and post-AI decision rights, review quality, override rates, and dependency on human expertise.",
+        "failure_modes": [
+          "ceremonial approval misclassified as substantive control",
+          "missing baseline",
+          "overgeneralization from one workflow"
+        ]
+      },
+      "dependencies": [
+        "decision inventory",
+        "review records",
+        "workflow owner confirmation"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "capabilities can undermine human influence over large-scale systems that society depends on",
+          "location_hint": "paper_text.txt:L18-L20"
+        },
+        {
+          "source": "paper_text",
+          "quote": "governance approaches that specifically address the risk of incremental erosion of human influence across interconnected societal systems",
+          "location_hint": "paper_text.txt:L29-L31"
+        }
+      ]
+    },
+    {
+      "claim_id": "c02",
+      "claim_type": "safety",
+      "claim_text": "Individual AI systems can follow local specifications while the surrounding sociotechnical system drifts away from human interests.",
+      "operationalization": {
+        "task": "Identify cases where local AI task success increases while human influence or feedback mechanisms weaken.",
+        "inputs": [
+          "AI system task objectives",
+          "business KPIs",
+          "human feedback mechanism records",
+          "governance review notes"
+        ],
+        "outputs": [
+          "local-success/systemic-risk finding",
+          "affected feedback mechanism",
+          "human gate recommendation"
+        ],
+        "metric": "local_success_systemic_drift_flag"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Review whether task-level performance gains coincide with reduced human review, reduced appealability, or loss of human expertise.",
+        "failure_modes": [
+          "confusing efficiency with disempowerment",
+          "insufficient evidence of feedback-loop change"
+        ]
+      },
+      "dependencies": [
+        "task success evidence",
+        "feedback loop evidence"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "This drift can occur even while each individual AI system successfully follows the local specification of its goals.",
+          "location_hint": "paper_text.txt:L848-L850"
+        },
+        {
+          "source": "paper_text",
+          "quote": "methods of aligning individual AI systems with their designers\u2019 intentions are not sufficient",
+          "location_hint": "paper_text.txt:L70-L72"
+        }
+      ]
+    },
+    {
+      "claim_id": "c03",
+      "claim_type": "measurement",
+      "claim_text": "A governance pack should track displacement of human influence through system-specific metrics and interaction effects rather than treating AI risk as a single-system property.",
+      "operationalization": {
+        "task": "Build a portfolio view of economic, cultural, political, or enterprise analogues of human influence loss.",
+        "inputs": [
+          "portfolio registry",
+          "AI use-case records",
+          "decision ownership records",
+          "cross-functional dependency map"
+        ],
+        "outputs": [
+          "system-specific metrics",
+          "interaction-effect map",
+          "early warning indicators"
+        ],
+        "metric": "cross_system_influence_transfer_score"
+      },
+      "testability": {
+        "level": "medium",
+        "eval_hint": "Map influence transfer across business units, governance functions, tooling, and executive incentives.",
+        "failure_modes": [
+          "dependency map incomplete",
+          "causal influence inferred without evidence",
+          "metrics too proxy-heavy"
+        ]
+      },
+      "dependencies": [
+        "portfolio registry",
+        "dependency map"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "For each of the major societal systems we have described, we can develop metrics tracking human influence",
+          "location_hint": "paper_text.txt:L860-L862"
+        },
+        {
+          "source": "paper_text",
+          "quote": "Given the mutual reinforcement dynamics we describe in Section 5, it is crucial to track how changes in one domain affect others.",
+          "location_hint": "paper_text.txt:L884-L886"
+        }
+      ]
+    },
+    {
+      "claim_id": "c04",
+      "claim_type": "safety",
+      "claim_text": "Enterprise governance should distinguish beneficial AI augmentation from problematic displacement of human influence.",
+      "operationalization": {
+        "task": "Classify AI workflow changes as augmentation, partial displacement, decision-authority transfer, or feedback-loop weakening.",
+        "inputs": [
+          "workflow before/after description",
+          "decision rights matrix",
+          "human review logs",
+          "override records"
+        ],
+        "outputs": [
+          "augmentation_vs_displacement_classification",
+          "confidence label",
+          "evidence gaps"
+        ],
+        "metric": "augmentation_displacement_classification_accuracy"
+      },
+      "testability": {
+        "level": "high",
+        "eval_hint": "Human reviewers classify a sample of AI-enabled workflow changes using a rubric, then compare with pack output.",
+        "failure_modes": [
+          "ambiguous baseline",
+          "reviewer disagreement",
+          "AI adoption described too generally"
+        ]
+      },
+      "dependencies": [
+        "workflow baseline",
+        "rubric",
+        "human reviewer"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "How can we distinguish between beneficial AI augmentation of human capabilities and problematic displacement of human influence?",
+          "location_hint": "paper_text.txt:L893-L895"
+        },
+        {
+          "source": "paper_text",
+          "quote": "What are the key thresholds or tipping points in these systems beyond which human influence becomes critically compromised?",
+          "location_hint": "paper_text.txt:L895-L897"
+        }
+      ]
+    },
+    {
+      "claim_id": "c05",
+      "claim_type": "method",
+      "claim_text": "The source should produce evaluation design and policy mapping before operational enforcement, because the authors state that no concrete plan currently exists for stopping gradual disempowerment.",
+      "operationalization": {
+        "task": "Route translated findings into advisory assessment, monitoring design, and human review rather than automated deployment blocking.",
+        "inputs": [
+          "claims",
+          "safety intake",
+          "customer governance context"
+        ],
+        "outputs": [
+          "translation boundary",
+          "required reviewers",
+          "conditions for use"
+        ],
+        "metric": "translation_boundary_conformance"
+      },
+      "testability": {
+        "level": "high",
+        "eval_hint": "Check whether every task preserves human gate approval and avoids autonomous enforcement.",
+        "failure_modes": [
+          "overclaiming source authority",
+          "automated enforcement from speculative theory",
+          "missing executive review"
+        ]
+      },
+      "dependencies": [
+        "safety policy intake",
+        "decision summary"
+      ],
+      "evidence": [
+        {
+          "source": "paper_text",
+          "quote": "no one has a concrete plausible plan for stopping gradual human disempowerment",
+          "location_hint": "paper_text.txt:L69-L71"
+        },
+        {
+          "source": "paper_text",
+          "quote": "meaningfully preventing these risks will require substantial effort: more research and data collection, international coordination, comprehensive regulation, and major societal interventions",
+          "location_hint": "paper_text.txt:L1053-L1055"
+        }
+      ]
+    }
+  ]
+}
