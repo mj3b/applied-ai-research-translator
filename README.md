@@ -752,7 +752,7 @@ This disclosure is consistent with the repository’s central governance positio
 ## Author
 
 Mark Julius Banasihan  
-AI Governance Specialist | Researcher in AI Safety & Policy  
+AI Governance Specialist | AI Safety & Sustainable AI Researcher
 ORCID: <https://orcid.org/0009-0001-8121-2878>  
 GitHub: <https://github.com/mj3b>  
 LinkedIn: <https://linkedin.com/in/markjuliusbanasihan>
